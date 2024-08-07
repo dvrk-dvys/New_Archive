@@ -1,0 +1,34 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as s
+import "checks/commons.jslt" as c
+
+// Common checks for Leads objects
+
+let eventTypeTag = m:tag("event-type", m:taggify(."@type", "unknown", s:event-type-values()))
+
+def check-object-inreplyto-id(checkSuite)
+   c:check($checkSuite, "object_id_is_not_null", c:check-not-null(.object.@id), $eventTypeTag, "critical")
+
+def check-object-inreplyto-id-pattern(checkSuite)
+//// TODO
+
+def check-object-inreplyto-adtype(checkSuite)
+   c:check($checkSuite, "object_adtype_is_not_null", c:check-not-null(.object.adType), $eventTypeTag, "critical")
+
+def check-object-inreplyto-category(checkSuite)
+   c:check($checkSuite, "object_category_is_not_null", c:check-not-null(.object.category), $eventTypeTag, "critical")
+
+def check-object-inreplyto-category-pattern(checkSuite)
+//// TODO
+
+def check-object-inreplyto-publisherType(checkSuite)
+   c:check($checkSuite, "object_publishertype_is_not_null", c:check-not-null(.object.publisherType), $eventTypeTag, "critical")
+
+def check-object-inreplyto-loc-addloc(checkSuite)
+   c:check($checkSuite, "object_loc_addloc_is_not_null", c:check-not-null(.object.location.addressLocality), $eventTypeTag, "critical")
+
+def check-object-inreplyto-loc-addreg(checkSuite)
+   c:check($checkSuite, "object_loc_addreg_is_not_null", c:check-not-null(.object.location.addressRegion), $eventTypeTag, "critical")
+
+def check-object-url(checkSuite)
+   c:check($checkSuite, "object_url_is_not_null", c:check-not-null(.object.url), $eventTypeTag, "critical")

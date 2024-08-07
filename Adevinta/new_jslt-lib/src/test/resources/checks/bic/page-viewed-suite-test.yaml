@@ -1,0 +1,289 @@
+tests:
+  - name: page-viewed-suite.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: count_all
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: suite_is_applied
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: object_page_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: object_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: object_page_name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: provider_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: provider_product_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: actor_id_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: origin_url_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: published_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: device_environment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: device_jwe_ids_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: device_device_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: page
+            device-type: desktop
+            tracker: js
+            check-suite: bic.page-view
+            check-name: tracker_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/page-viewed-suite.jslt" as c
+
+      let event =
+      {
+          "@id": "89c6077d-cade-4756-8576-5d53d139766a",
+          "@type": "View",
+          "device": {
+              "deviceType":"desktop",
+              "environmentId":"sdrn:schibsted:environment:3f024011-e89c-44f2-9bc4-2b22e5bfaaaa",
+              "jweIds":"eyJpc3N1ZWRBdCI6IjIwMjAtMTAtMDdUMDk6NTA6NDdaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..4zzxRhJmTu2ECTtq0Rp8rw.Vsy-DJXQbp23DXzquCVPXU7BjLGImLjFFQ4RB-4YZDVKtZO5jHffHFoQgHHZakTVUR2qRWgp-r6mGvldSFJcUiDQcyHhHbK6hLBjgo-XaTEtwLJWfbL3sdTcXNTQiiXml8JgCjf8zHiAvtfzap4gVkKmsKa__942BN-bV7iuhUbGkZ3okeSMQSkxihZ6V_tDtDXtb7DOiECBY7qvHdU37tlRtzHfGFIxYRzp5h1-BKQ.aonKORxGfpZfVhRI97js1Q"
+          },
+          "name": "Page viewed",
+          "object": {
+              "@id": "sdrn:avitoma:page:https://www.avito.ma/index.htm",
+              "@type": "Page",
+              "pageName": "Avito Homepage",
+              "pageType": "homepage",
+              "object.url": "https://www.avito.ma",
+          },
+          "origin": {
+            "url": "https://www.avito.ma/"
+          },
+          "provider": {
+              "@id": "sdrn:schibsted:client:avitoma",
+              "productType": "Web"
+          },
+          "published": "2020-11-26T08:52:31.947Z",
+          "schema":"https://schema.adevinta.com/events/tracker-event.json/229.json",
+          "tracker": {
+              "type":"JS"
+          }
+      }
+      c($event)

@@ -1,0 +1,292 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as s
+
+// This field specifies which schema this event should comply to, which must include a version number.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/events/base-routable-event.json#L38
+
+def check-schema-url(obj)
+    test($obj, "^http(s?):\\/\\/schema\\.(?:schibsted|adevinta)\\.com/(.+)/\\d+\\.json(#|$)")
+
+def check-schibsted-schema-url(obj)
+    test($obj, "^http(s?):\\/\\/schema\\.schibsted\\.com/(.+)/\\d+\\.json(#|$)")
+
+def check-adevinta-schema-url(obj)
+    test($obj, "^http(s?):\\/\\/schema\\.adevinta\\.com/(.+)/\\d+\\.json(#|$)")
+
+// Date and time formatted according to Activity Streams 2.0: https://www.w3.org/TR/activitystreams-core/#dates
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/common-definitions.json#L156
+
+def check-date-format(obj)
+    test($obj, "^([0-9]+)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])[Tt]([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?(([Zz])|([\\+|\\-]([01][0-9]|2[0-3]):[0-5][0-9])){1}$")
+
+
+
+// Timestamp. Just like date, but forces UTC+00:00 time. Examples: 2015-02-10T15:04:55Z, 2015-02-10T15:04:55+00:00
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/123bcbdafcbf598a33eafb856ee0b90dc5fcbf1d/schema/master/common-definitions.json#L287
+
+def check-timestamp-format(obj)
+    test($obj, "^([0-9]+)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])[Tt]([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?(([Zz])|([\\+|\\-])00:00)$")
+
+
+// Expected format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/123bcbdafcbf598a33eafb856ee0b90dc5fcbf1d/schema/master/common-definitions.json#L307
+
+def check-uuid-v4(obj)
+    test($obj, "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$")
+
+
+
+// IP
+
+def check-ip(obj)
+    test($obj, "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}")
+
+
+// EMAIL
+
+def check-email(obj)
+    test($obj, "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
+
+
+// Checks the given object is null.
+
+def check-null(obj) $obj == null
+
+
+// Checks the given object is empty or not empty (empty != null).
+
+def check-empty(obj)
+    check-not-null($obj) and (
+        (is-object($obj) and $obj == {}) or
+        (is-array($obj) and $obj == []) or
+        (is-string($obj) and $obj == "")
+    )
+
+def check-not-empty(obj)
+    check-null($obj) or
+    (is-object($obj) and $obj != {}) or
+    (is-array($obj) and $obj != []) or
+    (is-string($obj) and $obj != "")
+
+
+// Checks the given object is not null.
+
+def check-not-null(obj) $obj != null
+
+// Checks the given object is empty or not empty (empty != null).
+
+def check-not-null-and-not-empty(obj)
+    check-not-null($obj) and check-not-empty($obj)
+ 
+
+// The given object is one of the given ones.
+
+def check-one-of(obj, values)
+    if (is-array($values)) check-any([for ($values) $obj == .])
+    else $obj == $values
+
+
+// The given object is not one of the given ones.
+
+def check-not-one-of(obj, values)
+    not(check-one-of($obj, $values))
+
+
+// Checks all elements in the array are true.
+// Note empty array evaluates to true.
+
+def check-all(obj)
+    if (is-array($obj)) not(contains(false, [for ($obj) check-all(.)]))
+    else if (is-object($obj)) check-all([for ($obj) .value])
+    else if ($obj) true else false
+
+
+
+// Checks at least one element in the array is true.
+// Note this requires at least one element evaluating to true, so empty array evaluates to false.
+
+def check-any(obj)
+    if (is-array($obj)) contains(true, [for ($obj) check-any(.)])
+    else if (is-object($obj)) check-any([for ($obj) .value])
+    else if ($obj) true else false
+
+
+
+// Checks no element in the array is true.
+// Note empty array evaluates to true.
+
+def check-none(obj)
+    if (is-array($obj)) not(contains(false, [for ($obj) check-none(.)]))
+    else if (is-object($obj)) check-none([for ($obj) .value])
+    else if ($obj) false else true
+
+
+
+// It should be in the format of sdrn:<realm>:user:<accountId>.
+// The login realms are 'spid.no' for SPiD Norway, 'schibsted.com' for SPiD Sweden and global, 'leboncoin.fr' for Leboncoin, 'tori.fi' for Tori.
+// Other login systems can be indicated with a custom string. The string is normally the login domain, e.g. 'coches.com', 'subito.it'.
+// If a login system is used on multiple domains, please choose one single realm name to make sure that it is aligned on the different domains.
+// Realm examples: spid.no, schibsted.com (non-norwegian spid), subito.it, leboncoin.fr
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/Account.json#L8
+
+def check-sdrn-account-id(obj)
+    test($obj, "^sdrn:([^:]+):user:(.*)$")
+
+
+// Check on environment id
+// It should be in the format of sdrn:schibsted:environment:<envId>.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/objects/Device.json#L36
+// This also accepts null env id, which is set in Data Platform during anonymization, as valid sdrn-env-id
+
+def check-sdrn-env-id(obj)
+    test($obj, "^sdrn:schibsted:environment:[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$")
+    or ($obj == "00000000-0000-4000-8000-000000000000")
+
+
+// The global identifier of the ad as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It follows the pattern sdrn:<clientId>:classified:<contentId>. Example: sdrn:leboncoin:classified:12345678.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/ClassifiedAd.json#L21
+
+def check-sdrn-classified-ad(obj)
+    test($obj, "^sdrn:([^:]+):classified:([^:]+)$")
+    
+//"The global identifier of the delivery as a SDRN (Schibsted Data Resource Name). It follows the patter sdrn:<providerId>:delivery:<transactionId>. Example: sdrn:kufarby:delivery:12345678.",
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/objects/Delivery.json#7
+
+def check-sdrn-delivery(obj)
+    test($obj, "^sdrn:([^:]+):delivery:(.*)$")
+
+
+// The global identifier of the list as a SDRN.
+// Examples: sdrn:<client-id>:listing:q=house&location=0.20007
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/objects/Listing.json#L13
+
+def check-sdrn-listing(obj)
+    test($obj, "^sdrn:([^:]+):listing:(.*)$")
+
+
+// The global identifier of the form as a SDRN.
+// Examples: sdrn:avitoma:form:https://www2.avito.ma/ai/form/0
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/03ae107e74281ec07471fb0845bce011d31e27e9/schema/master/objects/Form.json#L11
+
+def check-sdrn-form(obj)
+    test($obj, "^sdrn:([^:]+):form:(.*)$")
+
+
+// The global identifier of the message as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:<client-id>:message:<message ID>. Example: sdrn:leboncoin:message:12345678.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/Message.json#L13
+
+def check-sdrn-message(obj)
+    test($obj, "^sdrn:([^:]+):message:(.*)$")
+
+
+// The global identifier of the phonecontact as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:<client-id>:phonecontact:<message ID>. Example: sdrn:yapocl:phonecontact:12345678.
+
+def check-sdrn-phonecontact(obj)
+    test($obj, "^sdrn:([^:]+):phonecontact:(.*)$")
+
+
+// The global identifier of the contactform as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:<client-id>:contact:<message ID>. Example: sdrn:leboncoin:contact:12345678.
+
+def check-sdrn-contactform(obj)
+    test($obj, "^sdrn:([^:]+):contact:(.*)$")
+
+
+// The global identifier of the provider message as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:schibsted:client:<provider ID>. Example: sdrn:schibsted:client:12345678.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/Provider.json#L7
+
+def check-sdrn-provider(obj)
+    test($obj, "^sdrn:schibsted:client:.+$")
+
+// The global identifier of the conversation message as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:<client-id>:client:<conversation ID>. Example: sdrn:leboncoin:conversation:12345678.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/Conversation.json#L11
+
+def check-sdrn-conversation(obj)
+    test($obj,"^sdrn:[^:]+:conversation:.+$")
+
+
+// The global identifier of the web page as a SDRN (Schibsted (aka Static :-) ) Data Resource Name).
+// It should be in the format of an SDRN of the pattern sdrn:<client-id>:(frontpage|page|content):<message ID>.
+// Examples: sdrn:leboncoin:frontpage:12345678, sdrn:leboncoin:page:12345678, sdrn:leboncoin:content:12345678.
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/schema/master/objects/Page.json#L28
+
+def check-sdrn-webpage(obj)
+    test($obj, "^sdrn:([^:]+):(frontpage|page|content):(.*)$")
+
+
+
+// It should be in MediaAsset Category format
+// Category tree for the Media Asset (category > subcategory > etc.)
+// https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/a0583ecce7bafdb89155e8f985914db6dffb15f3/schema/master/objects/MediaAsset.json#L35
+
+def check-mediaasset-category(obj)
+    is-string($obj) and test($obj, "^[^>]*(>[^>]+)*$")
+
+
+// Checks object is a number > 0
+
+def check-number-gt-0(obj) is-number($obj) and $obj > 0
+
+
+// Checks object is a non-negative number
+
+def check-number-ge-0(obj) is-number($obj) and $obj >= 0
+
+// Checks longitude and latitude
+def check-geocoordinate(obj)
+    test($obj, "^-?\\d+\\.\\d+$")
+
+// Check if the event is generated by a bot
+
+def check-bot(obj)
+    is-boolean($obj) and test($obj, true)
+
+
+// Retrieves the event tag from an event using the `taggify` method from `lib/metrics`
+
+def taggify-event-type(event)
+    m:taggify(s:get-event-name($event), "unknown", s:event-name-values())
+
+
+def taggify-deploy-stage(event)
+    m:taggify(lowercase(.deployStage), "unknown", ["dev", "pre", "pro"])
+
+
+// This builds a layer on top of tagged-metric more focused on data quality.
+// It introduces some restrictions, we get some benefits also:
+// - semantic of the check is logical (passes or not)
+// - metric name is fixed
+// - check-suite and check-name are tags so they allow for aggregations
+// - check is performed on all events and the result is registered (passing or not), so percentages can be
+//   calculated out-of-the-box with no need for for crossing metrics
+// Arguments:
+// - check-suite: metrics are grouped in check suites, this corresponds to the check-suite name
+// - check-name: name of the check within the check-suite
+// - check-result: binary/logical expression for the check evaluation
+// - tag-object: dictionary with the user tags (to be built by using 'tag' and 'taggify' methods in lib/metrics)
+// - check-impact: blocker, critical, minor ("critical" by default if given value is not one of the allowed values)
+// All arguments become tags in a metric with 'quality.check' name.
+def check(check-suite, check-name, check-result, tag-object, check-impact)
+    let check-result-binary = if ($check-result) true else false
+    let user-tags = if (size($tag-object) > 5) 
+                        let user-tags-array = [for ($tag-object) { "k": .key, "v": .value} ]
+                        m:tag($user-tags-array[0].k, $user-tags-array[0].v)
+                        + m:tag($user-tags-array[1].k, $user-tags-array[1].v)
+                        + m:tag($user-tags-array[2].k, $user-tags-array[2].v)
+                        + m:tag($user-tags-array[3].k, $user-tags-array[3].v)
+                        + m:tag($user-tags-array[4].k, $user-tags-array[4].v)
+                    else $tag-object
+    let system-tags = {
+        "check-suite": string($check-suite),
+        "check-name": string($check-name),
+        "check-result": string($check-result-binary),
+        "check-impact": if (check-one-of($check-impact, ["blocker", "critical", "minor"])) $check-impact else "critical"
+    }
+    [ m:multi-tagged-metric("quality.check", 1, $system-tags + $user-tags) ]
+
+def no-check() []

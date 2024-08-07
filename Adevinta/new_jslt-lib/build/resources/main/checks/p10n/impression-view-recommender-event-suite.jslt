@@ -1,0 +1,3 @@
+import "checks/p10n/impression-view-recommender-event.jslt" as impression-view-recommender-event
+
+impression-view-recommender-event(.)

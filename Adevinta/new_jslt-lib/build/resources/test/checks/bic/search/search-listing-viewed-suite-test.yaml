@@ -1,0 +1,745 @@
+tests:
+  - name: search-listing-viewed-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/bic/search/search-listing-viewed-suite.jslt" as p
+      p(.)
+      
+  - name: search-listing-viewed-suite.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: count_all
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: suite_is_applied
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: object_category_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: object_category_follows_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: locality_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: locality_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: query_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: query_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: region_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: region_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: sorting_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: sorting_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: object_items_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: object_items_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: numFilters_is_present
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: numFilters_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: numItems_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: numItems_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: origin_elementType_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: origin_elementType_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: origin_pageType_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: origin_pageType_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: device_device_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: device_environment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: origin_url_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: page_page_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: provider_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: provider_product_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: published_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_type_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_source_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_source_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_display_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_display_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_filterOrigin_is_not_null
+            check-result: 'true'
+            check-impact:  minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_filterOrigin_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_maxRank_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_maxRank_is_valid_number
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_offset_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_offset_is_valid_number
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_queryOrigin_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_queryOrigin_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_rank_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: listing
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.list-view
+            check-name: search_rank_is_valid_number
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/search/search-listing-viewed-suite.jslt" as c
+
+      let event =
+        {
+          "name": "Listing viewed",
+          "@id": "d5dfd92b-2c5c-42bc-a63c-a7d3ebbe5772",
+          "@type": "View",
+          "object": {
+            "@id": "sdrn:leboncoin:phonecontact:1253278",
+            "@type": "Listing",
+            "category": "BAP > SALESOBJECT > antiques > antiques_other",
+            "filters": {
+              "adType":"sell",
+              "carBrand":"",
+              "carModel":"",
+              "locality":"Ciudad de México",
+              "maxPrice":"",
+              "minPrice":"",
+              "minRooms":"",
+              "minSurface":"",
+              "numItems":27,
+              "propertyType":"",
+              "query":"televison",
+              "region":"Ciudad de México",
+              "sorting":"Relevance",
+              "urgent":false
+            },
+            "isTopPositionPremiumFeature":true,
+            "items": [
+                {
+                  "@id":"sdrn:segundamanomx:classified:936690901",
+                  "@type":"ClassifiedAd",
+                  "category":"",
+                  "name":"television en Todas las categorías en venta en Segundamano México | Segundamano.mx"
+                }
+            ],
+            "name":"television en Todas las categorías en venta en Segundamano México | Segundamano.mx",
+            "numFilters":0,
+            "numItems":8173,
+            "url": "https://www.yapo.cl/atacama/consolas_videojuegos/play_station_4_65321117.htm?ca=4_s&oa=65321117&xsp=3",
+            "inReplyTo": {
+              "@id": "sdrn:leboncoin:classified:1253278",
+              "category": "maison > electromenager",
+              "@type": "Listing",
+              "publisherType": "private",
+              "location": {
+                    "addressRegion": "III Atacama",
+                    "addressLocality": "San Pedro de Atacama"
+              }
+            }
+          },
+          "page": {
+            "pageType": "search",
+            "pageName": "page name free text"
+          },
+          "provider": {
+            "@id": "sdrn:schibsted:client:yapocl",
+            "productType": "Web"
+          },
+          "actor": {
+            "@id": "sdrn:yapocl:user:04332237"
+          },
+          "origin": {
+            "page":{
+              "pageType":"homepage"
+            },
+            "element" : {
+              "elementType" : "banner"
+            },
+            "channel" : "Social Media",
+            "url": "https://www.facebook.com/"
+          },
+          "published": "2019-07-16T08:52:31.947Z",
+          "search": {
+            "@id": "sdrn:leboncoin:search:6ef4aba1-c221-401b-bcf2-ebe80b99aa1b",
+            "@type": "SearchMetadata",
+            "source": "MainSearch",
+            "display": "List",
+            "filterOrigin":"Pre-filled",
+            "maxRank": 20,
+            "offset": 0,
+            "queryOrigin":"Previously searched",
+            "rank": 20
+          },
+          "device": {
+            "@type": "Device",
+            "acceptLanguage": "no",
+            "deviceType": "desktop",
+            "environmentId": "sdrn:schibsted:environment:d78ce8d4-bb90-4a6d-8351-a9dc53fd47d6",
+            "localStorageEnabled": true,
+            "screenSize": "2560x1440",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
+            "viewportSize": "1280x1271"
+          },
+          "tracker": {
+            "type":"JS"
+          }
+        }
+      c($event)

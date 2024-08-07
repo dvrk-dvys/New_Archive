@@ -1,0 +1,6 @@
+// Gets absolute number. If parameter is returned as is if it's not a number.
+def abs(num)
+  if (is-number($num) and $num < 0)
+     $num * -1
+  else
+     $num

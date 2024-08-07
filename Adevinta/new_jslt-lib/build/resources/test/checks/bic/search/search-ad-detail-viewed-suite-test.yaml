@@ -1,0 +1,379 @@
+tests:
+  - name: ad-detail-viewed-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/bic/search/search-ad-detail-viewed-suite.jslt" as p
+      p(.)
+
+  - name: ad-detail-viewed-suite.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: classifiedad
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.ad-view
+            check-name: count_all
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            object-type: classifiedad
+            device-type: desktop
+            tracker: js
+            check-suite: bic.search.ad-view
+            check-name: suite_is_applied
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_category_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1  
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_category_follows_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_loc_addloc_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_loc_addreg_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_url_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: actor_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: device_device_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: device_environment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: device_jwe_ids_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: origin_url_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: page_page_name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: page_page_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: provider_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: provider_product_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: published_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: tracker_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: bic.search.ad-view
+            device-type: desktop
+            product-type: web
+            check-name: type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/bic/search/search-ad-detail-viewed-suite.jslt" as c
+      let event =
+        {
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/161.json",
+          "name": "Ad detail viewed",
+          "published": "2019-07-16T08:52:31.947Z",
+          "provider": {
+            "@id": "sdrn:schibsted:client:yapocl",
+            "productType": "Web"
+          },
+          "page": {
+            "pageType": "ad_detail",
+            "pageName": "page name free text"
+          },
+          "device": {
+            "deviceType":"desktop",
+            "environmentId": "sdrn:schibsted:environment:d78ce8d4-bb90-4a6d-8351-a9dc53fd47d6",
+            "jweIds":"eyJpc3N1ZzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQWRBdCI6IjIwMjAtMDUtMTJUMTE6NDg6MDRaIiwiZW5jIjoiQTEyOENCQy1IU..zob1DBB983204982VVfhw.gjfvJ9BvOdxNoG1xhRWtV3W8gnJkEwxPy2CywxSSO_tzc-UC9ELPMIO4dPlXZk3kqM_zdSNFtijl1WxlZhIufoc8EeoAlH8wYy6lXCBKntu9WIxCRg35KXvJM77xSbsDCpECdZrnE896YKU4HlJIrtLNYY8bJy-mneLEPCicaKCPZ7tAa3uWDmWAizuOicicOUBvQsB-U0ciUAUH7sDKzJa08c3FlCCtYVoXSY2PrO4.g7fKaWvOWSNlR5bFRAKcqw"
+          },
+          "tracker": {
+            "type":"JS"
+          },
+          "@type": "View",
+          "@id": "df3d424d-9e9a-4c48-a40e-5b4946787bbc",
+          "object": {
+            "publisherType": "private",
+            "url": "https://www.yapo.cl/atacama/consolas_videojuegos/play_station_4_65321117.htm?ca=4_s&oa=65321117&xsp=3",
+            "location": {
+              "@type": "PostalAddress",
+              "addressRegion": "III Atacama",
+              "addressLocality": "San Pedro de Atacama"
+            },
+            "@type": "ClassifiedAd",
+            "@id": "sdrn:yapocl:classified:65117321",
+            "adType": "sell",
+            "category": "Computadores y electronica > Consolas videojuegos y accesorios"
+          },
+          "actor": {
+            "@id": "sdrn:yapocl:user:04332237"
+          },
+          "origin": {
+            "url": "https://www.facebook.com/"
+          }
+        }
+      c($event)

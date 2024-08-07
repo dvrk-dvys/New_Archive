@@ -1,0 +1,5 @@
+
+// Extracts client id from well-formed provider sdrn
+
+def canned-client-id(obj) capture($obj, "^sdrn:(?:schibsted|adevinta):client:(?<client>.*)").client
+

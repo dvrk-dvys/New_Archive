@@ -1,0 +1,3 @@
+import "checks/messaging/backend-prediction-event-all.jslt" as backend-prediction-event-all
+
+backend-prediction-event-all(.)

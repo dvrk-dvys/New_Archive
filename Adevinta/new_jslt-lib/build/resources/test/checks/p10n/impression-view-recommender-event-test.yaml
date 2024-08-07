@@ -1,0 +1,404 @@
+tests:
+
+  - name: impression-view-recommender-event.jslt compiles
+    type: compile
+    expression: |
+      import "checks/p10n/impression-view-recommender-event.jslt" as c
+      c(.)
+
+
+  - name: impression-view-recommender-event.jslt generates metrics for valid widget viewable event
+    expected:
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            list-type: relateditems:v10
+            rec-type: related-items
+            check-suite: p10n.impression-view-recommender-event
+            check-name: count
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: provider_id_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: provider_type_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: provider_product_tag_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: device_environment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: device_type_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: actor_id_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: actor_id_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: actor_sptid_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: actor_sptid_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: event_id_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: event_name_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: event_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_num_items_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_items_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_items_id_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_items_rank_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: object_items_rank_gt_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: published_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: tracker_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: tracker_name_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendationType_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendationType_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_list_name_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_list_name_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_source_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_source_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_query_params_itemsId_not_null_when_related_items
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: recommendation_valid_query_params_itemsId_when_related_items
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: android
+            event-type: engagement
+            source-type: ad-view-detail
+            check-suite: p10n.impression-view-recommender-event
+            check-name: device_is_bot
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+
+    expression: |
+      import "checks/p10n/impression-view-recommender-event.jslt" as c
+      // event got from https://docs.mpi-internal.com/data-and-insight/insights-docs/10.Tagging%20Guide/tagging-plans/recommendation/recommendation-widget-viewable-impression/
+      let recViewEvent =
+      {
+        "name": "Recommendation widget viewable impression",
+        "@type": "Engagement",
+        "object": {
+          "@type": "RecommendationList",
+          "numItems": 4, //Integer with number of items
+          "items": [{
+            "@id": "sdrn:yapocl:classified:74201921",
+            "@type": "RecommendationItem",
+            "rank": 1
+          }, {
+            "@id": "sdrn:yapocl:classified:73085579",
+            "@type": "RecommendationItem",
+            "rank": 2
+          }, {
+            "@id": "sdrn:yapocl:classified:74218422",
+            "@type": "RecommendationItem",
+            "rank": 3}, {
+            "@id": "sdrn:yapocl:classified:72510323",
+            "@type": "RecommendationItem",
+            "rank": 4
+          }]
+        },
+      "device": {
+          "environmentId": "sdrn:schibsted:environment:d78ce8d4-bb90-4a6d-8351-a9dc53fd47d6",
+          "isBot": false
+      },
+        "recommendation" : {
+          "@type" : "RecommendationMetadata",
+          "@id": "sdrn:yapocl:recommendation:8c1a791a-2fea-44cb-8648-bab5e5735f34",
+          "recommendationType": "related-items",
+          "source": "ad-view-detail",
+          "listName": "relateditems:v10",
+          "queryParams": {
+            "itemId": "sdrn:yapocl:classified:55601177"
+          }
+        },
+        "tracker": {
+                "@type": "Tracker",
+                "name": "publish-stream",
+                "type": "Android",
+                "version": "0.1.0"
+              }
+      }
+      c($recViewEvent)
+ 

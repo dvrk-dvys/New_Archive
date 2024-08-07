@@ -1,0 +1,167 @@
+buildscript {
+    repositories {
+        maven {
+            url = project.hasProperty("artifactory_context") ?
+                    "$artifactory_context" + "/plugins-release" : "$System.env.ARTIFACTORY_CONTEXT" + "/plugins-release"
+            credentials {
+                username = project.hasProperty("artifactory_user") ?
+                        "$artifactory_user" : "$System.env.ARTIFACTORY_USER"
+                password = project.hasProperty("artifactory_password") ?
+                        "$artifactory_password" : "$System.env.ARTIFACTORY_PWD"
+            }
+        }
+    }
+    dependencies {
+        // required for tricklerdowner notification
+        classpath 'org.eclipse.jgit:org.eclipse.jgit:5.5.+'
+        classpath 'com.mashape.unirest:unirest-java:1.4.9'
+    }
+}
+
+plugins {
+    id 'scala'
+    id 'maven-publish'
+    id 'application'
+}
+
+apply plugin: 'scala'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+ext {
+    scalaVersion = project.hasProperty('scalaVersion') ? project.getProperty('scalaVersion') : '2.11.11'
+    scalaMainVersion = scalaVersion.tokenize('.')[0] + '.' + scalaVersion.tokenize('.')[1]
+    jacksonVersion = '2.9.9'
+
+    buildTimestamp = System.getenv("BUILD_TIMESTAMP") ?: new Date().format('yyyyMMddHHmm')
+    buildRevision = System.getenv("BUILD_REVISION") ?: "g" + "git rev-parse --short=8 HEAD".execute().text.trim()
+    versionSuffix = "${buildTimestamp}.${buildRevision}"
+}
+
+group 'com.adevinta.data'
+version = "0.1.${versionSuffix}"
+
+application {
+    mainClassName = project.hasProperty("mainClass") ? getProperty("mainClass") : 'com.schibsted.spt.data.jslt.cli.JSLT'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = project.hasProperty("artifactory_context") ?
+                "$artifactory_context" + "/libs-release" : "$System.env.ARTIFACTORY_CONTEXT" + "/libs-release"
+        credentials {
+            username = project.hasProperty("artifactory_user") ?
+                    "$artifactory_user" : "$System.env.ARTIFACTORY_USER"
+            password = project.hasProperty("artifactory_password") ?
+                    "$artifactory_password" : "$System.env.ARTIFACTORY_PWD"
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url = project.hasProperty("artifactory_context") ?
+                    "$artifactory_context" + "/libs-release-local" : "$System.env.ARTIFACTORY_CONTEXT" + "/libs-release-local"
+            credentials {
+                username = project.hasProperty("artifactory_user") ?
+                        "$artifactory_user" : "$System.env.ARTIFACTORY_USER"
+                password = project.hasProperty("artifactory_password") ?
+                        "$artifactory_password" : "$System.env.ARTIFACTORY_PWD"
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = rootProject.name + "_${scalaMainVersion}"
+            from(components.java)
+        }
+    }
+}
+
+dependencies {
+    compile "org.scala-lang:scala-library:$scalaMainVersion"
+    // this is open-source JSLT, coming from Maven Central
+    compile 'com.schibsted.spt.data:jslt:0.1.8'
+
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-scala_$scalaMainVersion:$jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+
+    testCompile "com.adevinta.data:jslt-test_$scalaMainVersion:0.1.+"
+    testCompile "junit:junit:4.12"
+}
+
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+tasks.withType(Test) {
+    testLogging {
+        // set options for log level LIFECYCLE
+        events TestLogEvent.FAILED,
+               TestLogEvent.PASSED,
+               TestLogEvent.SKIPPED,
+               TestLogEvent.STANDARD_OUT
+        exceptionFormat TestExceptionFormat.FULL
+        showExceptions true
+        showCauses true
+        showStackTraces true
+
+        // set options for log level DEBUG and INFO
+        debug {
+            events TestLogEvent.STARTED,
+                   TestLogEvent.FAILED,
+                   TestLogEvent.PASSED,
+                   TestLogEvent.SKIPPED,
+                   TestLogEvent.STANDARD_ERROR,
+                   TestLogEvent.STANDARD_OUT
+            exceptionFormat TestExceptionFormat.FULL
+        }
+        info.events = debug.events
+        info.exceptionFormat = debug.exceptionFormat
+
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                println("Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
+            }
+        }
+    }
+}
+
+// https://docs.mpi-internal.com/spt-engprod/skynet/trickler-downer/#if-the-detection-of-new-versions-is-not-supported-out-of-the-box-how-can-i-use-tricklerdowner
+task('tricklerdowner') {
+    dependsOn publish
+    description 'Posts Devhose notification which enables TricklerDowner'
+    doLast {
+        def artifacts = ["jslt-lib_${scalaMainVersion}"]
+        def git = org.eclipse.jgit.api.Git.open file('.git')
+        def repository = git.getRepository().getConfig().getString("remote", "origin", "url")
+        def head = git.log().call().iterator().next().name()
+        def event = '''
+                {
+                    "client": "gradle",
+                    "group": "''' + project.group + '''",
+                    "artifacts": ["''' + artifacts.join(", ") + '''"],
+                    "version": "''' + project.version + '''",
+                    "repository": "''' + repository + '''",
+                    "commit": "''' + head + '''"
+                }
+                '''
+        try {
+            println("Devhose notification: ${event}")
+            def response = com.mashape.unirest.http.Unirest.post(System.getenv("DEVHOSE_URL") + "/devhose/tricklerdowner-client")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(event)
+                    .asString()
+            println("Devhose response: ${response.statusCode} ${response.body}")
+            project.logger.info("Devhose response: ${response.statusCode} ${response.body}")
+        } catch (Throwable e) {
+            project.logger.error("Devhose notification failed", e)
+        }
+    }
+}

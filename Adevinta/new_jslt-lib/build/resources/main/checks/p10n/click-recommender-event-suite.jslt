@@ -1,0 +1,3 @@
+import "checks/p10n/click-recommender-event.jslt" as click-recommender-event
+
+click-recommender-event(.)

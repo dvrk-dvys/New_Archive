@@ -1,0 +1,38 @@
+tests:
+
+  - name: messaging/frontend-cicd-poc-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/messaging/frontend-cicd-poc-suite.jslt" as frontend-poc
+      frontend-poc(.)
+
+  - name: data-collector.jslt generates metrics with check-result false for a invalid event
+    expected:
+      - quality.check:
+          tags:
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            deploy-stage: "dev"
+            check-suite: messaging.frontend.poc
+            check-name: deploystage_valid
+            check-result: "true"
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/messaging/frontend-cicd-poc-suite.jslt" as frontend-poc
+
+      let event =
+      {
+        "@type": "View",
+        "object": {
+          "@type": "ClassifiedAd"
+        },
+        "tracker": {
+          "type": "JS"
+        },
+        "schema": "http://schema.adevinta.ES/events/tracker-event.json/237.json#",
+        "deployStage": "dev",
+        "deployTag": "nightly123456789"
+      }
+      frontend-poc($event)

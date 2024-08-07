@@ -1,0 +1,84 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+import "checks/yapo/commons.jslt" as y
+
+// Set suit and user-tags
+let check-suite = "yapo.leads-events-suite"
+let user-tags = y:common-leads-tags()
+
+// Set value domain for json keys
+let valid-event-type = ["Show", "Call", "Send", "SMS"]
+let valid-object-type = ["PhoneContact", "Message"]
+let valid-device-type = ["desktop","mobile","feature-phone","tablet","smart-tv","other","undefined"]
+let valid-provider-id = ["sdrn:schibsted:client:yapocl"]
+let valid-provider-product-type = ["Web", "ResponsiveWeb", "M-Site", "AndroidApp", "iOSApp", "AndroidTabletApp", "iPadApp", "WindowsPhoneApp", "HybridApp", "ReactNativeApp", "UniversalWindowsPlatform", "Other", "Undefined"]
+let valid-object-adType = ["sell", "buy", "rent", "let", "lease"]
+let valid-object-publisherType = ["pro", "private"]
+let valid-object-deployStage = ["dev", "pre", "pro", null]
+
+// provider checks
+c:check($check-suite, "provider_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.provider."@id"), $user-tags, "minor")
++ c:check($check-suite, "provider_id_verification", c:check-one-of(.provider."@id", $valid-provider-id), $user-tags, "critical")
++ c:check($check-suite, "provider_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.provider."@type"), $user-tags, "minor")
++ c:check($check-suite, "provider_product_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.provider.productType), $user-tags, "minor")
++ c:check($check-suite, "provider_product_type_verification", c:check-one-of(.provider.productType, $valid-provider-product-type), $user-tags, "critical")
+
+// actor checks
++ c:check($check-suite, "actor_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.actor."@id"), $user-tags, "minor")
++ c:check($check-suite, "actor_id_valid_format", c:check-sdrn-account-id(.actor."@id"), $user-tags, "minor")
++ c:check($check-suite, "actor_sptid_not_null_and_not_empty", c:check-not-null-and-not-empty(.actor."spt:userId"), $user-tags, "minor")
++ c:check($check-suite, "actor_sptid_valid_format", c:check-sdrn-account-id(.actor."spt:userId"), $user-tags, "minor")
+
+// device checks
++ c:check($check-suite, "device_environment_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.environmentId), $user-tags, "critical")
++ c:check($check-suite, "device_environment_id_valid_format", c:check-sdrn-env-id(.device.environmentId), $user-tags, "critical")
++ c:check($check-suite, "device_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.deviceType), $user-tags, "critical")
++ c:check($check-suite, "device_type_verification", c:check-one-of(.device.deviceType, $valid-device-type), $user-tags, "critical")
+
+// event checks
++ c:check($check-suite, "event_id_not_null_and_not_empty", c:check-not-null-and-not-empty(."@id"), $user-tags, "minor")
++ c:check($check-suite, "event_name_not_null_and_not_empty", c:check-not-null-and-not-empty(.name), $user-tags, "minor")
++ c:check($check-suite, "event_type_not_null_and_not_empty", c:check-not-null-and-not-empty(."@type"), $user-tags, "critical")
++ c:check($check-suite, "event_type_verification", c:check-one-of(."@type", $valid-event-type), $user-tags, "critical")
++ c:check($check-suite, "event_creation_date_verification", c:check-timestamp-format(.creationDate), $user-tags, "critical")
++ c:check($check-suite, "event_page_view_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.pageViewId), $user-tags, "critical")
++ c:check($check-suite, "event_schema_verification", c:check-schema-url(.schema), $user-tags, "critical")
+
+// published checks
++ c:check($check-suite, "published_not_null_and_not_empty", c:check-not-null-and-not-empty(.published), $user-tags, "minor")
++ c:check($check-suite, "published_valid_format", c:check-timestamp-format(.published), $user-tags, "minor")
+
+// tracker checks
++ c:check($check-suite, "tracker_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.tracker.type), $user-tags, "minor")
+
+// deploy
++ c:check($check-suite, "deploy_stage_valid_value", c:check-one-of(.deployStage, $valid-object-deployStage), $user-tags, "minor")
+
+// object cheks
++ c:check($check-suite, "object_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.object."@type"), $user-tags, "minor")
++ c:check($check-suite, "object_type_verification", c:check-one-of(.object."@type", $valid-object-type), $user-tags, "critical")
++ c:check($check-suite, "object_url_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.url), $user-tags, "minor")
++ c:check($check-suite, "object_adId_patern", c:check-number-ge-0(.object.adId), $user-tags, "critical")
++ c:check($check-suite, "object_adType_verification", c:check-one-of(.object.adType, $valid-object-adType), $user-tags, "critical")
++ c:check($check-suite, "object_category_patern", c:check-mediaasset-category(.object.category), $user-tags, "critical")
++ c:check($check-suite, "object_contentId_patern", y:event-object-contentId-patern(.object.contentId), $user-tags, "critical")
++ c:check($check-suite, "object_price_integer_positive", c:check-number-ge-0(.object.price), $user-tags, "critical")
++ c:check($check-suite, "object_publisherType_verification", c:check-one-of(.object.publisherType, $valid-object-publisherType), $user-tags, "critical")
+
+//object.inReplyTo level field checks
++ c:check($check-suite, "object_inReplyTo_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo."@id"), $user-tags, "minor")
++ c:check($check-suite, "object_inReplyTo_id_valid_format", c:check-sdrn-classified-ad(.object.inReplyTo."@id"), $user-tags, "minor")
++ c:check($check-suite, "object_inReplyTo_publisherType_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo.publisherType), $user-tags, "minor")
++ c:check($check-suite, "object_inReplyTo_publisherType_verification", c:check-one-of(.object.inReplyTo.publisherType, $valid-object-publisherType), $user-tags, "critical")
++ c:check($check-suite, "object_inReplyTo_adType_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo.adType), $user-tags, "minor")
++ c:check($check-suite, "object_inReplyTo_adType_verification", c:check-one-of(.object.inReplyTo.adType, $valid-object-adType), $user-tags, "critical")
++ c:check($check-suite, "object_inReplyTo_contentId_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo.contentId), $user-tags, "minor")
++ c:check($check-suite, "object_inReplyTo_contentId_patern", y:event-object-contentId-patern(.object.inReplyTo.contentId), $user-tags, "critical")
+
+// object.inReplyTo.category specific checks check-mediaasset-category
++ c:check($check-suite, "object_category_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo.category), $user-tags, "minor")
++ c:check($check-suite, "object_category_valid_format", c:check-mediaasset-category(.object.inReplyTo.category), $user-tags, "minor")
+
+// object.inReplyTo.location specific checks
++ c:check($check-suite, "object_location_address_region_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.inReplyTo.location.addressRegion), $user-tags, "minor")
++ c:check($check-suite, "object_location_address_region_valid_format", is-string(.object.inReplyTo.location.addressRegion), $user-tags, "minor")

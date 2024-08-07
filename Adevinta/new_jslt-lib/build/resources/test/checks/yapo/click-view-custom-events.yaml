@@ -1,0 +1,365 @@
+tests:
+  - name: click-view-custom-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/yapo/click-view-custom-events-suite.jslt" as yapo
+      yapo(.)
+  
+  - name: click-view-custom-events-suite.jslt - check click/view custom events schemas and values
+    expected:
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_id_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_type_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_creation_date_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: device_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: device_language_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: device_type_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_environment_id_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_jweIds_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: local_storage_enable_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_screen_size_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_user_agent_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_view_port_size_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_name_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_name_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_page_view_id_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_published_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_schema_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_id_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_type_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_element_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_name_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_position_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: object_url_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: event_origin_url_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: provider_id_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: provider_type_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: provider_product_type_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: traker_builder_version_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: traker_name_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: traker_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: m-site
+            event-type: view
+            position: 'listing page'
+            check-suite: yapo.click-view-custom-events-suite
+            check-name: traker_version_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/yapo/click-view-custom-events-suite.jslt" as yapo-click-view-custom-events
+      let event =
+      {
+        "@id":"82cea8eb-afba-4c46-bab1-75e88f80be0b",
+        "@type":"View",
+        "creationDate":"2020-11-25T19:50:28.612Z",
+        "device":{
+        "@type":"Device",
+        "acceptLanguage":"es-ES",
+        "deviceType":"mobile",
+        "environmentId":"sdrn:schibsted:environment:ee4ba042-3b69-4d57-9bd5-a2ca18b2780f",
+        "jweIds":"eyJpc3N1ZWRBdCI6IjIwMjAtMTAtMTlUMTg6NTA6NDNaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..0fH5aX1Rqs1IjM9ul-8-DA.5BmhqbEFtYwhUF61bbaaDG23DtkrCLRLp0h1DPqUw_m1r106KmchZuQSDS2SdPMvrJp0PjKLriQK2iCjTShURLzcjjdoULvmuHVdoIYv7V2rUnU8TF84ir2CB8h0F_OJBr5yncNrCGr6GJ8re4fG4HqdCMpux2Fwo6cAXgLf-tGru9ZwR9XXr4-v3rmYZmr7JGmtZDQAK-FHWiuSSrLVok2-GUHAUaa-qI2shaNfd3Jm-pYfzUE_msDePlIVKyS7fDuu9rqom73yJCyfb3Bi5A._org9PtCFzFTIInnFTgs0g",
+        "localStorageEnabled":true,
+        "screenSize":"375x812",
+        "userAgent":"Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+        "viewportSize":"375x812"
+        },
+        "name":"Listing Showcase Shown",
+        "object":{
+        "@id":"sdrn:yapocl:content:listing:element:showcase:shown:202304232424412042",
+        "@type":"UIElement",
+        "elementType":"Listing Showcase Shown - Version:1.0",
+        "name":"Yapo.cl - 713.548 avisos publicados en Región Metropolitana - Página 1",
+        "position":"Listing Page",
+        "url":"https://m.yapo.cl/region_metropolitana"
+        },
+        "origin":{
+        "url":"https://m.yapo.cl/"
+        },
+        "pageViewId":"7b3cc941-39dd-4180-9a65-1f1762809860",
+        "provider":{
+        "@id":"sdrn:schibsted:client:yapocl",
+        "@type":"Organization",
+        "productType":"M-Site"
+        },
+        "published":"2020-11-25T19:50:22.797Z",
+        "schema":"http://schema.schibsted.com/events/tracker-event.json/230.json",
+        "tracker":{
+        "eventBuilderVersion":"1.0.34",
+        "name":"Pulse Node.js SDK",
+        "type":"JS",
+        "version":"4.1.10-54417"
+        }
+      }
+      yapo-click-view-custom-events($event)

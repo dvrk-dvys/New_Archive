@@ -1,0 +1,309 @@
+tests:
+
+  - name: smartbump-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/products/smartbump-events-suite.jslt" as p
+      p(.)
+
+  - name: smartbump-events-suite.jslt generates metrics for a valid list-view events
+    expected:
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: domain_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: domain_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: visitor_ip_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: visitor_ip_valid
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: creation_date_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: creation_date_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_id_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_id_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_ad_ids_are_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_ad_ids_are_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_publisher_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_publisher_id_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_publisher_id_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_categories_are_available
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_categories_local_ids_available
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_categories_levels_are_available
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_categories_levels_are_valid
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_location_is_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_location_address_region_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_location_address_locality_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_location_postal_code_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: availability
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_version_is_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-listing-events
+            check-type: validity
+            provider: sdrn:schibsted:client:fotocasaes
+            obj-type: list-view
+            check-suite: panda.products.smartbump
+            check-name: listing_version_is_valid
+            check-result: 'false'
+            check-impact: minor
+          delta: 1   
+    expression: |
+      import "checks/panda/products/smartbump-events-suite.jslt" as p
+      let event =
+      {
+        "@id": "f409e332-9c0b-423f-bbf7-b15c6f8ae0bc",
+        "@type": "View",
+        "collectorHost": "collector.mpianalytics.com",
+        "creationDate": "2020-06-04T14:56:42.646Z",
+        "deployStage": "pro",
+        "object": {
+          "@id": "sdrn:fotocasaes:listing:https://www.fotocasa.es/es/comprar/viviendas/espana/todas-las-zonas/l?text=Casa%20en%20alhama%20de%20murcia",
+          "@type": "Listing",
+          "items": [
+            {
+              "@id": "sdrn:fotocasaes:classified:03dade85-1a6d-40de-9b88-20a6a7538f07",
+              "@type": "ClassifiedAd",
+              "categories": [
+                {
+                  "@type": "MarketplaceCategory",
+                  "level": 0.0,
+                  "localId": "0",
+                  "localName": "BUY",
+                  "name": "BUY"
+                }
+              ],
+              "publisher": {
+                "@id": "sdrn:fotocasaes:user:2467fb59-8131-46f2-a471-d6c047de0b5b",
+                "@type": "Account",
+                "accountType": "pro"
+              }
+            }
+          ]
+        },
+        "page": {
+          "pageType": "listing"
+        },
+        "provider": {
+          "@id": "sdrn:schibsted:client:fotocasaes"
+        },
+        "published": "2020-06-04T14:56:42.646Z",
+        "schema": "http://schema.schibsted.com/events/tracker-event.json/177.json",
+        "tracker": {
+          "name": "msreutstatisticsbroker"
+        }
+      }
+      p($event)

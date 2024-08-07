@@ -1,0 +1,21 @@
+import "checks/commons.jslt" as c
+import "lib/metrics.jslt" as m
+import "lib/commons.jslt" as cc
+import "lib/schemas.jslt" as sc
+import "checks/cognition/frontend-utils.jslt" as f
+import "checks/cognition/commons.jslt" as cognition
+
+// pre-condition: ."@type" == "Create" and object."@type" == "ClassifiedAd" and .recognition
+
+let tags = m:tag("provider", m:taggify(cc:canned-client-id(.provider."@id"), "unknown", sc:provider-ids()))
+let checkSuite = "cognition.frontend-event"
+
+// main checks
+c:check($checkSuite, "event_id_not_null", c:check-not-null(."@id"), $tags, "critical")
++ c:check($checkSuite, "event_type_not_null", c:check-not-null(."@type"), $tags, "critical")
++ c:check($checkSuite, "provider_id_valid", c:check-sdrn-provider(.provider."@id"), $tags, "critical")
+
+// recognition metadata checks
++ cognition:check-if(.recognition and size(.recognition) <= 3, // MP using 3 services max
+    f:check-recognition-metadata-array(.recognition, $checkSuite, $tags)
+  )

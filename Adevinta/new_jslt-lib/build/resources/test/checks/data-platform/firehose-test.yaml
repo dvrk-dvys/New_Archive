@@ -1,0 +1,95 @@
+tests:
+
+  - name: firehose-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/data-platform/firehose-suite.jslt" as f
+      f(.)
+
+  - name: firehose-suite.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            provider: kufarby
+            device-type: desktop
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: data_platform.firehose
+            check-name: provider_not_null
+            check-result: "true"
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: kufarby
+            device-type: desktop
+            event-type: view
+            object-type: classifiedad
+            tracker: js
+            check-suite: data_platform.firehose
+            check-name: provider_valid_format
+            check-result: "true"
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/data-platform/firehose-suite.jslt" as f
+
+      // event got from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/examples/events/page-view-classifiedad-marketplace.json
+      let event =
+      {
+        "@id": "2a3e79df-62e0-49c9-af9f-f3be11fa356f",
+        "@type": "View",
+        "actor": {
+          "spt:remoteAddress": "127.0.0.1"
+        },
+        "device": {
+          "acceptLanguage": "en-US",
+          "deviceType": "desktop",
+          "environmentId": "sdrn:schibsted:environment:a2029f7e-1a7f-46db-a683-b4f62e0ec9ad",
+          "jweIds": "eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4R0NNIn0.1rCvgZU-wfbZ2SaPjwtzbgbgrA4eMa7t.UA4RBtNGMww3s05l.LxNPW9VKQbmHMy1L1SrHtd3xZtRLsdIB7KYZXiEcXTFtNbXKMbm9aQhcajymFDMOWB_3DsYS2e_lp55-3ptpxvj9Ttg2Alw9D0whQlLgo5YTjSijWsk1jpnrcWA2HwyvHakfpI4jne9nBSOLS9vt_GlHV2IFqS7PW0ITjpSoXZBRJejzJtj7IZnnICuWJnU0RBplXJ6dZL199uB0AcVC7v46jO8IItEoA2eSrd3JRZFSvRb6S_244Sg.gNJrRPleXE011yjCOANVgg",
+          "screenSize": "1680x1050",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36",
+          "viewportSize": "1313x502"
+        },
+        "location": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.75",
+          "longitude": "73.98",
+          "timestamp": 1456919653000
+        },
+        "object": {
+          "@id": "sdrn:kufarby:classified:66225237",
+          "@type": "ClassifiedAd",
+          "adType": "sell",
+          "category": "2000 > 2050",
+          "location": {
+            "@type": "PostalAddress",
+            "addressCountry": "Sweden",
+            "addressLocality": "Uppsala",
+            "postalCode": "75238",
+            "streetAddress": "Thunbergsvägen 3P"
+          },
+          "name": "Skänk + matsalsbord och 6 klädda stolar 40tal | Örebro",
+          "publisher": {
+            "@id": "sdrn:kufarby:user:31372",
+            "@type": "Account",
+            "name": "Uppsala University"
+          },
+          "publisherType": "pro",
+          "url": "https://www.kufarby.se/orebro/Skank___matsalsbord_och_6_kladda_stolar_40tal_66225237.htm?ca=8&w=1"
+        },
+        "pageViewId": "2a3e79df-62e0-49c9-af9f-f3be11fa356f",
+        "provider": {
+          "@id": "sdrn:schibsted:client:kufarby",
+          "@type": "Organization"
+        },
+        "published": "2016-04-21T12:34:14+00:00",
+        "schema": "http://schema.adevinta.com/events/tracker-event.json/237.json#",
+        "tracker": {
+          "type": "JS",
+          "name": "publish-stream",
+          "version": "0.1.0"
+        }
+      }
+      f($event)

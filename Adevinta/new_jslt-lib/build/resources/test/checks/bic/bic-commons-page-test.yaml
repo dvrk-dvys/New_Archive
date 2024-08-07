@@ -1,0 +1,69 @@
+tests:
+  - name: bic-commons-page.jslt compiles and runs
+    type: compile
+    expression: |
+      import "checks/bic/bic-commons-page.jslt" as c
+      c(.)
+
+  - name: bic-commons-page.jslt check-object-page-type returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_page_type_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-page.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "pageType": null,
+            "@type": "Page",
+            "url": null
+          }
+        }
+      c:check-object-page-type($event, "bic.page-view", "page-view", {})
+  - name: bic-commons-page.jslt check-object-page-name returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_page_name_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-page.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "pageName": null,
+            "@type": "Page",
+            "url": null
+          }
+        }
+      c:check-object-page-name($event, "bic.page-view", "page-view", {})
+  - name: bic-commons-page.jslt check-object-url returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-page.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "Page",
+            "url": null
+          }
+        }
+      c:check-object-url($event, "bic.page-view", "page-view", {})

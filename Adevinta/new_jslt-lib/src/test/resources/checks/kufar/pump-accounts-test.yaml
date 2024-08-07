@@ -1,0 +1,598 @@
+tests:
+
+  - name: pump-accounts.jslt compiles
+    type: compile
+    expression: |
+      import "checks/kufar/pump-accounts.jslt" as f
+      f(.)
+
+  - name: pump-accounts.jslt checks valid event with accounts data produced by Pump
+    expression: |
+      import "checks/kufar/pump-accounts.jslt" as pump-accounts-checks
+
+      let event = {
+        "ad_id": "no-ad-id",
+        "event_id": 31480210,
+        "event_ts_utc": 1598462671316.08,
+        "query_lag_sec": 4.166766,
+        "action_id": 31480210,
+        "action": "param_change",
+        "account_remote_addr": null,
+        "token_id": null,
+        "payment_group_id": null,
+        "account_id": 461277,
+        "email": "test@yandex.by",
+        "user_id": 1099007,
+        "uid": 1098940,
+        "naive_users_phone": null,
+        "naive_status": "active",
+        "naive_verified_phone": "37529123456",
+        "naive_created_at_minsk_time": 1427658469093.73,
+        "naive_last_login_minsk_time": null,
+        "acc_changes_old_values": "{\"area\": \"13\", \"name\": \"Test\", \"phone\": \"37529123456\", \"origin\": \"kufar\", \"region\": \"4\", \"company_ad\": \"0\", \"phone_hidden\": \"0\"}",
+        "acc_changes_new_values": "{\"area\": \"13\", \"name\": \"Test\", \"phone\": \"37529123456\", \"origin\": \"kufar\", \"region\": \"4\", \"company_ad\": \"0\", \"phone_hidden\": \"0\"}",
+        "naive_account_params": "{\"area\": \"13\", \"name\": \"Test\", \"phone\": \"37529123456\", \"origin\": \"kufar\", \"region\": \"4\", \"company_ad\": \"0\", \"phone_hidden\": \"0\"}"
+      }
+
+      pump-accounts-checks($event)
+
+    expected:
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_not_null
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: email_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_created_at_minsk_time_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_account_params_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1          
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_number
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_positive
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_number
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_unix_ts_in_milliseconds
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_number
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_positive
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_action_is_one_of
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: ip_is_correct
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: email_is_correct
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_integer
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_positive
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_status_is_one_of
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_created_at_minsk_time_is_number
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_last_login_minsk_time_is_nullable_number
+            check-result: 'true'
+            check-impact: critical
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_params_json_can_be_parsed
+            check-result: 'true'
+            check-impact: blocker
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: area_is_in_valid_range
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: region_is_in_valid_range
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: gender_is_boolean
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: company_ad_is_boolean
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: phone_hidden_is_boolean
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: date_of_birth_follows_pattern
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: profile_image_follows_pattern
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_params_and_latest_changes_are_equal
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_is_not_greater_than_expected
+            check-result: 'true'
+            check-impact: minor
+            account-action: param_change
+          delta: 1
+
+  - name: pump-accounts.jslt checks invalid event with accounts data produced by Pump
+    expression: |
+      import "checks/kufar/pump-accounts.jslt" as pump-accounts-checks
+
+      let event = {
+        "ad_id": "no-ad-id",
+        "event_id": -21,
+        "event_ts_utc": "1598517143",
+        "query_lag_sec": "9999999",
+        "action_id": -21,
+        "action": "unknown_action",
+        "account_remote_addr": "123.123",
+        "token_id": null,
+        "payment_group_id": null,
+        "account_id": null,
+        "email": "test.by",
+        "user_id": 1099007,
+        "uid": 1098940,
+        "naive_users_phone": null,
+        "naive_status": "unknown_status",
+        "naive_verified_phone": "37529123456",
+        "naive_created_at_minsk_time": "1598517143",
+        "naive_last_login_minsk_time": "1598517143",
+        "acc_changes_new_values": "{\"area\": \"999\", \"name\": \"Test\", \"phone\": \"37529123456\", \"origin\": \"kufar\", \"region\": \"999\", \"company_ad\": \"not integer\", \"phone_hidden\": \"37529123456\", \"date_of_birth\": \"1980-Jume-23\", \"gender\": \"0000-00-00\"}",
+        "naive_account_params": "{\"area\": \"999\", \"name\": \"AnotherName\", \"phone\": \"37529123456\", \"origin\": \"kufar\", \"region\": \"999\", \"company_ad\": \"not integer\", \"phone_hidden\": \"37529123456\", \"date_of_birth\": \"1980-June-23\", \"gender\": \"0000-00-00\"}"
+      }
+
+      pump-accounts-checks($event)
+
+    expected:
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_not_null
+            check-result: 'true'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_not_null
+            check-result: 'false'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: email_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_created_at_minsk_time_is_not_null
+            check-result: 'true'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_account_params_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1          
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_number
+            check-result: 'true'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: action_id_is_positive
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_number
+            check-result: 'false'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: event_ts_utc_is_unix_ts_in_milliseconds
+            check-result: 'false'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_number
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_sec_is_positive
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_action_is_one_of
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: ip_is_correct
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: email_is_correct
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_integer
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_id_is_positive
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_status_is_one_of
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_created_at_minsk_time_is_number
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: naive_last_login_minsk_time_is_nullable_number
+            check-result: 'false'
+            check-impact: critical
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_params_json_can_be_parsed
+            check-result: 'true'
+            check-impact: blocker
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: area_is_in_valid_range
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: region_is_in_valid_range
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: gender_is_boolean
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: company_ad_is_boolean
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: phone_hidden_is_boolean
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: date_of_birth_follows_pattern
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: profile_image_follows_pattern
+            check-result: 'true'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: account_params_and_latest_changes_are_equal
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: kufar.pump_accounts
+            check-name: query_lag_is_not_greater_than_expected
+            check-result: 'false'
+            check-impact: minor
+            account-action: unknown
+          delta: 1

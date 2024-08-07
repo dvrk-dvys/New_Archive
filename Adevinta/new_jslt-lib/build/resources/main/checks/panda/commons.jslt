@@ -1,0 +1,116 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+
+def suite-name()
+   "panda.commons"
+
+let typeTag = c:taggify-event-type(.)
+let eventTypeTag = m:tag("obj-type", $typeTag)
+
+def available-providers()
+    ["sdrn:schibsted:client:subito", "sdrn:schibsted:client:yapocl", "sdrn:schibsted:client:leboncoin", "sdrn:schibsted:client:ft-immo-pro", "sdrn:schibsted:client:fotocasaes", "sdrn:schibsted:client:willhabenat", "sdrn:schibsted:client:habitacliaes", "sdrn:schibsted:client:kufarby"]
+
+let providerTag = m:tag("provider", m:taggify(.provider."@id", "unknown", available-providers()))
+
+
+// These tags are used to mark each check by its type
+// Are we checking validity of a field or availability of a field
+let availabilityTag = m:tag("check-type", "availability")
+let validityTag = m:tag("check-type", "validity")
+
+def check-items-ids(obj)
+    $obj == null or $obj == [] or c:check-all([for ($obj) c:check-sdrn-classified-ad(."@id")])
+
+// Check items for list-view and redirect-url-engage events
+def check-list-view(obj)
+    if (contains($typeTag, ["list-view", "redirect-url-engage"]))
+        c:check(
+            suite-name(),
+            "list_view.check_items_ids",
+            check-items-ids($obj.object.items),
+            $eventTypeTag + $validityTag + $providerTag,
+            "blocker"
+            )
+    else []
+
+// Check ad ids format taking event types into account
+def check-obj-ad-id-format(obj)
+    if (contains($typeTag, ["list-view"]))
+        c:check(
+            suite-name(), 
+            "object_ad_id_valid_format", 
+            c:check-sdrn-listing($obj.object."@id"), 
+            $eventTypeTag + $validityTag + $providerTag, 
+            "blocker"
+            )
+    else if (contains($typeTag, ["ad-phone-displayed", "ad-phone-called", "ad-sms-app-opened"]))
+        c:check(
+            suite-name(), 
+            "object_ad_id_valid_format", 
+            c:check-sdrn-phonecontact($obj.object."@id"), 
+            $eventTypeTag + $validityTag + $providerTag, 
+            "blocker"
+            )
+    else if (contains($typeTag, ["ad-contact"]))
+        c:check(
+            suite-name(), 
+            "object_ad_id_valid_format", 
+            c:check-sdrn-contactform($obj.object."@id"), 
+            $eventTypeTag + $validityTag + $providerTag, 
+            "blocker"
+            )
+    else if (not(contains($typeTag, ["list-view", "ad-phone-displayed", "ad-phone-called", "ad-sms-app-opened"])))
+        c:check(
+            suite-name(), 
+            "object_ad_id_valid_format", 
+            c:check-sdrn-classified-ad($obj.object."@id"), 
+            $eventTypeTag + $validityTag + $providerTag, 
+            "blocker"
+            )
+    else []
+
+
+c:check(
+    suite-name(),
+    "type_not_null",
+    c:check-not-null(."@type"),
+    $eventTypeTag + $availabilityTag + $providerTag,
+    "blocker"
+    )
++
+c:check(
+    suite-name(),
+    "version_not_null",
+    c:check-not-null(.object.version),
+    $eventTypeTag + $availabilityTag + $providerTag,
+    "blocker"
+    )
++
+c:check(
+    suite-name(),
+    "version_is_integer",
+    is-integer(.object.version),
+    $eventTypeTag + $validityTag + $providerTag,
+    "blocker"
+    )
++
+c:check(
+    suite-name(),
+    "object_type_not_null",
+    c:check-not-null(.object."@type"),
+    $eventTypeTag + $availabilityTag + $providerTag,
+    "blocker"
+    )
++
+c:check(
+    suite-name(),
+    "object_ad_id_not_null",
+    c:check-not-null(.object."@id"),
+    $eventTypeTag + $availabilityTag + $providerTag,
+    "blocker"
+    )
++
+check-obj-ad-id-format(.)
++
+check-list-view(.)

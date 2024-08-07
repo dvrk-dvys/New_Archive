@@ -1,0 +1,23 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+let user-tags = {}
+let check-suite = "search.search_event"
+
+// Checks to validate Search Tagging Plan implementation
+
+// Base validation of Search Tagging Plan implementation
+c:check($check-suite, "search_tag_not_null", c:check-not-null(.search), $user-tags, "critical")
+
+// Complementary metric for error detection
+// m:metric("search_tag_null",c:check-null(.search))
+
+// Mandatory fields
+// search.@id: string
++ c:check($check-suite, "search_id_not_null", c:check-not-null(.search."@id"), $user-tags, "critical")
+// search.@type: string
+// TODO: enum of constant strings
++ c:check($check-suite, "search_type_not_null", c:check-not-null(.search."@type"), $user-tags, "critical")
+// search.source: string
+// TODO: enum of constant strings
++ c:check($check-suite, "search_source_not_null", c:check-not-null(.search."source"), $user-tags, "critical")

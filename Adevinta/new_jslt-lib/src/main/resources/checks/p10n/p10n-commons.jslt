@@ -1,0 +1,92 @@
+import "checks/commons.jslt" as c
+import "lib/metrics.jslt" as m
+
+// Specific functions for P10N
+
+// Checks item ids in recs are not null widget impression and viewable events
+
+def check-items-ids-recs-not-null(obj)
+    c:check-all([for ($obj) c:check-not-null(."@id")])
+
+// Checks item rank in recs are not null
+
+def check-items-rank-recs-not-null(obj)
+    c:check-all([for ($obj) c:check-not-null(.rank)])
+
+// Checks valid item ids in recs
+
+def check-valid-items-ids-recs(obj)
+    c:check-all([for ($obj) c:check-sdrn-classified-ad(."@id")])
+
+
+// Checks valid item type in recs
+
+def check-valid-items-type-recs(obj)
+    c:check-all([for ($obj) ."@type" == "RecommendationItem"])
+
+// Checks item rank in recs are numbers and > 0
+
+def check-items-rank-gt-0(obj)
+    c:check-all([for ($obj) c:check-number-gt-0(.rank)])
+
+// Return recommendation valid types
+
+def return-rec-valid-types() ["related-items", "user-based", "trending-ads"]
+
+// Return source valid types
+
+def return-source-valid-types() ["ad-view-detail", "homepage", "full-feed", "newsletter", "notification-favourite-deleted", "deleted-ad-view-detail", "retention-email", "messaging-email", "messaging"]
+
+// Return valid listnames
+def return-valid-listnames() ["relateditems:v0", "relateditems:v1", "relateditems:v2", "relateditems:v3", "relateditems:v6", "relateditems:v7", "relateditems:v8", "relateditems:online:v0", "user-recommendations:v0", "user-recommendations:v1"]
+
+def taggify-rec-type(event)
+    m:taggify($event.recommendation.recommendationType, $event.recommendation.recommendationType, return-rec-valid-types())
+
+def taggify-source-type(event)
+    m:taggify($event.recommendation.source, $event.recommendation.source, return-source-valid-types())
+
+def taggify-list-name(event)
+    m:taggify($event.recommendation.listName, $event.recommendation.listName, return-valid-listnames())
+
+def taggify-rank(rank)
+    if (is-number($rank) and $rank <= 10) m:taggify(string($rank), string($rank), ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+    else if (is-number($rank)) m:taggify(">10", "unknown", [">10"])
+    else m:taggify("unknown", "unknown", ["unknown"])
+
+// Checks valid listName
+
+def check-valid-listName(obj, recommendationType)
+    if ($recommendationType == "related-items") test($obj, "^relateditems:v[0-9]+$")
+    else if ($recommendationType == "user-based") test($obj, "^userbased:v[0-9]+$")
+    else false
+
+// Check if SDK is supported (i.e., not deprecated)
+
+// at least 4.1.7 for JS, 8.0.1 for Android, 3.0.0 for iOS
+let minJsSdk = [4, 1, 7]
+let minAndroidSdk = [8, 0, 1]
+let minIosSdk = [3, 0, 0]
+
+def check-sdk-is-supported(obj, trackerType)
+    if (lowercase($trackerType) == "android") check-greater-than-version($obj, $minAndroidSdk)
+    else if (lowercase($trackerType) == "js") check-greater-than-version($obj, $minJsSdk)
+    else if (lowercase($trackerType) == "ios") check-greater-than-version($obj, $minIosSdk)
+    else false
+
+def check-greater-than-version(obj, minVersion)
+    let parts = split($obj, "[.]")
+    let major = number($parts[0], 0)
+    let minor = number($parts[1], 0)
+    let rev = number($parts[2], 0)
+    if ($major > $minVersion[0] or ($major == $minVersion[0] and $minor > $minVersion[1]) or ($major == $minVersion[0] and $minor == $minVersion[1] and $rev >= $minVersion[2])) true
+    else false
+
+// Checking if a particular timestamp is less than num_hours from now (used to check data latency)
+def minutes-until-now(obj)
+    let parsed_time = parse-time($obj, "yyyy-MM-dd'T'HH:mm:ssX", null)
+    let time_diff_seconds = round(now()) - round($parsed_time)
+    $time_diff_seconds/60
+
+def check-freshness(obj, minutes)
+    round(minutes-until-now($obj)) < $minutes

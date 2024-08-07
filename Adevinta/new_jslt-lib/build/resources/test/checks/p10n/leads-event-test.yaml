@@ -1,0 +1,455 @@
+tests:
+
+  - name: leads-event.jslt compiles
+    type: compile
+    expression: |
+      import "checks/p10n/leads-event.jslt" as c
+      c(.)
+
+  - name: leads-event.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: data_is_fresh_than_5
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: data_is_fresh_than_15
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: data_is_fresh_than_30
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: count_by_eventtype_tracker
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: provider_id_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: provider_type_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: provider_product_tag_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: actor_id_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: actor_id_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: actor_sptid_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: actor_sptid_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: device_environment_id_valid_format
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: device_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: event_name_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: event_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: event_page_type_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: event_page_name_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: published_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: tracker_type_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: deploy_stage_valid_value
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_url_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_id_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_id_valid_format
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_publisher_type_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_adtype_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_content_id_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_currency_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_price_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_price_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_category_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_category_valid_format
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_address_region_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_address_locality_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_postal_code_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_address_region_valid_format
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_address_locality_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: object_location_postal_code_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            tracker-type: js
+            event-type: show
+            check-suite: p10n.lead-event
+            check-name: device_is_bot
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+
+
+    expression: |
+      import "checks/p10n/leads-event.jslt" as c
+
+      let some_time = format-time(now() - 10*60, "yyyy-MM-dd'T'HH:mm:ssX")
+
+      let event =
+      {
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/161.json",
+          "origin": {
+              "url": "https://www.subito.it/annunci-italia/vendita/usato/?from=box-marketplace"
+          },
+          "deployStage":"pre",
+          "creationDate": $some_time,
+          "published": $some_time,
+          "pageViewId": "fd2350fe-e1c6-4f59-bc78-cf377d25cdfb5",
+          "provider": {
+              "@type": "Organization",
+              "@id": "sdrn:schibsted:client:subito"
+          },
+          "device": {
+              "acceptLanguage": "en-GB",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDQtMDhUDc6MzdaIiwiZW5jIjoiQTEyOENCQy1IUzNiIsImFsZyImRpciIsImtpZCI6IjIifQ..TdO4ONY6KZHWdp31i5EEog.aYndpEfbk_q2Rgah1k3PJHoNBBvr6zSeodQbvx8sYt_IJJzQlN82BZI4gfjmOA6j9LomtwSzTlDurHmkRNpCKGCPCBLjta-QSKK_-37kJl3uDcQWGdy723kGiGH8T9d4aGlKsAvh4jHIdASbZ0CyX6D0hVPmBK_Z7xe7oH3bV3UBHN_flBEiAXxGAG8Bz8O6bXAaqqYkheXUB5ozMRBhlU54lm7tFxVuEfsC0xrNskE.Obs6iZqtTPl7HHaBoCXsvg",
+              "viewportSize": "1125x939",
+              "screenSize": "1680x1050",
+              "environmentId": "sdrn:schibsted:environment:021467-879a-4b5d-9327-172da04e",
+              "deviceType": "desktop",
+              "localStorageEnabled": true,
+              "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit (KHTML, like Gecko) Chrome/80.0.37.149 Safari/37.36",
+              "@type": "Device",
+              "isBot": true
+          },
+          "tracker": {
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "eventBuilderVersion": "1.0.32",
+              "version": "4.1.8-75ce0"
+          },
+          "@type": "Show",
+          "@id": "42385-2d8b-4cfd-837f-78a96c26",
+          "object": {
+              "@id": "sdrn:jofogashu:phonecontact:103922202",
+              "@type": "PhoneContact",
+              "name": "OROLOGIO citizen pro automatico - Abbigliamento e Accessori In vendita a Napoli",
+              "url": "https://www.subito.it/abbigliamento-accessori/orologio-citizen-pro-master-originale-automatico-napoli-3344265.htm",
+              "inReplyTo": {
+                  "@id": "sdrn:jofogashu:classified:103791404",
+                  "@type": "ClassifiedAd",
+                  "name": "OROLOGIO citizen pro master originale automatico - Abbigliamento e Accessori In vendita a Napoli",
+                  "publisher": {
+                      "@id": "sdrn:subito:user:138187",
+                      "@type": "Account",
+                      "accountId": "138187",
+                      "accountType": "Private"
+                  },
+                  "category": "per-la-casa-e-la-persona>abbigliamento-e-accessori",
+                  "location": {
+                      "@type": "PostalAddress",
+                      "addressRegion": "Napoli",
+                      "postalCode": 10
+                  }
+              }
+          }
+      }
+      c($event)
+      

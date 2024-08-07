@@ -1,0 +1,234 @@
+tests:
+
+  - name: ad-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/spain/milanuncios/ad-suite.jslt" as c
+      c(.)
+
+  - name: spain/milanuncios/ad-suite.jslt should generate valid metrics
+    expected:
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'adposted'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: updated_at_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'adposted'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_after_updated_at
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'adposted'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_and_updated_at_diff_less_than_15_min
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'adposted'
+          delta: 1
+
+    expression: |
+      import "checks/spain/milanuncios/ad-suite.jslt" as ad
+
+      let event =
+      {
+        "ad": {
+          "@id": "112018123",
+          "title": "Un object",
+          "description": "Objeto x",
+          "category": {
+            "@id": 1234,
+            "name": "Objetos"
+          },
+          "author": {
+            "name": "Random",
+            "phone": "12345678",
+            "secondaryPhone": "0",
+            "email": "random@gmail.com",
+            "type": "private",
+            "userId": "11209123",
+            "@id": "11209123"
+          },
+          "location": {
+            "region": {
+              "@id": 53,
+              "name": "Galicia"
+            },
+            "geolocation": {
+              "latitude": 43.027027027027025,
+              "longitude": -7.566744245431045
+            },
+            "province": {
+              "@id": 27,
+              "name": "lugo"
+            },
+            "geohash": "ezdsgbf4d54t",
+            "city": {
+              "@id": 43,
+              "name": "Lugo"
+            },
+            "country": {
+              "@id": 1,
+              "name": "España"
+            }
+          },
+          "authorDevice": {
+            "ip": "192.168.1.1",
+            "cookie": 1123112212,
+            "userAgentId": 12345678,
+            "extendedUserAgentId": 0,
+            "device": {
+              "id": 2,
+              "name": "android"
+            }
+          },
+          "visibility": "normal",
+          "transaction": "supply",
+          "sortDate": "2021-02-08T11:53:37Z",
+          "expiresAt": "2021-04-09T11:53:37Z",
+          "categoryPath": [
+            612,
+            640,
+            2087
+          ],
+          "photos": [],
+          "sharingConsents": {
+            "cochesNet": false,
+            "fotocasa": false
+          },
+          "audit": {
+            "updatedAt": "2021-01-26T14:01:24Z",
+            "createdAt": "2021-01-26T14:00:24Z"
+          },
+          "price": 14,
+          "type": "miscellaneous"
+        },
+        "schema": "http://schema.spain.advgo.net/events/milanuncios/AdPosted-Event.json/1.5.json",
+        "@id": "1fea51ee-fbca-4789-a7cc-b564995a7969",
+        "@type": "AdPosted",
+        "provider": {
+          "@id": "milanuncios",
+          "channel": "other"
+        },
+        "published": "2021-01-26T14:12:24.489Z",
+        "actor": {
+          "@id": "112018123"
+        },
+        "action": "Create"
+      }
+
+      ad($event)
+
+  - name: spain/milanuncios/ad-suite.jslt should generate valid metrics when date diff is greater than 15 min
+    expected:
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: updated_at_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_after_updated_at
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_and_updated_at_diff_less_than_15_min
+            check-result: 'false'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+
+    expression: |
+      import "checks/spain/milanuncios/ad-suite.jslt" as ad
+
+      let event =
+        {
+          "published": "2021-01-26T14:17:24Z",
+          "ad": {
+             "audit": {
+                 "updatedAt": "2021-01-26T14:00:24.489Z"
+              }
+           }
+        }
+
+      ad($event)
+
+  - name: spain/milanuncios/ad-suite.jslt should generate valid metrics when published date before updated date
+    expected:
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: updated_at_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_after_updated_at
+            check-result: 'false'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: milanuncios.ad
+            check-name: published_and_updated_at_diff_less_than_15_min
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'unknown'
+          delta: 1
+
+    expression: |
+      import "checks/spain/milanuncios/ad-suite.jslt" as ad
+
+      let event =
+        {
+          "published": "2021-01-26T14:00:24.489Z",
+          "ad": {
+             "audit": {
+                 "updatedAt": "2021-01-26T14:12:24Z"
+              }
+           }
+        }
+
+      ad($event)

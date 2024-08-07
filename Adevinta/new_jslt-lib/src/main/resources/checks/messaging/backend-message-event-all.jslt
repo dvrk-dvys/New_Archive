@@ -1,0 +1,28 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+
+// Migrated from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/checks/dqt/messaging-backend-events.json
+
+let tags = {}
+let suite = "messaging.backend.message-event-all"
+
+// --------------------------------------------------------------------------------------------------------------------------
+// Suite of tests
+// --------------------------------------------------------------------------------------------------------------------------
+
+// AVAILABILITY (existence)
+c:check($suite, "object_reply_to_id_is_not_null", c:check-not-null(.object.inReplyTo."@id"), $tags, "critical")
++c:check($suite, "object_reply_to_type_is_not_null", c:check-not-null(.object.inReplyTo."@type"), $tags, "critical")
++c:check($suite, "account_id_is_not_null", c:check-not-null(.account."@id"), $tags, "critical")
++c:check($suite, "target_id_is_not_null", c:check-not-null(.target."@id"), $tags, "critical")
++c:check($suite, "provider_id_is_not_null", c:check-not-null(.provider."@id"), $tags, "critical")
++c:check($suite, "provider_product_type_is_not_null", c:check-not-null(.provider.productType), $tags, "critical")
+
+// VALIDITY (format)
++c:check($suite, "object_reply_to_id_is_valid", c:check-sdrn-classified-ad(.object.inReplyTo."@id"), $tags, "critical")
++c:check($suite, "object_reply_to_type_is_valid", .object.inReplyTo."@type" == "ClassifiedAd", $tags, "critical")
++c:check($suite, "account_id_is_valid", c:check-sdrn-account-id(.account."@id"), $tags, "critical")
++c:check($suite, "target_id_is_valid", c:check-sdrn-account-id(.target."@id"), $tags, "critical")
++c:check($suite, "provider_id_is_valid", c:check-sdrn-provider(.provider."@id"), $tags, "critical")
++c:check($suite, "provider_product_type_is_valid", c:check-not-empty(.provider.productType), $tags, "critical")

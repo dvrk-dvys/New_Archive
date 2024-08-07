@@ -1,0 +1,24 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as schemas
+import "checks/commons.jslt" as c
+
+let tag = m:tag("tracker", m:taggify(.tracker.type, "unknown", schemas:tracker-type-values()))
+let check-suite = "yapo.adinsert-tips-experiment-suite"
+
+let valid-device-type = ["desktop","mobile","feature-phone","tablet","smart-tv","other","undefined"]
+let valid-event-type = ["View"]
+let idparts = split(.object."@id", ":")
+let len_default_id = 8
+
+def check-size-array(array, comparator)
+    if (size($array) == $comparator)
+        true
+    else
+        false
+
+c:check($check-suite, "event_type_verification", c:check-one-of(."@type", $valid-event-type), $tag, "critical")
++
+c:check($check-suite, "device_type_verification", c:check-one-of(.device.deviceType, $valid-device-type), $tag, "critical")
++
+c:check($check-suite, "size-object-id-verification", check-size-array($idparts, $len_default_id), $tag, "critical")
+

@@ -1,0 +1,33 @@
+import "checks/bic/bic-commons.jslt" as bic-commons
+import "checks/bic/bic-commons-lead-object.jslt" as bclo
+import "checks/bic/bic-commons-tracker-event.jslt" as bcte
+import "checks/bic/search/search-commons.jslt" as s
+
+let apply-to = "ad-phone-displayed" // PhoneContact Shown
+let check-suite = "bic.search.ad-phone-displayed"
+
+let tags = bic-commons:custom-tags(.)
+
+
+bic-commons:check-count-all($check-suite, $tags)
++ bic-commons:check-suite-is-applied($check-suite, ., $apply-to, $tags)
+
++ s:check-search-id(., $check-suite, $apply-to, $tags) 
++ s:check-search-type(., $check-suite, $apply-to, $tags) 
++ s:check-search-source(., $check-suite, $apply-to, $tags) 
++ bclo:check-object-inReplyTo-id(., $check-suite, $apply-to, $tags)
++ bclo:check-object-inReplyTo-category(., $check-suite, $apply-to, $tags)
++ bclo:check-object-url(., $check-suite, $apply-to, $tags)
+
++ bcte:check-device-environment-id(., $check-suite, $apply-to, $tags)
++ bcte:check-device-device-type(., $check-suite, $apply-to, $tags)
++ bcte:check-name(., $check-suite, $apply-to, $tags)
++ bcte:check-object-type(., $check-suite, $tags)
++ bcte:check-origin-url(., $check-suite, $apply-to, $tags)
++ bcte:check-page-page-name(., $check-suite, $apply-to, $tags)
++ bcte:check-page-page-type(., $check-suite, $apply-to, $tags)
++ bcte:check-provider-id(., $check-suite, $apply-to, $tags)
++ bcte:check-provider-product-type(., $check-suite, $apply-to, $tags)
++ bcte:check-published(., $check-suite, $apply-to, $tags)
+
++ bcte:check-type(., $check-suite, $tags)

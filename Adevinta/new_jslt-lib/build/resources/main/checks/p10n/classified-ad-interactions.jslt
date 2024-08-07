@@ -1,0 +1,90 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as schemas
+import "checks/commons.jslt" as c
+import "checks/p10n/p10n-commons.jslt" as p
+
+// Checks to validate fields in Ad view and Ad save events as required by P10N
+// https://docs.mpi-internal.com/p10n/p10n-recsys-user-recs-api/data-integration/
+
+let eventTypeTag = m:tag("event-type", m:taggify(."@type", "unknown", schemas:event-type-values()))
+let trackerType = m:tag("tracker-type", m:taggify(lowercase(.tracker.type), "unknown", ["js", "android", "ios"]))
+let eventTypeTrackerTag = $eventTypeTag + $trackerType
+
+let check-suite = "p10n.view-event"
+
+// DATA LATENCY CHECKS (time between when the event was sent and now)
+c:check($check-suite, "data_is_fresh_than_5", p:check-freshness(.creationDate, 5), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "data_is_fresh_than_15", p:check-freshness(.creationDate, 15), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "data_is_fresh_than_30", p:check-freshness(.creationDate, 30), $eventTypeTrackerTag, "critical")
+
+// Counters
++ c:check($check-suite, "count_by_eventtype_tracker", true, $eventTypeTrackerTag, "critical")
+
+// imported from core tagging plan
+
++ c:check($check-suite, "event_id_not_null", c:check-not-null(."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "event_name_not_null", c:check-not-null(.name), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "page_page_type_not_null", c:check-not-null(.page.pageType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "page_page_name_not_null", c:check-not-null(.page.pageName), $eventTypeTrackerTag, "critical")
+
+// geolocation
++ c:check($check-suite, "location_latitude_not_null", c:check-not-null(.location.latitude), $eventTypeTrackerTag, "minor")
++ c:check($check-suite, "location_longitude_not_null", c:check-not-null(.location.longitude), $eventTypeTrackerTag, "minor")
+
++ c:check($check-suite, "object_id_not_null", c:check-not-null(.object."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_id_valid_format", c:check-sdrn-classified-ad(.object."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_type_not_null", c:check-not-null(.object."@type"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_adtype_not_null", c:check-not-null(.object.adType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_category_not_null", c:check-not-null(.object.category), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_content_id_not_null", c:check-not-null(.object.contentId), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_currency_not_null", c:check-not-null(.object.currency), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_address_locality_not_null", c:check-not-null(.object.location.addressLocality), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_address_region_not_null", c:check-not-null(.object.location.addressRegion), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_postal_code_not_null", c:check-not-null(.object.location.postalCode), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_price_not_null", c:check-not-null(.object.price), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_publisher_type_not_null", c:check-not-null(.object.publisherType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_publisher_id_valid_format", c:check-sdrn-account-id(.object.publisher."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_url_not_null", c:check-not-null(.object.url), $eventTypeTrackerTag, "critical")
+
++ c:check($check-suite, "provider_id_not_null", c:check-not-null(.provider."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "provider_product_type_not_null", c:check-not-null(.provider.productType), $eventTypeTrackerTag, "critical")
+
++ c:check($check-suite, "device_environment_id_not_null", c:check-not-null(.device.environmentId), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "device_device_type_not_null", c:check-not-null(.device.deviceType), $eventTypeTrackerTag, "critical")
+
++ c:check($check-suite, "tracker_type_not_null", c:check-not-null(.tracker.type), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "published_not_null", c:check-not-null(.published), $eventTypeTrackerTag, "critical")
+
+// p10n specific checks
+
++ c:check($check-suite, "provider_type_not_null", c:check-not-null(.provider."@type"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "actor_id_not_null", c:check-not-null(.actor."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "actor_sptid_not_null", c:check-not-null(.actor."spt:userId"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "event_type_not_null", c:check-not-null(."@type"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_publisher_id_not_null", c:check-not-null(.object.publisher."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "tracker_name_not_null", c:check-not-null(.tracker.type), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "tracker_version_not_null", c:check-not-null(.tracker.version), $eventTypeTrackerTag, "critical")
+
+// DATA VALIDITY CHECKS
++ c:check($check-suite, "device_environment_id_valid_format", c:check-sdrn-env-id(.device.environmentId), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "actor_id_valid_format", c:check-sdrn-account-id(.actor."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "actor_sptid_valid_format", c:check-sdrn-account-id(.actor."spt:userId"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "published_valid_format", c:check-timestamp-format(.published), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "deploy_stage_valid_value", c:check-one-of(.deployStage, ["dev", "pre", "pro", null]), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "location_latitude_valid_format", c:check-geocoordinate(.location.latitude), $eventTypeTrackerTag, "minor")
++ c:check($check-suite, "location_longitude_valid_format", c:check-geocoordinate(.location.longitude), $eventTypeTrackerTag, "minor")
+
++ c:check($check-suite, "object_id_valid_format", c:check-sdrn-classified-ad(.object."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_publisher_id_valid_format", c:check-sdrn-account-id(.object.publisher."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_price_valid_format", c:check-number-ge-0(.object.price), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_category_valid_format", c:check-mediaasset-category(.object.category), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_address_region_valid_format", is-string(.object.location.addressRegion), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_address_locality_valid_format", is-string(.object.location.addressLocality), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_location_postal_code_valid_format", is-string(.object.location.postalCode), $eventTypeTrackerTag, "critical")
+
+// Bot detection
++ c:check($check-suite, "device_is_bot", c:check-bot(.device.isBot), $eventTypeTrackerTag, "critical")
+
+// Check if SDK is supported (i.e., not deprecated)
++ c:check($check-suite, "sdk_version_is_supported", p:check-sdk-is-supported(.tracker.version, .tracker.type), $eventTypeTrackerTag, "critical")
+

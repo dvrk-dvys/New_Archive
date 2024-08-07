@@ -1,0 +1,41 @@
+import "lib/metrics.jslt" as m
+import "lib/commons.jslt" as cc
+import "checks/commons.jslt" as c
+import "lib/schemas.jslt" as schemas
+
+
+let check-suite = "data_platform.schema-committee"
+
+let eventTypeTag   = m:tag("event-type", m:taggify(fallback(."@type", ._AT_type), "unknown", schemas:event-type-values()))
+let objectTypeTag  = m:tag("object-type", m:taggify(fallback(.object."@type", .object._AT_type), "unknown", schemas:object-type-values()))
+let trackerTypeTag = m:tag("tracker", m:taggify(.tracker.type, "unknown", schemas:tracker-type-values()))
+let providerTag    = m:tag("provider", m:taggify(cc:canned-client-id(.provider."@id"), "unknown", schemas:provider-ids()))
+let coreTags       = $objectTypeTag + $eventTypeTag + $providerTag
+let allTags        = $coreTags + $trackerTypeTag
+
+
+def schema-committee-check-availability-for-pulse-field(cond, field, metric-name)
+
+    if ($cond)
+        let format = if (is-string($field)) "string"
+            else if (is-number($field)) "number"
+            else if (is-object($field)) "object"
+            else if (is-array($field)) "array"
+            else if (is-boolean($field)) "boolean"
+            else "unknown"
+
+        let formatTag = m:tag("format", m:taggify($format, "unknown", ["string", "number", "object", "array", "boolean"]))
+        let tags = $formatTag + $coreTags
+
+        c:check($check-suite, $metric-name, c:check-not-null($field), $tags, "minor")
+
+    else c:no-check()
+
+
+// As a schema committee member I want to check which marketplaces are producing events with schema pointing to
+// Schibsted urls
+// April 14th, 2021
+// c:check($check-suite, "schema_check_schibsted_url", c:check-schibsted-schema-url(.schema), $allTags, "minor")
+// disabled on May 25th
+
+c:no-check()

@@ -1,0 +1,3 @@
+import "checks/core-tagging-plan/classified-ad-view.jslt" as classified-ad-view
+
+classified-ad-view(.)

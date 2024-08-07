@@ -1,0 +1,536 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+import "checks/panda/commons.jslt" as panda-commons
+import "checks/panda/utils.jslt" as utils
+
+
+// common checks 
+// always check availability before validity
+
+// Generic fields
+// Domain	                .provider.@id	                             sdrn:schibsted:client:leboncoin
+// Visitor IP	            .actor.spt:remoteAddress (filled by Pulse)	
+// eventTime	            .creationDate
+
+def check-generic-fields(obj, suiteName, eventTypeTag, providerTag)
+    c:check(
+            $suiteName,
+            "domain_is_available",
+            c:check-not-null($obj.provider."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "domain_is_valid",
+            c:check-sdrn-provider($obj.provider."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "visitor_ip_available",
+            c:check-not-null($obj.actor."spt:remoteAddress"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "visitor_ip_valid",
+            c:check-ip($obj.actor."spt:remoteAddress"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            ) 
+    + 
+    c:check(
+            $suiteName,
+            "creation_date_available",
+            c:check-not-null($obj.creationDate),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "creation_date_valid",
+            c:check-date-format($obj.creationDate),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-generic-fields") ,
+            "blocker"
+            )   
+
+
+// Visitor ad events (view, save, unsave)
+// + Back-end events (create, delete, edit, bump/toplist, smartbump)
+// Type	                        @type	                                        Create, Delete, Edit, Bump, View, Save, Unpublish, Republish
+//                              .object.@type	                                ClassifiedAd
+// Ad ID	                .object.@id	                                sdrn:leboncoin:classified:1147871724
+// Publisher ID	                .object.publisher.@id	                        sdrn:tayaratn:user:123-456-789
+// Ad category3	                .object.categories[0]["localId"]	
+// Ad area4	                .object.location
+
+
+def check-classified-ad-events(obj, suiteName, eventTypeTag, providerTag)
+    c:check(
+            $suiteName,
+            "object_id_is_available",
+            c:check-not-null($obj.object."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +  
+    c:check(
+            $suiteName,
+            "object_id_is_valid",
+            c:check-sdrn-classified-ad($obj.object."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "publisher_is_available",
+            c:check-not-null($obj.object.publisher),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "publisher_id_is_available",
+            c:check-not-null($obj.object.publisher."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +  
+    c:check(
+            $suiteName,
+            "publisher_id_is_valid",
+            c:check-sdrn-account-id($obj.object.publisher."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "categories_are_available",
+            c:check-not-null($obj.object.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "categories_local_ids_available",
+            utils:check-categories-local-id-not-null($obj.object.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "categories_levels_are_available",
+            utils:check-categories-levels-are-not-null($obj.object.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "categories_levels_are_valid",
+            utils:check-categories-level-integer($obj.object.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "location_is_available",
+            c:check-not-null($obj.object.location),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "location_address_region_available",
+            c:check-not-null($obj.object.location.addressRegion),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "location_address_locality_available",
+            c:check-not-null($obj.object.location.addressLocality),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "location_postal_code_available",
+            c:check-not-null($obj.object.location.postalCode),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "minor"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "version_is_available",
+            c:check-not-null($obj.object.version),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-classified-ad-events") ,
+            "minor"
+            )
+    +
+    c:check(
+           $suiteName,
+           "version_is_valid",
+           is-integer($obj.object.version),
+           $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-classified-ad-events") ,
+           "minor"
+           )   
+
+
+
+// Additional fields for create/edit events
+// PublisherType (optional)	.object.publisherType	                    'pro' or 'private'
+// InsertionType (optional)	.object.insertionType	                    'import' or 'manual'
+// price (optional)	        .object.price	
+// publicationDate	        .object.publicationDate	                    '2019-04-27T12:22:42+02:00'
+// status	                .object.status	                            'active', 'deleted', 'inactive'
+def check-additional-fields(obj, suiteName, eventTypeTag, providerTag)
+    c:check(
+            $suiteName,
+            "publisher_type_is_available",
+            c:check-not-null($obj.object.publisherType),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-additional-fields") ,
+            "minor"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "publisher_type_is_valid",
+            c:check-one-of($obj.object.publisherType, ["pro", "private"]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-additional-fields") ,
+            "minor"
+            )
+    +
+    c:check(
+            $suiteName,
+            "insertion_type_is_available",
+            c:check-not-null($obj.object.InsertionType),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-additional-fields") ,
+            "minor"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "insertion_type_is_valid",
+            c:check-one-of($obj.object.InsertionType, ["import", "manual"]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-additional-fields") ,
+            "minor"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "price_is_available",
+            c:check-not-null($obj.object.price),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-additional-fields") ,
+            "minor"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "publication_date_is_available",
+            c:check-not-null($obj.object.publicationDate),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-additional-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "publication_date_is_valid",
+            c:check-date-format($obj.object.publicationDate),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-additional-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "status_is_available",
+            c:check-not-null($obj.object.status),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-additional-fields") ,
+            "blocker"
+            )
+    + 
+    c:check(
+            $suiteName,
+            "status_is_valid",
+            c:check-one-of($obj.object.status, ["active", "deleted", "inactive"]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-additional-fields") ,
+            "blocker"
+            )
+
+// Listing event For listing events the object contains a list of items. Each item is a ClassifiedAd object.
+// Type	                    @type	                                    View
+//                          .object.@type	                            Listing
+// Ad ID	                .object.items[].@id	                        sdrn:leboncoin:classified:1147871724
+// Publisher ID	            .object.items[].publisher.@id	            sdrn:tayaratn:user:123-456-789
+// Ad category	            .object.items[].categories	
+// Ad area	                .object.items[].location
+
+def check-listing-events(obj, suiteName, eventTypeTag, providerTag)
+    c:check(
+            $suiteName,
+            "listing_id_is_available",
+            c:check-not-null($obj.object."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "listing_id_is_valid",
+            c:check-sdrn-listing($obj.object."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "listing_ad_ids_are_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(."@id")]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "listing_ad_ids_are_valid",
+            c:check-all([for ($obj.object.items) c:check-sdrn-classified-ad(."@id")]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "listing_publisher_is_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.publisher)] ),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "listing_publisher_id_is_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.publisher."@id") ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            )
+    +  
+    c:check(
+            $suiteName,
+            "listing_publisher_id_is_valid",
+            c:check-all([for ($obj.object.items) c:check-not-null(.publisher."@id") ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-listing-events") ,
+            "blocker"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "listing_categories_are_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.categories)  ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "listing_categories_local_ids_available",
+            c:check-all([for ($obj.object.items) utils:check-categories-local-id-not-null(.categories)  ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )
+    +
+    c:check(
+            $suiteName,
+            "listing_categories_levels_are_available",
+            c:check-all([for ($obj.object.items) utils:check-categories-levels-are-not-null(.categories)  ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )
+    +
+    c:check(
+            $suiteName,
+            "listing_categories_levels_are_valid",
+            c:check-all([for ($obj.object.items) utils:check-categories-level-integer(.categories) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "listing_location_is_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.location) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )
+    +
+    c:check(
+            $suiteName,
+            "listing_location_address_region_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.location.addressRegion) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "listing_location_address_locality_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.location.addressLocality) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "listing_location_postal_code_available",
+            c:check-all([for ($obj.object.items) c:check-not-null(.location.postalCode) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "listing_version_is_available",
+            c:check-all([for ($obj.object.items) c:check-not-null($obj.object.version) ]),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-listing-events") ,
+            "minor"
+            )
+    +
+    c:check(
+           $suiteName,
+           "listing_version_is_valid",
+           c:check-all([for ($obj.object.items) is-integer($obj.object.version) ]),
+           $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-listing-events") ,
+           "minor"
+           ) 
+
+
+
+// Contact events (show phone, call phone, SMS) In those events the ad details are stored in the inReplyTo field inside the object.
+// Type	                    @type	                                    Contact, Send, Show, Call
+//                          .object.@type	                            Message, PhoneContact
+//                          .object.inReplyTo.@type	                    ClassifiedAd
+// Ad ID	                .object.inReplyTo.@id	                    sdrn:leboncoin:classified:1147871724
+// Publisher ID	            .object.inReplyTo.publisher.@id	            sdrn:tayaratn:user:123-456-789
+// Ad category	            .object.inReplyTo.categories	
+// Ad area	                .object.inReplyTo.location
+
+def check-contact-events(obj, suiteName, eventTypeTag, providerTag)
+    c:check(
+            $suiteName,
+            "contact_object_id_is_available",
+            c:check-not-null($obj.object.inReplyTo."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +  
+    c:check(
+            $suiteName,
+            "contact_object_id_is_valid",
+            c:check-sdrn-classified-ad($obj.object.inReplyTo."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "contact_publisher_is_available",
+            c:check-not-null($obj.object.inReplyTo.publisher),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "contact_publisher_id_is_available",
+            c:check-not-null($obj.object.inReplyTo.publisher."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +  
+    c:check(
+            $suiteName,
+            "contact_publisher_id_is_valid",
+            c:check-sdrn-account-id($obj.object.inReplyTo.publisher."@id"),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "contact_categories_are_available",
+            c:check-not-null($obj.object.inReplyTo.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )   
+    +
+    c:check(
+            $suiteName,
+            "contact_categories_local_ids_available",
+            utils:check-categories-local-id-not-null($obj.object.inReplyTo.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "contact_categories_levels_are_available",
+            utils:check-categories-levels-are-not-null($obj.object.inReplyTo.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "contact_categories_levels_are_valid",
+            utils:check-categories-level-integer($obj.object.inReplyTo.categories),
+            $eventTypeTag + $providerTag + m:tag("check-type", "validity") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "contact_location_is_available",
+            c:check-not-null($obj.object.inReplyTo.location),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )
+    +
+    c:check(
+            $suiteName,
+            "contact_location_address_region_available",
+            c:check-not-null($obj.object.inReplyTo.location.addressRegion),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            )  
+    +
+    c:check(
+            $suiteName,
+            "contact_location_address_locality_available",
+            c:check-not-null($obj.object.inReplyTo.location.addressLocality),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "blocker"
+            ) 
+    +
+    c:check(
+            $suiteName,
+            "contact_location_postal_code_available",
+            c:check-not-null($obj.object.inReplyTo.location.postalCode),
+            $eventTypeTag + $providerTag + m:tag("check-type", "availability") + m:tag("check-group", "check-contact-events") ,
+            "minor"
+            ) 

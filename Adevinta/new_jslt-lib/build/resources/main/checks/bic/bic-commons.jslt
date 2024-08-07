@@ -1,0 +1,49 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as s
+import "checks/commons.jslt" as c
+
+// BIC Common Utils
+
+// Returns the provided checks if the event matches the given event name.
+// Otherwise it returns an empty list that can be used to compose more checks.
+//
+// Arguments:
+// - expected-event-name: expected event name with a value from s:event-name-values()
+// - checks: checks object to be returned if object type matches
+def check-if-type(event, expected-event-name, checks)
+   let event-name = s:get-event-name($event)
+
+   if ($event-name == $expected-event-name)
+      $checks
+   else
+      c:no-check()
+
+// Produces suite_is_applied check metric with check-result equals to (current event name == expected-event-name)
+//
+// Arguments:
+// - check-suite: check suite name
+// - expected-event-name: expected event name with a value from s:event-name-values()
+// - tags: tags to add to the check
+def check-suite-is-applied(check-suite, event, expected-event-name, tags)
+   let event-name = s:get-event-name($event)
+   c:check($check-suite, "suite_is_applied", $event-name == $expected-event-name, $tags, "critical")
+
+def check-count-all(check-suite, tags)
+   c:check($check-suite, "count_all", true, $tags, "critical")
+
+def check-id(event, check-suite, apply-to, tags)
+    check-if-type(
+          $event,
+          $apply-to,
+          c:check($check-suite, "id_not_null", c:check-not-null($event."@id"), $tags, "critical")
+      )
+
+def custom-tags(event)
+   // FOR REVIEW: Is this query for tracker type correct? It seems to be missing `@`
+   let trackerTypeTag = m:tag("tracker", m:taggify($event.tracker.type, "unknown", s:tracker-type-values()))
+   let deviceTypeTag = m:tag("device-type", m:taggify(.device.deviceType, "unknown", s:device-type-values()))
+   let eventTypeTag = m:tag("event-type", m:taggify(s:get-event-type($event), "unknown", s:event-type-values()))
+   let objectTypeTag = m:tag("object-type", m:taggify(s:get-object-type($event), "unknown", s:object-type-values()))
+   let productTypeTag = m:tag("product-type", m:taggify($event.provider.productType, "unknown", s:provider-product-type-values()))
+
+   $trackerTypeTag + $deviceTypeTag + $objectTypeTag + $eventTypeTag + $productTypeTag

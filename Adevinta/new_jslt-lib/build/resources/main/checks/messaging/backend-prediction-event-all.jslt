@@ -1,0 +1,43 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+
+// Migrated from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/schema/master/checks/dqt/messaging-backend-events.json
+
+let tags = {}
+let suite = "messaging.backend.prediction-event-all"
+
+// --------------------------------------------------------------------------------------------------------------------------
+// Suite of tests
+// --------------------------------------------------------------------------------------------------------------------------
+
+// AVAILABILITY (existence)
+c:check($suite, "target_type_not_null", c:check-not-null(.target."@type"), $tags, "critical")
++c:check($suite, "origin_id_is_not_null", c:check-not-null(.origin."@id"), $tags, "minor")
++c:check($suite, "origin_type_is_not_null", c:check-not-null(.origin."@type"), $tags, "critical")
++c:check($suite, "provider_id_is_not_null", c:check-not-null(.provider."@id"), $tags, "critical")
++c:check($suite, "provider_component_is_not_null", c:check-not-null(.provider.component), $tags, "minor")
++c:check($suite, "target_id_is_not_null", c:check-not-null(.target."@id"), $tags, "critical")
++c:check($suite, "target_type_is_not_null", c:check-not-null(.target."@type"), $tags, "critical")
++c:check($suite, "object_analyzed_object_id_is_not_null", c:check-not-null(.object.analyzedObject."@id"), $tags, "blocker")
++c:check($suite, "object_analyzed_object_type_is_not_null", c:check-not-null(.object.analyzedObject."@type"), $tags, "blocker")
++c:check($suite, "object_prediction_result_is_not_null", c:check-not-null(.object.predictionResult), $tags, "minor")
++c:check($suite, "object_type_is_not_null", c:check-not-null(.object."@type"), $tags, "blocker")
++c:check($suite, "object_language_is_not_empty", c:check-not-empty(.object.language), $tags, "blocker")
++c:check($suite, "object_model_version_is_not_empty", c:check-not-empty(.object.modelVersion), $tags, "critical")
++c:check($suite, "object_reply_to_id_is_not_null", c:check-not-null(.object.inReplyTo."@id"), $tags, "critical")
++c:check($suite, "object_reply_to_type_is_not_null", c:check-not-null(.object.inReplyTo."@type"), $tags, "critical")
+
+// VALIDITY (format)
++c:check($suite, "target_type_is_valid", .target."@type" == "Account", $tags, "critical")
++c:check($suite, "origin_id_is_valid", c:check-sdrn-conversation(.origin."@id"), $tags, "minor")
++c:check($suite, "origin_type_is_valid", .origin."@type" == "Conversation", $tags, "critical")
++c:check($suite, "provider_id_is_valid", c:check-sdrn-provider(.provider."@id"), $tags, "critical")
++c:check($suite, "provider_component_is_valid", .provider.component == "messaging", $tags, "minor")
++c:check($suite, "target_id_is_valid", c:check-sdrn-account-id(.target."@id"), $tags, "critical")
++c:check($suite, "target_type_is_valid", .target."@type" == "Account", $tags, "critical")
++c:check($suite, "object_analyzed_object_id_is_valid", c:check-sdrn-message(.object.analyzedObject."@id"), $tags, "blocker")
++c:check($suite, "object_analyzed_object_type_is_valid", .object.analyzedObject."@type" == "Message", $tags, "blocker")
++c:check($suite, "object_type_is_valid", .object."@type" == "Prediction", $tags, "blocker")
++c:check($suite, "object_reply_to_id_is_valid", c:check-sdrn-classified-ad(.object.inReplyTo."@id"), $tags, "critical")
++c:check($suite, "object_reply_to_type_is_valid", .object.inReplyTo."@type" == "ClassifiedAd", $tags, "critical")

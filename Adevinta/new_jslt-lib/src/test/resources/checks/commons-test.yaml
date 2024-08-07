@@ -1,0 +1,588 @@
+tests:
+
+  - name: check-schema-url returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-schema-url(null)
+      or c:check-schema-url([])
+      or c:check-schema-url("http://schema.schibsted.com/events/ad-view-event.json#")
+
+  - name: check-schema-url returns true with valid schema urls
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-schema-url("http://schema.schibsted.com/events/ad-view-event.json/18.json#")
+      and c:check-schema-url("https://schema.schibsted.com/events/ad-view-event.json/18.json#")
+      and c:check-schema-url("http://schema.adevinta.com/events/ad-view-event.json/18.json#")
+      and c:check-schema-url("https://schema.adevinta.com/events/ad-view-event.json/18.json#")
+      and c:check-schema-url("http://schema.adevinta.com/events/tracker-event.json/237.json#")
+      and c:check-schema-url("http://schema.schibsted.com/checks/checks-context.json/109.json#")
+
+  - name: check-schibsted-schema-url returns false if null, not string or not valid format or adevinta url
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-schibsted-schema-url(null)
+      or c:check-schibsted-schema-url([])
+      or c:check-schibsted-schema-url("http://schema.schibsted.com/events/ad-view-event.json#")
+      or c:check-schibsted-schema-url("http://schema.adevinta.com/events/tracker-event.json/237.json#")
+
+  - name: check-schibsted-schema-url returns true with valid schibsted schema urls
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-schibsted-schema-url("http://schema.schibsted.com/events/ad-view-event.json/18.json#")
+      and c:check-schibsted-schema-url("https://schema.schibsted.com/events/ad-view-event.json/18.json#")
+      and c:check-schibsted-schema-url("http://schema.schibsted.com/checks/checks-context.json/109.json#")
+
+  - name: check-adevinta-schema-url returns false if null, not string or not valid format or schibsted url
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-adevinta-schema-url(null)
+      or c:check-adevinta-schema-url([])
+      or c:check-adevinta-schema-url("http://schema.schibsted.com/events/ad-view-event.json#")
+      or c:check-adevinta-schema-url("http://schema.schibsted.com/events/tracker-event.json/237.json#")
+
+  - name: check-adevinta-schema-url returns true with valid adevinta schema urls
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-adevinta-schema-url("http://schema.adevinta.com/events/ad-view-event.json/18.json#")
+      and c:check-adevinta-schema-url("https://schema.adevinta.com/events/ad-view-event.json/18.json#")
+      and c:check-adevinta-schema-url("http://schema.adevinta.com/events/tracker-event.json/237.json#")
+
+
+  - name: check-date-format returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-date-format(null)
+      or c:check-date-format([])
+      or c:check-date-format("April 1st, 202020 at 15:04:55")
+
+  - name: check-date-format returns true with valid formats
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-date-format("2020-04-01T11:44:60.234Z")
+      and c:check-date-format("2020-04-01T11:44:60.234+03:00")
+      and c:check-date-format("2020-04-01T11:44:60.234-03:00")
+
+  - name: check-timestamp-format returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-timestamp-format(null)
+      or c:check-timestamp-format([])
+      or c:check-timestamp-format("April 1st, 202020 at 15:04:55")
+      or c:check-timestamp-format("2020-04-01T11:44:60.234-03:00")
+
+  - name: check-timestamp-format returns true with valid formats
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-timestamp-format("2020-04-01T11:44:60.234Z")
+      and c:check-timestamp-format("2020-04-01T11:44:60.234+00:00")
+      and c:check-timestamp-format("2020-04-01T11:44:60.234-00:00")
+
+  - name: check-uuid-v4 returns false if null, not string or other UUID versions
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-uuid-v4(null)
+      or c:check-uuid-v4([])
+      or c:check-uuid-v4("e0c40e68-7424-11ea-bc55-0242ac130003")
+
+  - name: check-uuid-v4 returns true with UUIDv4
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-uuid-v4("209541dd-5e23-4a3c-bbb0-3ea760fbfae2")
+      and c:check-uuid-v4("562fcc1b-4938-4c5c-b139-fb8856faf1ec")
+
+  - name: check-ip returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-ip(null)
+      or c:check-ip([])
+      or c:check-ip("127 0 0 1")
+
+  - name: check-ip returns true with valid IPs
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-ip("127.0.0.1")
+      and c:check-ip("10.10.10.10")
+
+  - name: check-email returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-email(null)
+      or c:check-email([])
+      or c:check-email("truc.machin@gmail")
+
+  - name: check-email returns true with valid emails
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-email("truc.machin@gmail.com")
+      and c:check-email("truc.machin_chose@hotmail.fr")
+
+  - name: check-empty returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-empty({})
+      and c:check-empty([])
+      and c:check-empty("")
+      and not(c:check-empty(null))
+      and not(c:check-empty({"random":42}))
+      and not(c:check-empty([42, 42]))
+      and not(c:check-empty("xyz"))
+
+  - name: check-not-empty returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-not-empty({"random":42})
+      and c:check-not-empty([42, 42])
+      and c:check-not-empty("xyz")
+      and c:check-not-empty(null)
+      and not(c:check-not-empty({}))
+      and not(c:check-not-empty([]))
+      and not(c:check-not-empty(""))
+
+  - name: check-null returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-null(null)
+      and not(c:check-null("a"))
+      and not(c:check-null({}))
+      and not(c:check-null([]))
+
+  - name: check-not-null returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      not(c:check-not-null(null))
+      and c:check-not-null("a")
+      and c:check-not-null({})
+      and c:check-not-null([])
+
+  - name: check-not-null-and-not-empty returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-not-null-and-not-empty({"foo":5})
+      and c:check-not-null-and-not-empty([5, 10])
+      and c:check-not-null-and-not-empty("abc")
+      and not(c:check-not-null-and-not-empty({}))
+      and not(c:check-not-null-and-not-empty([]))
+      and not(c:check-not-null-and-not-empty(""))
+      and not(c:check-not-null-and-not-empty(null))
+
+  - name: check-one-of returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-one-of("a", "a")
+      and not(c:check-one-of("a", "b"))
+      and c:check-one-of("a", ["a"])
+      and not(c:check-one-of("a", ["b"]))
+      and c:check-one-of("a", ["x", "a", "y"])
+      and c:check-one-of(null, ["a", null])
+      and c:check-one-of({"a": "A"}, ["a", {"a": "A"}])
+      and not(c:check-one-of({"a": "A"}, ["a", {"a": "B"}]))
+      and c:check-one-of(["a", "b"], [["a", "b"]])
+      and not(c:check-one-of(["a", "b"], ["a", "b"]))
+
+  - name: check-not-one-of returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      not(c:check-not-one-of("a", "a"))
+      and c:check-not-one-of("a", "b")
+      and not(c:check-not-one-of("a", ["a"]))
+      and c:check-not-one-of("a", ["b"])
+      and not(c:check-not-one-of("a", ["x", "a", "y"]))
+      and not(c:check-not-one-of(null, ["a", null]))
+      and not(c:check-not-one-of({"a": "A"}, ["a", {"a": "A"}]))
+      and c:check-not-one-of({"a": "A"}, ["a", {"a": "B"}])
+      and not(c:check-not-one-of(["a", "b"], [["a", "b"]]))
+      and c:check-not-one-of(["a", "b"], ["a", "b"])
+
+  - name: check-all returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-all("x")
+      and c:check-all([])
+      and c:check-all(["x", "y"])
+      and c:check-all({})
+      and c:check-all({"x":"y"})
+      and c:check-all([true, true])
+      and not(c:check-all(null))
+      and not(c:check-all(""))
+      and not(c:check-all(["x", null]))
+      and not(c:check-all([true, false]))
+      and not(c:check-all({"x":false}))
+
+  - name: check-any returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-any("x")
+      and c:check-any(["x", "y"])
+      and c:check-any({"x":"y", "z":null})
+      and c:check-any([true, true])
+      and c:check-any([true, false])
+      and not(c:check-any(null))
+      and not(c:check-any(""))
+      and not(c:check-any([]))
+      and not(c:check-any([null, null]))
+      and not(c:check-any([false, false]))
+      and not(c:check-any({}))
+      and not(c:check-any({"x":false}))
+
+  - name: check-none returns true or false accordingly
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-none(null)
+      and c:check-none("")
+      and c:check-none([])
+      and c:check-none([null, null])
+      and c:check-none([false, false])
+      and c:check-none({})
+      and c:check-none({"x":false})
+      and c:check-none({"x":false, "y":false})
+      and not(c:check-none("x"))
+      and not(c:check-none(["x", "y"]))
+      and not(c:check-none({"x":"y", "z":null}))
+      and not(c:check-none([true, true]))
+      and not(c:check-none([true, false]))
+      and not(c:check-none({"x":true, "y":false}))
+
+  - name: check-sdrn-account-id returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-account-id(null)
+      or c:check-sdrn-account-id([])
+      or c:check-sdrn-account-id("sdrn:leboncoin:user-id:12345678")
+
+  - name: check-sdrn-account-id returns true with valid account ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-account-id("sdrn:leboncoin:user:12345678")
+      and c:check-sdrn-account-id("sdrn:kufarby:user:234")
+
+  - name: check-sdrn-env-id returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-env-id(null)
+      or c:check-sdrn-env-id([])
+      or c:check-sdrn-env-id("sdrn:avitoma:environment:12345678")
+      or c:check-sdrn-env-id("sdrn:schibsted:environment:c9d4e423-a299-othe-rcha-racters")
+
+  - name: check-sdrn-env-id returns true with valid environment ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-env-id("sdrn:schibsted:environment:c9d4e423-a299-407d-a908-60c121506bea")
+      and c:check-sdrn-env-id("00000000-0000-4000-8000-000000000000")
+
+  - name: check-sdrn-classified-ad returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-classified-ad(null)
+      or c:check-sdrn-classified-ad([])
+      or c:check-sdrn-classified-ad("sdrn:leboncoin:classified-ad:12345678")
+      or c:check-sdrn-classified-ad("sdrn:subito:classified:id:ad:12345678:list:12345678")
+
+  - name: check-sdrn-classified-ad returns true with valid ad ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-classified-ad("sdrn:leboncoin:classified:12345678")
+      and c:check-sdrn-classified-ad("sdrn:kufarby:classified:234")
+
+  - name: check-sdrn-listing returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-listing(null)
+      or c:check-sdrn-listing([])
+      or c:check-sdrn-listing("123-456-789")
+      or c:check-sdrn-listing("sdrn:leboncoin:notListing:12345678")
+
+  - name: check-sdrn-listing returns true with valid listing ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-listing("sdrn:leboncoin:listing:q=house&location=0.20007")
+      and c:check-sdrn-listing("sdrn:kufarby:listing:234")
+
+  - name: check-sdrn-form returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-form(null)
+      or c:check-sdrn-form([])
+      or c:check-sdrn-form("123-456-789")
+      or c:check-sdrn-form("sdrn:leboncoin:notForm:12345678")
+
+  - name: check-sdrn-form returns true with valid form ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-form("sdrn:avitoma:form:https://www2.avito.ma/ai/form/0")
+      and c:check-sdrn-form("sdrn:kufar:form:https://www.kufar.by/whatever/form/0")
+
+  - name: check-sdrn-message returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-message(null)
+      or c:check-sdrn-message([])
+      or c:check-sdrn-message("sdrn:leboncoin:message-id:12345678")
+
+  - name: check-sdrn-message returns true with valid message ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-message("sdrn:leboncoin:message:12345678")
+      and c:check-sdrn-message("sdrn:kufarby:message:234")
+
+  - name: check-sdrn-webpage returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-webpage(null)
+      or c:check-sdrn-webpage([])
+      or c:check-sdrn-webpage("sdrn:leboncoin:webpage:12345678")
+
+  - name: check-sdrn-webpage returns true with valid webpage ids
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-webpage("sdrn:leboncoin:frontpage:12345678")
+      and c:check-sdrn-webpage("sdrn:kufarby:page:234")
+      and c:check-sdrn-webpage("sdrn:cochesnet:content:234")
+
+  - name: check-sdrn-provider returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-provider(null)
+      or c:check-sdrn-provider([])
+      or c:check-sdrn-provider("sdrn:adevinta:client:12345678")
+      or c:check-sdrn-provider("sdrn:adevinta:client:")
+
+  - name: ccheck-sdrn-provider returns true with valid provider id
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-provider("sdrn:schibsted:client:12345678")
+
+  - name: check-sdrn-conversation returns false if null, not string or not valid format
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-conversation(null)
+      or c:check-sdrn-conversation([])
+      or c:check-sdrn-conversation("sdrn:cochesnet:conversation:")
+      or c:check-sdrn-conversation("sdrn:cochesnet:extra:conversation:12345678")
+
+  - name: ccheck-sdrn-conversation returns true with valid provider id
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-sdrn-conversation("sdrn:kufarby:conversation:12345678")
+      and c:check-sdrn-conversation("sdrn:cochesnet:conversation:12345678")
+
+  - name: check-mediaasset-category returns false if null, not string or not valid formats
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-mediaasset-category(null)
+      or c:check-mediaasset-category([])
+      or c:check-mediaasset-category({})
+      or c:check-mediaasset-category(["some", "category"])
+
+  - name: check-mediaasset-category returns true with valid category formats
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-mediaasset-category("vehicules > equipement_auto")
+      and c:check-mediaasset-category("vehicules>equipement_auto")
+      and c:check-mediaasset-category("Fritid & Hobby > Djur > Hund")
+      and c:check-mediaasset-category("2000 > 2050")
+      and c:check-mediaasset-category("Vehicles")
+      and c:check-mediaasset-category("BOAT > BOAT")
+      and c:check-mediaasset-category("Multimedia > Téléphonie")
+      and c:check-mediaasset-category("some > category > given > by > the > store")
+      and c:check-mediaasset-category("some >    category >      given >    by     >the> store")
+      and c:check-mediaasset-category("something >weird>/()$%>bbb")
+      and c:check-mediaasset-category("some / category / given / by / the / store")  // note this is passing, as single category!!
+
+  - name: check-number-gt-0 returns true if number is greater than 0
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-number-gt-0(2)
+
+  - name: check-number-gt-0 returns false if number is < 0 or not a number
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-number-gt-0(0)
+      and c:check-number-gt-0(-1)
+      and c:check-number-gt-0(null)
+      and c:check-number-gt-0([])
+      and c:check-number-gt-0({})
+
+  - name: check-number-ge-0 returns true if number is >= 0
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-number-ge-0(2)
+      and c:check-number-ge-0(0)
+
+  - name: check-number-ge-0 returns false if number is < 0 or not a number
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-number-ge-0(-1)
+      and c:check-number-ge-0(null)
+      and c:check-number-ge-0([])
+      and c:check-number-ge-0({})
+
+  - name: check-geocoordinate returns false if the value is not a valid geocoordinate
+    expected: false
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-geocoordinate(-1000)
+      and c:check-geocoordinate("3fee")
+      and c:check-geocoordinate("0000")
+
+  - name: check-geocoordinate returns true if a valid geocoordinate value is passed
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      c:check-geocoordinate("-47.2012")
+      and c:check-geocoordinate("41.38")
+      and c:check-geocoordinate("2.1734")
+
+  - name: taggify-event-type should tag a valid event to its tag or return "unknown" tag
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      let jsonShow = {"@type": "Show",
+                  "object": {"@type": "PhoneContact",
+                              "inReplyTo": {"@type": "ClassifiedAd"}}}
+      let jsonClick = {"@type": "Click",
+                       "object": {"@type": "RecommendationItem"}}
+      let jsonUnknown = {"@type": "Show",
+                        "object": {"@type": "View"}}
+      let jsonNull = {"@type": null}
+      let jsonEmptyField = {"@type": ""}
+      let jsonEmpty = {"": ""}
+      c:taggify-event-type($jsonShow) == "ad-phone-displayed"
+      and c:taggify-event-type($jsonClick) == "rec-widget-click"
+      and c:taggify-event-type($jsonUnknown) == "unknown"
+      and c:taggify-event-type($jsonNull) == "unknown"
+      and c:taggify-event-type($jsonEmptyField) == "unknown"
+      and c:taggify-event-type($jsonEmpty) == "unknown"
+      and c:taggify-event-type("") == "unknown"
+
+  - name: a check with a typical use case
+    expected:
+      - quality.check:
+          delta: 1
+          tags:
+            b: b
+            a: a
+            check-suite: check-suite-1
+            check-name: check-name-1
+            check-result: "true"
+            check-impact: critical
+      - quality.check:
+          delta: 1
+          tags:
+            b: b
+            a: a
+            check-suite: check-suite-1
+            check-name: check-name-2
+            check-result: "false"
+            check-impact: critical
+      - quality.check:
+          delta: 1
+          tags:
+            b: b
+            a: a
+            check-suite: check-suite-2
+            check-name: check-name-1
+            check-result: "true"
+            check-impact: critical
+    expression: |
+      import "checks/commons.jslt" as c
+      import "lib/metrics.jslt" as m
+
+      let tag-object = m:tag("a", "A") + m:tag("b", "B")
+
+      c:check("check-suite-1", "check-name-1", true, $tag-object, "critical")
+      +
+      c:check("check-suite-1", "check-name-2", false, $tag-object, "critical")
+      +
+      c:check("check-suite-2", "check-name-1", true, $tag-object, "critical")
+
+  - name: a check-impact is restricted to some values, 'critical' otherwise
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+
+      c:check("X", "x", true, {}, "blocker")[0]."quality.check".tags."check-impact" == "blocker"
+      and
+      c:check("X", "x", true, {}, "critical")[0]."quality.check".tags.check-impact == "critical"
+      and
+      c:check("X", "x", true, {}, "minor")[0]."quality.check".tags.check-impact == "minor"
+      and
+      c:check("X", "x", true, {}, null)[0]."quality.check".tags.check-impact == "critical"
+      and
+      c:check("X", "x", true, {}, "xyz")[0]."quality.check".tags.check-impact == "critical"
+
+  - name: a check is limited to 5 user tags
+    expected: true
+    expression: |
+      import "checks/commons.jslt" as c
+      import "lib/metrics.jslt" as m
+
+      let tag-object = 
+        m:tag("a", "1") 
+        + m:tag("b", "2") 
+        + m:tag("c", "3") 
+        + m:tag("d", "4") 
+        + m:tag("e", "5") 
+        + m:tag("f", "6") 
+
+      let check = c:check("X", "x", true, $tag-object, null)
+
+      let tag-results = $check[0]."quality.check".tags
+      // 5 user tags + 4 system tags
+      (size($tag-results) == 5+4)
+      and
+      all(
+        [for($tag-results) 
+          if (contains(.key, ["check-suite", "check-name", "check-result", "check-impact"])) true
+          else get-key($tag-object, .key) == .value
+        ]
+      )

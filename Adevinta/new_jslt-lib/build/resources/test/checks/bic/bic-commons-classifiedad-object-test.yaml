@@ -1,0 +1,185 @@
+tests:
+  - name: bic-commons-classifiedad-object.jslt compiles and runs
+    type: compile
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      c(.)
+  - name: bic-commons-classifiedad-object.jslt check-object-id returns true if is not null with a pattern
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "@id": "sdrn:666:classified:undefined"
+          }
+        }
+      c:check-object-id($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-adtype returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_adtype_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "adType": null
+          }
+        }
+      c:check-object-adtype($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-category returns true if is not null with a pattern
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_category_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_category_follows_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "category": "category1 > category 2"
+          }
+        }
+      c:check-object-category($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-publisherType returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_publishertype_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "publisherType": null
+          }
+        }
+      c:check-object-publisherType($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-url returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "url": null
+          }
+        }
+      c:check-object-url($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-loc-addloc returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_loc_addloc_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "location": {
+              "addressLocality": null
+            }
+          }
+        }
+      c:check-object-loc-addloc($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-classifiedad-object.jslt check-object-loc-addreg returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_loc_addreg_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-classifiedad-object.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "inReplyTo": {
+              "@type": "ClassifiedAd"
+            },
+            "@type": "ClassifiedAd",
+            "location": {
+              "addressRegion": null
+            }
+          }
+        }
+      c:check-object-loc-addreg($event, "bic.ad-create", "ad-create", {})

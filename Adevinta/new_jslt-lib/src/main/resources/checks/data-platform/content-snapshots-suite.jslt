@@ -1,0 +1,47 @@
+import "lib/metrics.jslt" as m
+import "lib/commons.jslt" as cc
+import "checks/commons.jslt" as c
+
+let providers = ["hasznaltautohu","jofogashu","kufarby","milanuncios","segundamanomx","subito","willhabenat","yapocl"]
+let statuses = ["user_deleted", "deactivated", "hidden", "tbd", "active", "deleted", "passive", "activated", "admin_deleted", "sold", "under_delete", "archived", "refused", "expired_deleted", "inactive", "disabled", "accepted"]
+
+let providerTag = m:tag("provider", m:taggify(cc:canned-client-id(fallback(.provider."@id", .provider._AT_id)), "unknown", $providers))
+let statusTag = m:tag("status", m:taggify(.object.status, "unknown", $statuses))
+let tags = $providerTag + $statusTag
+
+let suite = "data_platform.content_snapshots"
+
+c:check($suite, "provider_id_not_null", c:check-not-null(fallback(.provider."@id", .provider._AT_id)), $tags, "blocker")
++c:check($suite, "ad_id_not_null", c:check-not-null(.object."@id"), $tags, "blocker")
++c:check($suite, "ad_type_not_null", c:check-not-null(.object.adType), $tags, "blocker")
++c:check($suite, "category_name_not_null", c:check-not-null(.object.category), $tags, "blocker")
++c:check($suite, "category_id_not_null", c:check-not-null(.object.categories), $tags, "blocker")
++c:check($suite, "currency_not_null", c:check-not-null(.object.currency), $tags, "blocker")
++c:check($suite, "description_not_null", c:check-not-null(.object.description), $tags, "blocker")
++c:check($suite, "event_time_not_null", c:check-not-null(.eventTime), $tags, "blocker")
++c:check($suite, "items_not_null", c:check-not-null(.object.items), $tags, "blocker")
++c:check($suite, "images_not_null", c:check-not-null(.object.images), $tags, "blocker")
++c:check($suite, "last_update_date_not_null", c:check-not-null(.object.lastUpdateDate), $tags, "blocker")
++c:check($suite, "location_address_region_not_null", c:check-not-null(.object.location.addressRegion), $tags, "blocker")
++c:check($suite, "location_address_country_not_null", c:check-not-null(.object.location.addressCountry), $tags, "blocker")
++c:check($suite, "location_address_locality_not_null", c:check-not-null(.object.location.addressLocality), $tags, "blocker")
++c:check($suite, "location_postal_code_not_null", c:check-not-null(.object.location.postalCode), $tags, "blocker")
++c:check($suite, "title_not_null", c:check-not-null(.object.name), $tags, "blocker")
++c:check($suite, "price_not_null", c:check-not-null(.object.price), $tags, "blocker")
++c:check($suite, "publication_date_not_null", c:check-not-null(.object.publicationDate), $tags, "blocker")
++c:check($suite, "publisher_id_not_null", c:check-not-null(.object.publisher."@id"), $tags, "blocker")
++c:check($suite, "publisher_type_not_null", c:check-not-null(.object.publisherType), $tags, "blocker")
++c:check($suite, "status_not_null", c:check-not-null(.object.status), $tags, "blocker")
++c:check($suite, "ad_id_valid_sdrn", c:check-sdrn-classified-ad(.object."@id"), $tags, "blocker")
++c:check($suite, "ad_type_is_one_of", c:check-one-of(.object.adType, [
+                                                                        "buy",
+                                                                        "give",
+                                                                        "holidayRental",
+                                                                        "jobOffer",
+                                                                        "lease",
+                                                                        "let",
+                                                                        "sell",
+                                                                        "share",
+                                                                        "swap",
+                                                                        "rent"
+                                                                        ]), $tags, "blocker")

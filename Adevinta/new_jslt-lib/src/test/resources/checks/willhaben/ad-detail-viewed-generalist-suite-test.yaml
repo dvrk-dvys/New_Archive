@@ -1,0 +1,116 @@
+tests:
+
+  - name: ad-detail-viewed-generalist-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/willhaben/ad-detail-viewed-generalist-suite.jslt" as c
+      c(.)
+
+  - name: willhaben/ad-detail-viewed-generalist-suite.jslt should generate valid metrics
+    expected:
+      - quality.check:
+          tags:
+            check-suite: willhaben.ad-detail-viewed-generalist
+            check-name: event_adid_not_null
+            check-result: 'true'
+            check-impact: critical
+            event-type: 'view'
+            object-type: 'classifiedad'
+            tracker: 'js'
+          delta: 1
+
+    expression: |
+      import "checks/willhaben/ad-detail-viewed-generalist-suite.jslt" as ad
+
+      let event =
+      {
+         "schema":"http://schema.adevinta.com/events/tracker-event.json/226.json",
+         "origin":{
+            "url":"https://www-uat.willhaben.at/iad/kaufen-und-verkaufen/"
+         },
+         "name":"Ad detail viewed",
+         "creationDate":"2021-04-26T14:44:59.355Z",
+         "pageViewId":"57c6f99a-ed79-4d13-b430-6b829ec6dc9d",
+         "provider":{
+            "@type":"Organization",
+            "@id":"sdrn:schibsted:client:willhabenat",
+            "productType":"Web"
+         },
+         "deployTag":"TealiumAutoProtect",
+         "device":{
+            "acceptLanguage":"de-DE",
+            "jweIds":"eyJpc3N1ZWRBdCI6IjIwMTgtMDktMjdUMTQ6MzlaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..ln9aTRUKdw_kIWoCSTeM9Q.DPHpYnwCSETRUrWwEf26p5FRYV6JNA5fXf6-xtaifvGsFK55jAsWWHxYc4r5UnC0X_LeP0IuPGP4Kop2wIZdOSP0bIxYZVaOikiGeF6j1_17j_TQQf1u2_zMF1kvAUyMxpNb9KKXu2z0NydT-UqVjlJ52FcHSxazKRkiofYCef0EpR8No_y2ss1KL2j9KkdZ5O21lnmHw9Zya7IrhMquLbI6EQODIA6kMpRkHijhPOw.tE1UiH4ZrcZ3zMu5imnv6w",
+            "viewportSize":"1263x947",
+            "screenSize":"1920x1080",
+            "environmentId":"sdrn:schibsted:environment:14e38a85-2ded-4c27-9927-ebd5d239bfe9",
+            "deviceType":"desktop",
+            "localStorageEnabled":true,
+            "userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+            "@type":"Device"
+         },
+         "deployStage":"pre",
+         "tracker":{
+            "name":"Pulse Node.js SDK",
+            "type":"JS",
+            "eventBuilderVersion":"1.0.34",
+            "version":"4.2.2-25fea"
+         },
+         "@type":"View",
+         "@id":"1a8c981b-a351-450f-8510-bb034fce93f6",
+         "object":{
+            "price":19.9,
+            "name":"Fensterbild \"Blume des Lebens\"",
+            "url":"https://www-uat.willhaben.at/iad/kaufen-und-verkaufen/d/fensterbild-blume-des-lebens-465185641/?counterId=121",
+            "contentId":"465185641",
+            "location":{
+               "@type":"PostalAddress",
+               "addressLocality":"Korneuburg",
+               "addressRegion":"Niederösterreich",
+               "postalCode":"2201",
+               "addressCountry":"AT"
+            },
+            "publisherType":"private",
+            "@type":"ClassifiedAd",
+            "@id":"sdrn:willhabenat:classified:465185641",
+            "publisher":{
+               "@id":"sdrn:willhabenat:user:1c66813e-9119-405a-ad9a-c82a3667e9e5",
+               "@type":"Account",
+               "accountId":"1c66813e-9119-405a-ad9a-c82a3667e9e5"
+            },
+            "categories":[
+               {
+                  "@type":"MarketplaceCategory",
+                  "level":3,
+                  "localName":"Figuren / Dekoration",
+                  "name":"Figuren / Dekoration",
+                  "localId":"sdrn:willhabenat:category:generalist:3078"
+               },
+               {
+                  "@type":"MarketplaceCategory",
+                  "level":2,
+                  "localName":"Esoterik",
+                  "name":"Esoterik",
+                  "localId":"sdrn:willhabenat:category:generalist:3077"
+               },
+               {
+                  "@type":"MarketplaceCategory",
+                  "level":1,
+                  "localName":"Beauty / Gesundheit / Wellness",
+                  "name":"Beauty / Gesundheit / Wellness",
+                  "localId":"sdrn:willhabenat:category:generalist:3076"
+               },
+               {
+                  "@type":"MarketplaceCategory",
+                  "level":0,
+                  "localName":"Generalist",
+                  "name":"Generalist",
+                  "localId":"sdrn:willhabenat:category:generalist:2"
+               }
+            ],
+            "adType":"sell",
+            "adId":465185641,
+            "category":"Generalist > Beauty / Gesundheit / Wellness > Esoterik > Figuren / Dekoration"
+         }
+      }
+
+      ad($event)

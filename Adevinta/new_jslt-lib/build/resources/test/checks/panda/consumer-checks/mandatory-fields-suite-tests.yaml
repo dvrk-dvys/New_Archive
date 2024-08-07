@@ -1,0 +1,648 @@
+tests:
+
+  - name: mandatory-fields-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/consumer-checks/mandatory-fields-suite.jslt" as p
+      p(.)
+
+  - name: mandatory-fields-suite.jslt generates metrics for a valid ad-view events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_address_country_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_address_region_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_address_locality_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_location_postal_code_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_publisher_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_category_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_categories_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_categories_level_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_categories_level_is_integer
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_categories_local_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:ft-immo-pro
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.mandatory-fields
+            check-name: object_categories_local_name_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/panda/consumer-checks/mandatory-fields-suite.jslt" as p
+      let event =
+      {
+        "actor": {
+          "spt:remoteAddress": "NOT DEFINED"
+        },
+        "device": {
+          "environmentId": "sdrn:schibsted:environment:pro",
+          "isBot": false,
+          "userAgent": "undefined"
+        },
+        "dataPlatformEnrichments": {
+          "botAnalysis": {
+            "isBot": false
+          }
+        },
+        "object": {
+          "@id": "sdrn:ft-immo-pro:classified:43465497",
+          "name": "adview",
+          "@type": "ClassifiedAd",
+          "version": 1,
+          "adId": 43465497,
+          "externalIds": [
+            "sdrn:leboncoin:classified:2002358160"
+          ],
+          "groupId": "TP-VOU-75978",
+          "adType": "undefined",
+          "categories": [
+            {
+              "@type": "'undefined'",
+              "localId": "9",
+              "localName": "undefined",
+              "level": 1,
+              "name": "undefined"
+            }
+          ],
+          "category": "cat",
+          "contentId": "undefined",
+          "currency": "euro",
+          "inLanguage": "french",
+          "insertionType": "undefined",
+          "items": [],
+          "lastUpdateDate": "",
+          "location": {
+            "@type": "location",
+            "addressCountry": "France",
+            "addressRegion": "Poitou-Charentes",
+            "addressLocality": "Vouillé",
+            "postalCode": "86190"
+          },
+          "price": -1,
+          "publicationDate": "",
+          "publisher": {
+            "@id": "sdrn:ft-immo-pro:user:123390",
+            "@type": "ft-immo-pro",
+            "accountId": "123390",
+            "accountType": "import",
+            "additionalIds": [
+              {
+                "@id": "sdrn:leboncoin:user:acbf11c3-7051-4e16-88f2-731123cb6a92",
+                "component": "lbc"
+              },
+              {
+                "@id": "sdrn:ft-immo-pro:user:123390",
+                "component": "ft-immo-pro"
+              }
+            ]
+          },
+          "publisherType": "",
+          "status": "",
+          "url": ""
+        },
+        "provider": {
+          "@id": "sdrn:schibsted:client:ft-immo-pro",
+          "@type": "undefined",
+          "productTag": "ft-immo-pro"
+        },
+        "schema": "http://schema.adevinta.com/events/tracker-event.json/161.json",
+        "deployStage": "pro",
+        "@id": "d23c628d-2236-4803-916f-e729e7d619fa",
+        "@type": "View",
+        "creationDate": "2021-08-11T12:08:00.641+00:00",
+        "tracker": {
+          "type": "undefined",
+          "version": "undefined"
+        },
+        "collectorHost": "collector.mpianalytics.com",
+        "published": "2021-08-11T12:08:01+00:00"
+      }
+      p($event)
+
+  - name: mandatory-fields-suite.jslt generates metrics for a valid externallink-contact-click events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: validity
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: validity
+            obj-type: externallink-contact-click
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: validity
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_address_country_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_address_region_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_address_locality_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_location_postal_code_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_publisher_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: validity
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_category_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_categories_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_categories_level_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: validity
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_categories_level_is_integer
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_categories_local_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:willhabenat
+            check-type: availability
+            obj-type: externallink-contact-click
+            check-suite: panda.mandatory-fields
+            check-name: object_in_reply_to_categories_local_name_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/panda/consumer-checks/mandatory-fields-suite.jslt" as p
+      let event =
+      {
+        "schema":"http://schema.adevinta.com/events/tracker-event.json/226.json",
+        "origin":{
+            "url":""
+        },
+        "name":"Product link",
+        "creationDate":"2021-07-30T12:09:15.375Z",
+        "pageViewId":"20163332-2af8-41e9-a29c-0b5b24eeaac1",
+        "provider":{
+            "@type":"Organization",
+            "@id":"sdrn:schibsted:client:willhabenat",
+            "productType":"ResponsiveWeb"
+        },
+        "device":{
+            "acceptLanguage":"en-GB",
+            "jweIds":"eyJpc3N1ZWRBdCI6IjIwMjEtMDctMjlUMTI6MDY6NTNaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..EVEkxouLJ_1JYOTMkrJ-Uw.RpNwq_Hrqi7VrsMYYFYshxC0y657AFi0bDgIw7Yv5W4jRcaHAiF0akaXoS3sxupS3dTKzF6F4aNzg6__sX9OtEJCyGTDB5qi2w0yrW0TK-_54JrYFJBx4-W6s5HP1zMA6YyRTxW5yNiTYBzgJqwVgRZ8FiOqVCzaigQyJ-GDX1aP_nenKO9TgwvjDcd9QXdbDhTK2QMgXk0bxi9UcjFWDd9kzJZDzxWRaEDF17WtiL4.wnHjZaF2AiXh8Cesh4DqQQ",
+            "viewportSize":"1002x914",
+            "screenSize":"1680x1050",
+            "environmentId":"sdrn:schibsted:environment:40eb3438-2eef-4f30-b2df-e08ac5a674be",
+            "deviceType":"desktop",
+            "localStorageEnabled":true,
+            "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36",
+            "@type":"Device"
+        },
+        "deployStage":"pro",
+        "tracker":{
+            "name":"Pulse Node.js SDK",
+            "type":"JS",
+            "eventBuilderVersion":"1.0.34",
+            "version":"4.2.2-25fea"
+        },
+        "@type":"Click",
+        "@id":"18d28998-e12e-4130-adbe-b9676dfa062a",
+        "object":{
+            "@id":"sdrn:willhabenat:externallinkcontact:https://www.willhaben.at/iad/kaufen-und-verkaufen/d/neu-vidaxl-gartenpavillon-mit-seitenvorhang-3x3x2-25-m-creme-456215163",
+            "@type":"ExternalLinkContact",
+            "name":"NEU vidaXL Gartenpavillon mit Seitenvorhang 3x3x2,25 m Creme, € 210,99 (5928 SK Venlo) - willhaben",
+            "url":"https://www.willhaben.at/iad/kaufen-und-verkaufen/d/neu-vidaxl-gartenpavillon-mit-seitenvorhang-3x3x2-25-m-creme-456215163",
+            "inReplyTo":{
+              "price":210.99,
+              "name":"NEU vidaXL Gartenpavillon mit Seitenvorhang 3x3x2,25 m Creme",
+              "url":"https://www.willhaben.at/iad/kaufen-und-verkaufen/d/neu-vidaxl-gartenpavillon-mit-seitenvorhang-3x3x2-25-m-creme-456215163",
+              "contentId":"456215163",
+              "location":{
+                  "@type":"PostalAddress",
+                  "addressLocality":"SK Venlo",
+                  "postalCode":"5928",
+                  "addressCountry":"NL"
+              },
+              "publisherType":"pro",
+              "@type":"ClassifiedAd",
+              "@id":"sdrn:willhabenat:classified:456215163",
+              "publisher":{
+                  "@id":"sdrn:willhabenat:user:00c0043e-0b6c-4dff-85ba-b80186fc3b9f",
+                  "@type":"Account",
+                  "accountId":"00c0043e-0b6c-4dff-85ba-b80186fc3b9f"
+              },
+              "categories":[
+                  {
+                    "@type":"MarketplaceCategory",
+                    "level":4,
+                    "localName":"Partyzelte / Pavillons",
+                    "name":"Partyzelte / Pavillons",
+                    "localId":"sdrn:willhabenat:category:generalist:3685"
+                  },
+                  {
+                    "@type":"MarketplaceCategory",
+                    "level":3,
+                    "localName":"Gartenmöbel / Griller / Dekoration",
+                    "name":"Gartenmöbel / Griller / Dekoration",
+                    "localId":"sdrn:willhabenat:category:generalist:3660"
+                  },
+                  {
+                    "@type":"MarketplaceCategory",
+                    "level":2,
+                    "localName":"Garten",
+                    "name":"Garten",
+                    "localId":"sdrn:willhabenat:category:generalist:3631"
+                  },
+                  {
+                    "@type":"MarketplaceCategory",
+                    "level":1,
+                    "localName":"Haus / Garten / Werkstatt",
+                    "name":"Haus / Garten / Werkstatt",
+                    "localId":"sdrn:willhabenat:category:generalist:3541"
+                  },
+                  {
+                    "@type":"MarketplaceCategory",
+                    "level":0,
+                    "localName":"Generalist",
+                    "name":"Generalist",
+                    "localId":"sdrn:willhabenat:category:generalist:2"
+                  }
+              ],
+              "adType":"sell",
+              "adId":456215163,
+              "category":"Generalist > Haus / Garten / Werkstatt > Garten > Gartenmöbel / Griller / Dekoration > Partyzelte / Pavillons"
+            }
+        }
+      }
+      p($event)

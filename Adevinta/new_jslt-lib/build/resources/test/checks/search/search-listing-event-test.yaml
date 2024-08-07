@@ -1,0 +1,1128 @@
+tests:
+  - name: search-listing-event.jslt compiles
+    type: compile
+    expression: |
+      import "checks/search/search-listing-event.jslt" as sle
+      sle(.)
+
+  - name: search-listing-event.jslt generates metrics for a valid event implementing the search tagging plan
+    expected:
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.object_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.object_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.object_category_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.object_category_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numItems_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numItems_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.sorting_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.sorting_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.query_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.query_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.region_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.region_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.locality_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.locality_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numFilters_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numFilters_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.items_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.items_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_type_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_type_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_source_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_source_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_queryOrigin_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_queryOrigin_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_filterOrigin_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_filterOrigin_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_display_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_display_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.maxRank_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.maxRank_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.offset_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.offset_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.pageType_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.origin_pageType_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.origin_pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_elementType_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_elementType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_channel_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_channel_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+    expression: |
+      import "checks/search/search-listing-event.jslt" as sle
+      let search_event = 
+      { 
+      "schema":"http://schema.schibsted.com/events/tracker-event.json/161.json",
+      "@id":"415428f3-dc13-4e59-bdff-38abadedf3fbe",
+      "name":"Listing viewed",
+      "@type":"View",
+      "object":{ 
+          "@type":"Listing",
+          "@id":"sdrn:leboncoin:listing:https%3A//www.leboncoin.fr/annonces/offres/centre/",
+          "contentId":"https://www.leboncoin.fr/annonces/offres/centre/",
+          "url":"https://www.leboncoin.fr/annonces/offres/centre/",
+          "name":"Petites annonces - Centre - leboncoin",
+          "adType":"sell",
+          "category":"divers > toutes_categories", //The category of the list. If there is a set of hierarchical categories they are separated by '>'    
+          "numItems":1456,
+          "filters":{ 
+            "publisherType":"private",
+            "query":"Iphone 8", //Search query string         
+            "sorting":"PriceAsc",
+            "verified":true,
+            "locality" : "Mars",
+            "region" : "Összes régió"
+          },
+          "items" : [
+            {
+              "@id" : "ad1"
+            },
+            {
+              "@id" : "ad2"
+            }
+          ],
+          "numFilters":2, // The total number of filters applied, excluded query, category, sorting, region and locality/locations
+      },
+      "search":{ 
+          "@id":"sdrn:leboncoin:search:6ef4aba1-c221-401b-bcf2-ebe80b99aa1b",
+          "@type":"SearchMetadata",
+          "source":"MainSearch",
+          "display":"List",
+          "maxRank":20,
+          "queryOrigin" : "Suggested",
+          "filterOrigin" : "prefilled",
+          "offset":0
+      },
+      "page":{ 
+          "@type":"Page",
+          "pageType":"search"
+      },
+      "origin": {
+        "url": "",
+        "page" : {
+          "pageType" : "homepage"
+        },
+        "element" : {
+          "elementType" : "banner"
+        },
+        "channel" : "Social Media"
+      },
+      "provider": {
+        "@type": "Organization",
+        "@id": "sdrn:schibsted:client:leboncoin",
+        "productType":"ResponsiveWeb",
+        "product" : "fr.leboncoin:6969:Leboncoin"
+      },
+      "device": {
+        "acceptLanguage": "en-US",
+        "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDItMDNUMTA6MTQ6NDhaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..nN-D-ogpVenN6pvCWlKikQ.6oR4WxfzYY8exraGzo6_7YJawR-5CEF6l7Nio5ifYboCEGeo1X9vAoWPkxzwQoUOxTeWVBEHHvYi2szWcZj7rO8uePLnXBF2Eo-VHsWEy-LrRppeOwSkHpP50I6l2IMp0rv4s93eG28ReM2x_rbB5DSeSam21KCDyXKRBCAuzjy7-ORp6w0MreZh9U5b-wpUGkR8ylqxGAiweVQ9RwNGsw.19hGiN4IlAnwk5rbEIr01g",
+        "viewportSize": "872x940",
+        "screenSize": "1920x1080",
+        "environmentId": "sdrn:schibsted:environment:95f25616-f156-4c34-b917-e3f4fd58df72",
+        "deviceType": "desktop",
+        "localStorageEnabled": true,
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36",
+        "@type": "Device"
+      },
+      "tracker": {
+        "name": "Pulse Node.js SDK",
+        "type": "JS",
+        "eventBuilderVersion": "1.0.32",
+        "version": "4.1.8-75ce0"
+      }
+      }
+
+      sle($search_event)
+  - name: search-listing-event.jslt detects broken fields
+    expected:
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.id_is_present
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.object_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.object_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.object_category_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.object_category_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numItems_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numItems_is_valid_number
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.sorting_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.sorting_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.query_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.query_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.region_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.region_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.locality_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.locality_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numFilters_is_present
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.numFilters_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.items_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.items_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_id_is_present
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_type_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_type_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_source_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.search_source_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_queryOrigin_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_queryOrigin_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_filterOrigin_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_filterOrigin_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_display_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.search_display_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.maxRank_is_present
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.maxRank_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.offset_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.offset_is_valid_number
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.pageType_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.pageType_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.origin_pageType_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.commons.origin_pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_elementType_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_elementType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_channel_is_present
+            check-result: "false"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.listing
+            check-name: search.listing.origin_channel_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+    expression: |
+      import "checks/search/search-listing-event.jslt" as sle
+      let search_event = 
+      { 
+      "schema":"http://schema.schibsted.com/events/tracker-event.json/161.json",
+      "name":"Listing viewed",
+      "@type":"View",
+      "object":{ 
+          "@type":"Listing",
+          "@id":"sdrn:leboncoin:listing:https%3A//www.leboncoin.fr/annonces/offres/centre/",
+          "contentId":"https://www.leboncoin.fr/annonces/offres/centre/",
+          "url":"https://www.leboncoin.fr/annonces/offres/centre/",
+          "name":"Petites annonces - Centre - leboncoin",
+          "adType":"sell",
+          "category":"divers > toutes_categories", //The category of the list. If there is a set of hierarchical categories they are separated by '>'    
+          "numItems":-1,
+          "filters":{ 
+            "publisherType":"private",
+            "query":"Iphone 8", //Search query string         
+            "sorting":"something random",
+            "verified":true
+          },
+          "items" : ["ad1","ad2"]
+      },
+      "search":{ 
+          "@type":"NotSearchMetadata",
+          "source":"ThatStupidSearch",
+          "display":"4D",
+          "offset":"hello",
+          "queryOrigin" : "something random idk"
+      },
+      "page":{ 
+          "@type":"Page",
+          "pageType": 42
+      },
+      "origin": {
+        "url": ""
+      },
+      "provider": {
+        "@type": "Organization",
+        "@id": "sdrn:schibsted:client:leboncoin",
+        "productType":"ResponsiveWeb",
+        "product" : "fr.leboncoin:6969:leboncoin"
+      },
+      "device": {
+        "acceptLanguage": "en-US",
+        "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDItMDNUMTA6MTQ6NDhaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..nN-D-ogpVenN6pvCWlKikQ.6oR4WxfzYY8exraGzo6_7YJawR-5CEF6l7Nio5ifYboCEGeo1X9vAoWPkxzwQoUOxTeWVBEHHvYi2szWcZj7rO8uePLnXBF2Eo-VHsWEy-LrRppeOwSkHpP50I6l2IMp0rv4s93eG28ReM2x_rbB5DSeSam21KCDyXKRBCAuzjy7-ORp6w0MreZh9U5b-wpUGkR8ylqxGAiweVQ9RwNGsw.19hGiN4IlAnwk5rbEIr01g",
+        "viewportSize": "872x940",
+        "screenSize": "1920x1080",
+        "environmentId": "sdrn:schibsted:environment:95f25616-f156-4c34-b917-e3f4fd58df72",
+        "deviceType": "desktop",
+        "localStorageEnabled": true,
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36",
+        "@type": "Device"
+      },
+      "tracker": {
+        "name": "Pulse Node.js SDK",
+        "type": "JS",
+        "eventBuilderVersion": "1.0.32",
+        "version": "4.1.8-75ce0"
+      }
+      }
+
+      sle($search_event)

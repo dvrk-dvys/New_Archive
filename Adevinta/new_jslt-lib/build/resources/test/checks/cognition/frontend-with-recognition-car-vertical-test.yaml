@@ -1,0 +1,757 @@
+tests:
+
+  - name: frontend-with-recognition-suite.jslt generates metrics for a car vertical event
+    expected:
+      - quality.check:
+          tags:
+            provider: cochesnet
+            check-suite: cognition.frontend-event
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            provider: cochesnet
+            check-suite: cognition.frontend-event
+            check-name: event_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            provider: cochesnet
+            check-suite: cognition.frontend-event
+            check-name: provider_id_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_service_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_model_version_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_variant_name_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_user_choices_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_attribute_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_label_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_is_string
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_rank_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_suggestions_shown_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_from_suggestions_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_allowed_attribute
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: color
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: color
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: color
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: color
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: color
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: year
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: year
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: year
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: year
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: year
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: body_type
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: body_type
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: body_type
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: body_type
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: body_type
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: brand
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: brand
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: brand
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: brand
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: brand
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: model
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: model
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: model
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: model
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: model
+            service: v1-car-classifier
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_service_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_model_version_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_variant_name_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_user_choices_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: recognition_grouping_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_attribute_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_label_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_is_string
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_rank_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_suggestions_shown_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_from_suggestions_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choices_allowed_attribute
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: hero_picture
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: hero_picture
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: hero_picture
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: hero_picture
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: hero_picture
+            service: v1-car-hero-picture
+            provider: cochesnet
+            variant: unknown
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/cognition/frontend-with-recognition-suite.jslt" as c
+
+      let event =
+      {
+      "@id": "a80ed3a2-867b-45ae-8804-a791d4d42f0c",
+      "@type": "Create",
+      "actor": {
+          "@id": "sdrn:schibsted.com:user:123456",
+          "spt:remoteAddress": "90.231.214.141",
+          "spt:userId": "sdrn:schibsted.com:user:123456"
+      },
+      "device": {
+          "acceptLanguage": "sv",
+          "deviceType": "desktop",
+          "environmentId": "sdrn:schibsted:environment:a2029f7e-1a7f-46db-a683-b4f62e0ec9ad",
+          "screenSize": "1600x900",
+          "userAgent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36",
+          "viewportSize": "1600x755"
+      },
+      "location": {
+          "@type": "GeoCoordinates",
+          "accuracy": 10,
+          "latitude": 37.32475483,
+          "longitude": -122.02226661
+      },
+      "name": "Ad insertion confirmed",
+      "object": {
+          "@id": "sdrn:cochesnet:classified:47573682",
+          "@type": "ClassifiedAd",
+          "adType": "sell",
+          "categories": [
+              {
+                  "@type": "MarketplaceCategory",
+                  "localId": "21"
+              }
+          ],
+          "category": "Coches de segunda mano > ALFA ROMEO",
+          "contentId": "47573682",
+          "currency": "EUR",
+          "location": {
+              "addressLocality": "neuille_pont_pierre",
+              "addressRegion": "centre",
+              "postalCode": "37360"
+          },
+          "name": "LFA ROMEO Giulietta 1.6 JTDm 105cv Distinctive 5p.",
+          "price": 8900,
+          "url": "https://www.coches.net/alfa-romeo-giulietta-16-jtdm-105cv-distinctive-5p-diesel-2013-en-barcelona-47573682-covo.aspx"
+      },
+      "provider": {
+          "@id": "sdrn:schibsted:client:cochesnet",
+          "@type": "Organization"
+      },
+      "published": "2020-11-22T10:21:53.2410Z",
+      "recognition": [
+          {
+              "@id": "sdrn:cochesnet:recognition:86efed51-6b33-4916-bb8e-93e348b65153",
+              "@type": "RecognitionMetadata",
+              "service": "v1-car-classifier",
+              "modelVersion": "1.0.0",
+              "userChoices": [
+                  {
+                      "attribute": "color",
+                      "label": "White",
+                      "uid": "4",
+                      "rank": 0,
+                      "suggestionsShown": true,
+                      "fromSuggestions": true
+                  },
+                  {
+                      "attribute": "year",
+                      "label": "2013",
+                      "uid": "2013",
+                      "rank": -1,
+                      "suggestionsShown": true,
+                      "fromSuggestions": false
+                  },
+                  {
+                      "attribute": "body_type",
+                      "label": "Berlina",
+                      "uid": "1",
+                      "rank": 0,
+                      "suggestionsShown": false,
+                      "fromSuggestions": false
+                  },
+                  {
+                      "attribute": "brand",
+                      "label": "ALFA ROMEO",
+                      "uid": "1",
+                      "rank": 0,
+                      "suggestionsShown": true,
+                      "fromSuggestions": true
+                  },
+                  {
+                      "attribute": "model",
+                      "label": "Giulietta",
+                      "uid": "872",
+                      "rank": 0,
+                      "suggestionsShown": true,
+                      "fromSuggestions": true
+                  }
+              ]
+          },
+          {
+              "@id": "sdrn:cochesnet:recognition:a2327cb1-80a5-4254-bf6a-88e94c9ce824",
+              "groupingId": "123",
+              "@type": "RecognitionMetadata",
+              "service": "v1-car-hero-picture",
+              "modelVersion": "1.0.8",
+              "userChoices": [
+                  {
+                      "attribute": "hero_picture",
+                      "label": "https://a.ccdn.es/cnet/2020/11/22/47573682/373615570_g.jpg",
+                      "rank": 4,
+                      "suggestionsShown": true,
+                      "fromSuggestions": false
+                  }
+              ]
+          }
+      ],
+      "schema": "http://schema.adevinta.com/events/tracker-event.json/272.json#",
+      "tracker": {
+          "@type": "Tracker",
+          "name": "Pulse JS Tracker v0.8.0",
+          "type": "JS",
+          "version": "0.8.0"
+      }
+      }
+      c($event)

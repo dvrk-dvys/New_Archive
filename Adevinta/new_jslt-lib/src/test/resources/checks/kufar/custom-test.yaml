@@ -1,0 +1,282 @@
+tests:
+
+  - name: custom.jslt compiles
+    type: compile
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      c(.)
+
+  - name: check-unix-ts-in-ms should check unix timestamp to be in milliseconds (failure)
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      c:check-unix-ts-in-ms(1598522314)
+
+  - name: check-unix-ts-in-ms should check unix timestamp to be in milliseconds (success)
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      c:check-unix-ts-in-ms(1598522314000)
+
+  - name: check-positive-number-is-not-gt should check that a number is gt 0 and less or equal specified number (failure)
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let obj = 21
+
+      c:check-positive-number-is-not-gt($obj, 20)
+      
+  - name: check-positive-number-is-not-gt should check that a number is gt 0 and less or equal specified number (success)
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let obj = 10
+
+      c:check-positive-number-is-not-gt($obj, 20)
+
+  - name: check-json-is-parsable should return true when a json string is parsable
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:check-json-is-parsable($json_string)
+      
+  - name: check-json-is-parsable should return false when a json string is not parsable
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\" \"13\", \"name\" \"Joe\"}"
+
+      c:check-json-is-parsable($json_string)
+
+  - name: check-nullable-ip should return true if ip is present and in the correct format or if it is null
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let null_ip = null
+      let ip = "12.23.34.45"
+
+      all([c:check-nullable-ip($null_ip),  c:check-nullable-ip($ip)])
+      
+  - name: check-nullable-ip should return false if ip is present and doesn't correspond to specified correct format
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let null_ip = null
+      let ip = "12.23.34"
+
+      all([c:check-nullable-ip($null_ip),  c:check-nullable-ip($ip)])
+
+  - name: get-json-object should extract the value of a specified key from a json string
+    expected: "13"
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:get-json-object($json_string, "area")
+
+  - name: get-json-object should return null if json string can't be parsed
+    expected: null
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\" \"13\", \"name\" \"Joe\"}"
+
+      c:get-json-object($json_string, "area")
+
+  - name: get-json-object should return null if json string is parsed but specified key is missing
+    expected: null
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:get-json-object($json_string, "non_existing_key")
+
+  - name: get-json-object-number should return a numeric-convertable value from a json string
+    expected: 13
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:get-json-object-number($json_string, "area")
+
+  - name: get-json-object-number should return a false if a value cannot be converted to a number
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:get-json-object-number($json_string, "name")
+
+  - name: get-json-object-number should return null if a key doesn't exist
+    expected: 
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let json_string = "{\"area\": \"13\", \"name\": \"Joe\"}"
+
+      c:get-json-object-number($json_string, "some_key")
+
+  - name: get-json-object-string should return a convertable-to-string value from a json string
+    expected: "1"
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let json_string = "{\"area\": 1, \"name\": \"Joe\"}"
+
+      c:get-json-object-string($json_string, "area")
+
+  - name: get-json-object-string should return null if a key doesn't exist
+    expected: 
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let json_string = "{\"area\": 1, \"name\": \"Joe\"}"
+
+      c:get-json-object-string($json_string, "some_key")
+
+  - name: is-nullable-number should check if an object is number or is null (failure)
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let obj = "12"
+
+      c:is-nullable-number($obj)
+
+  - name: is-nullable-number should check if an object is number or is null (success)
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      all([c:is-nullable-number(12), c:is-nullable-number(null)])
+
+  - name: is-nullable-struct should check if an object is a struct or is null (failure)
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let obj = "12"
+
+      c:is-nullable-struct($obj)
+
+  - name: is-nullable-struct should check if an object is a struct or is null (success)
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let obj = {"obj": "struct"}
+
+      all([c:is-nullable-struct($obj), c:is-nullable-struct(null)])
+
+  - name: check-timestamp-iso8601-format-minsk-tz should return false if timestamp is in ISO8601 format but not in Minsk timezone
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      let ts = "2020-08-26T10:12:10+00:00"
+
+      c:check-timestamp-iso8601-format-minsk-tz($ts)
+
+  - name: check-timestamp-iso8601-format-minsk-tz should return false if timestamp is not in ISO8601 format
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let ts = "2020-08-26 10:00:00"
+
+      c:check-timestamp-iso8601-format-minsk-tz($ts)
+
+  - name: check-timestamp-iso8601-format-minsk-tz should return true if timestamp is in ISO8601 format has Europe/Minsk timezone
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let ts = "2020-08-26T10:12:10+03:00"
+
+      c:check-timestamp-iso8601-format-minsk-tz($ts)
+
+  - name: check-is-positive-integer return false if an object is a positive decimal
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let number = 1.1
+
+      c:check-is-positive-integer($number)
+
+  - name: check-is-positive-integer should return false if an object is a negative integer
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let number = -10
+
+      c:check-is-positive-integer($number)
+
+  - name: check-is-positive-integer should return true if an object is an integer and it's positive
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let number = 10
+
+      c:check-is-positive-integer($number)
+
+  - name: is-valid-by-region should return true if region_id has the value in acceptable range
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let region_id = 5
+      
+      c:is-valid-by-region($region_id)
+
+  - name: is-valid-by-region should return false if region_id has the value outside of an acceptable range
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let region_id = 999
+      
+      c:is-valid-by-region($region_id)  
+      
+  - name: is-valid-by-area should return true if area_id has the value in acceptable range
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let area_id = 145
+      
+      c:is-valid-by-area($area_id)
+
+  - name: is-valid-by-area should return false if area_id has the value outside of an acceptable range
+    expected: false
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+      
+      let area_id = -2
+      
+      c:is-valid-by-area($area_id)
+
+  - name: check-is-zero-or-positive-integer return true when an object is zero or a positive integer
+    expected: true
+    expression: |
+      import "checks/kufar/custom.jslt" as c
+
+      c:check-is-zero-or-positive-integer(0)
+      and
+      c:check-is-zero-or-positive-integer(12)
+      and
+      not(c:check-is-zero-or-positive-integer(-1))

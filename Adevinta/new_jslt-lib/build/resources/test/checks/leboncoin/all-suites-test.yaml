@@ -1,0 +1,14 @@
+tests:
+
+  # This is just testing that the wrappers do compile an run, proper testing is still done in the wrapped suites.
+
+  - name: ads-action-states-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/leboncoin/ads-action-states-suite.jslt" as c
+      c(.)
+  - name: order-action-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/leboncoin/order-action-suite.jslt" as c
+      c(.)

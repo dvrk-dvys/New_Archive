@@ -1,0 +1,19 @@
+import "checks/commons.jslt" as c
+import "checks/bic/bic-commons.jslt" as bc
+
+// Common checks for UiElement object
+
+def check-object-url(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_url_is_not_null", c:check-not-null($event.object.url), $tags, "critical")
+   )
+
+def check-object-id(event, check-suite, apply-to, tags)
+   // Patterns for each type of id are not checked because it would lead to duplicate the lead object into each type of lead
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_id_is_not_null", c:check-not-null($event.object."@id"), $tags, "minor")
+   )

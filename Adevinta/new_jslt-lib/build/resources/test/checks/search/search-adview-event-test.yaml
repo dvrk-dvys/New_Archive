@@ -1,0 +1,794 @@
+tests:
+  - name: search-adview-event.compiles
+    type: compile
+    expression: |
+      import "checks/search/search-adview-event.jslt" as sae
+      sae(.)
+
+  - name: search-adview-event.jslt generates metrics for a valid event implementing the search tagging plan
+    expected:
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+    expression: |
+      import "checks/search/search-adview-event.jslt" as sae
+      let search_event = 
+      { 
+        "@id" : "asdsad",
+        "name":"Ad detail viewed",
+        "@type":"View",
+        "object":{ 
+            "@type":"ClassifiedAd",
+            "@id":"sdrn:leboncoin:classified:1147871724",
+            "contentId":"1147871724",
+            "url":"https://www.leboncoin.fr/chaussures/1147871724.htm?ca=7_s",
+            "name":"Bottes noires 37",
+            "adType":"sell",
+            "publisherType":"pro",
+            "currency":"EUR",
+            "price":9,
+            "category":"maison > chaussures"
+        },
+        "search":{ 
+            "@id":"sdrn:leboncoin:search:6ef4aba1-c221-401b-bcf2-ebe80b99aa1b",
+            "@type":"SearchMetadata",
+            "source":"MainSearch",
+            "rank":3
+        },
+        "page" : {
+            "pageType" : "ad_detail"
+        },
+        "origin": {
+          "url": "",
+          "page" : {
+            "pageType" : "search"
+          }
+        },
+        "provider": {
+          "@type": "Organization",
+          "@id": "sdrn:schibsted:client:leboncoin",
+          "productType":"ResponsiveWeb",
+          "product" : "fr.leboncoin:6969:Leboncoin"
+        },
+        "device": {
+          "acceptLanguage": "en-US",
+          "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDItMDNUMTA6MTQ6NDhaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..nN-D-ogpVenN6pvCWlKikQ.6oR4WxfzYY8exraGzo6_7YJawR-5CEF6l7Nio5ifYboCEGeo1X9vAoWPkxzwQoUOxTeWVBEHHvYi2szWcZj7rO8uePLnXBF2Eo-VHsWEy-LrRppeOwSkHpP50I6l2IMp0rv4s93eG28ReM2x_rbB5DSeSam21KCDyXKRBCAuzjy7-ORp6w0MreZh9U5b-wpUGkR8ylqxGAiweVQ9RwNGsw.19hGiN4IlAnwk5rbEIr01g",
+          "viewportSize": "872x940",
+          "screenSize": "1920x1080",
+          "environmentId": "sdrn:schibsted:environment:95f25616-f156-4c34-b917-e3f4fd58df72",
+          "deviceType": "desktop",
+          "localStorageEnabled": true,
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36",
+          "@type": "Device"
+        },
+        "tracker": {
+          "name": "Pulse Node.js SDK",
+          "type": "JS",
+          "eventBuilderVersion": "1.0.32",
+          "version": "4.1.8-75ce0"
+        }
+      }
+
+      sae($search_event)
+
+  - name: search-adview-event.jslt fails on missing search id and wrong type
+
+    expected:
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_valid
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_valid_number
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+    expression: |
+      import "checks/search/search-adview-event.jslt" as sae
+      let search_event = 
+      { 
+        "@id" : "asdsa",
+        "name":"Ad detail viewed",
+        "@type":"View",
+        "object":{ 
+            "@type":"ClassifiedAd",
+            "@id":"sdrn:leboncoin:classified:1147871724",
+            "contentId":"1147871724",
+            "url":"https://www.leboncoin.fr/chaussures/1147871724.htm?ca=7_s",
+            "name":"Bottes noires 37",
+            "adType":"sell",
+            "publisherType":"pro",
+            "currency":"EUR",
+            "price":9,
+            "category":"maison > chaussures"
+        },
+        "search":{ 
+            "@id" : "",
+            "@type":"KRKRKR",
+            "source":"MainSearch",
+            "rank":3
+        },
+        "page" : {
+            "pageType" : "ad_detail"
+        },
+        "origin": {
+          "url": "",
+          "page" : {
+            "pageType" : "search"
+          }
+        },
+        "provider": {
+          "@type": "Organization",
+          "@id": "sdrn:schibsted:client:leboncoin",
+          "productType":"ResponsiveWeb",
+          "product" : "fr.leboncoin:6969:Leboncoin"
+        },
+        "device": {
+          "acceptLanguage": "en-US",
+          "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDItMDNUMTA6MTQ6NDhaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..nN-D-ogpVenN6pvCWlKikQ.6oR4WxfzYY8exraGzo6_7YJawR-5CEF6l7Nio5ifYboCEGeo1X9vAoWPkxzwQoUOxTeWVBEHHvYi2szWcZj7rO8uePLnXBF2Eo-VHsWEy-LrRppeOwSkHpP50I6l2IMp0rv4s93eG28ReM2x_rbB5DSeSam21KCDyXKRBCAuzjy7-ORp6w0MreZh9U5b-wpUGkR8ylqxGAiweVQ9RwNGsw.19hGiN4IlAnwk5rbEIr01g",
+          "viewportSize": "872x940",
+          "screenSize": "1920x1080",
+          "environmentId": "sdrn:schibsted:environment:95f25616-f156-4c34-b917-e3f4fd58df72",
+          "deviceType": "desktop",
+          "localStorageEnabled": true,
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36",
+          "@type": "Device"
+        },
+        "tracker": {
+          "name": "Pulse Node.js SDK",
+          "type": "JS",
+          "eventBuilderVersion": "1.0.32",
+          "version": "4.1.8-75ce0"
+        }
+      }
+
+      sae($search_event)
+
+
+  - name: search-adview-event.jslt fails on weird rank
+
+    expected:
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.adview.object_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.object_category_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_id_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_type_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_source_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.search_rank_is_valid_number
+            check-result: "false"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_present
+            check-result: "true"
+            check-impact: minor
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_present
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.adview
+            check-name: search.commons.origin_pageType_is_valid
+            check-result: "true"
+            check-impact: critical
+            provider: leboncoin
+            provider_producttype: responsiveweb
+            version: ">10"
+            team: search
+          delta: 1
+    expression: |
+      import "checks/search/search-adview-event.jslt" as sae
+      let search_event = 
+      { 
+        "@id" : "asdsad",
+        "name":"Ad detail viewed",
+        "@type":"View",
+        "object":{ 
+            "@type":"ClassifiedAd",
+            "@id":"sdrn:leboncoin:classified:1147871724",
+            "contentId":"1147871724",
+            "url":"https://www.leboncoin.fr/chaussures/1147871724.htm?ca=7_s",
+            "name":"Bottes noires 37",
+            "adType":"sell",
+            "publisherType":"pro",
+            "currency":"EUR",
+            "price":9,
+            "category":"maison > chaussures"
+        },
+        "search":{ 
+            "@id":"sdrn:leboncoin:search:6ef4aba1-c221-401b-bcf2-ebe80b99aa1b",
+            "@type":"SearchMetadata",
+            "source":"MainSearch",
+            "rank":"first"
+        },
+        "page" : {
+            "pageType" : "ad_detail"
+        },
+        "origin": {
+          "url": "",
+          "page" : {
+            "pageType" : "search"
+          }
+        },
+        "provider": {
+          "@type": "Organization",
+          "@id": "sdrn:schibsted:client:leboncoin",
+          "productType":"ResponsiveWeb",
+          "product" : "fr.leboncoin:6969:Leboncoin"
+        },
+        "device": {
+          "acceptLanguage": "en-US",
+          "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDItMDNUMTA6MTQ6NDhaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..nN-D-ogpVenN6pvCWlKikQ.6oR4WxfzYY8exraGzo6_7YJawR-5CEF6l7Nio5ifYboCEGeo1X9vAoWPkxzwQoUOxTeWVBEHHvYi2szWcZj7rO8uePLnXBF2Eo-VHsWEy-LrRppeOwSkHpP50I6l2IMp0rv4s93eG28ReM2x_rbB5DSeSam21KCDyXKRBCAuzjy7-ORp6w0MreZh9U5b-wpUGkR8ylqxGAiweVQ9RwNGsw.19hGiN4IlAnwk5rbEIr01g",
+          "viewportSize": "872x940",
+          "screenSize": "1920x1080",
+          "environmentId": "sdrn:schibsted:environment:95f25616-f156-4c34-b917-e3f4fd58df72",
+          "deviceType": "desktop",
+          "localStorageEnabled": true,
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36",
+          "@type": "Device"
+        },
+        "tracker": {
+          "name": "Pulse Node.js SDK",
+          "type": "JS",
+          "eventBuilderVersion": "1.0.32",
+          "version": "4.1.8-75ce0"
+        }
+      }
+
+      sae($search_event)
+
+

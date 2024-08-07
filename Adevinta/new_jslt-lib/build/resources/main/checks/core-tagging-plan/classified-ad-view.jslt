@@ -1,0 +1,55 @@
+import "checks/commons.jslt" as c
+import "checks/core-tagging-plan/commons.jslt" as core-commons
+
+// https://docs.mpi-internal.com/data-and-insight/insights-docs/10.Tagging%20Guide/tagging-plans/10.core-events/ad-detail-viewed/
+// pre-condition: contains("tracker-event.json", .schema) and .object."@type" == "ClassifiedAd" and @type == "View"
+
+
+let check-suite = "core_tagging_plan.classified_ad_view"
+let user-tags = core-commons:common-tags()
+
+
+let valid-adtype = [
+                       "buy",
+                       "give",
+                       "holidayRental",
+                       "jobOffer",
+                       "lease",
+                       "let",
+                       "sell",
+                       "share",
+                       "swap",
+                       "rent"
+                    ]
+
+c:check($check-suite, "event_id_not_null", c:check-not-null(."@id"), $user-tags, "blocker")
++ c:check($check-suite, "event_id_valid_format", c:check-uuid-v4(."@id"), $user-tags, "blocker")
++ c:check($check-suite, "event_name_not_null", c:check-not-null(.name), $user-tags, "critical")
++ c:check($check-suite, "page_page_type_not_null", c:check-not-null(.page.pageType), $user-tags, "critical")
++ c:check($check-suite, "page_page_name_not_null", c:check-not-null(.page.pageName), $user-tags, "critical")
+
++ c:check($check-suite, "object_id_not_null", c:check-not-null(.object."@id"), $user-tags, "critical")
++ c:check($check-suite, "object_id_valid_format", c:check-sdrn-classified-ad(.object."@id"), $user-tags, "critical")
++ c:check($check-suite, "object_type_not_null", c:check-not-null(.object."@type"), $user-tags, "blocker")
++ c:check($check-suite, "object_type_valid", c:check-one-of(.object."@type", ["ClassifiedAd"]), $user-tags, "blocker")
++ c:check($check-suite, "object_adtype_not_null", c:check-not-null(.object.adType), $user-tags, "critical")
++ c:check($check-suite, "object_adtype_valid", c:check-one-of(.object.adType, $valid-adtype), $user-tags, "critical")
++ c:check($check-suite, "object_category_not_null", c:check-not-null(.object.category), $user-tags, "critical")
++ c:check($check-suite, "object_content_id_not_null", c:check-not-null(.object.contentId), $user-tags, "critical")
++ c:check($check-suite, "object_currency_not_null", c:check-not-null(.object.currency), $user-tags, "critical")
++ c:check($check-suite, "object_location_address_locality_not_null", c:check-not-null(.object.location.addressLocality), $user-tags, "critical")
++ c:check($check-suite, "object_location_address_region_not_null", c:check-not-null(.object.location.addressRegion), $user-tags, "critical")
++ c:check($check-suite, "object_location_postal_code_not_null", c:check-not-null(.object.location.postalCode), $user-tags, "critical")
++ c:check($check-suite, "object_price_not_null", c:check-not-null(.object.price), $user-tags, "critical")
++ c:check($check-suite, "object_publisher_type_not_null", c:check-not-null(.object.publisherType), $user-tags, "critical")
++ c:check($check-suite, "object_publisher_id_valid_format", c:check-sdrn-account-id(.object.publisher."@id"), $user-tags, "critical")
++ c:check($check-suite, "object_url_not_null", c:check-not-null(.object.url), $user-tags, "critical")
+
++ c:check($check-suite, "provider_id_not_null", c:check-not-null(.provider."@id"), $user-tags, "critical")
++ c:check($check-suite, "provider_product_type_not_null", c:check-not-null(.provider.productType), $user-tags, "critical")
+
++ c:check($check-suite, "device_environment_id_not_null", c:check-not-null(.device.environmentId), $user-tags, "critical")
++ c:check($check-suite, "device_device_type_not_null", c:check-not-null(.device.deviceType), $user-tags, "critical")
+
++ c:check($check-suite, "tracker_type_not_null", c:check-not-null(.tracker.type), $user-tags, "critical")
++ c:check($check-suite, "published_not_null", c:check-not-null(.published), $user-tags, "critical")
