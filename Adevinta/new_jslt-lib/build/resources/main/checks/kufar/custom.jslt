@@ -1,0 +1,75 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+// checks if region id is valid
+def is-valid-by-region(region) $region >= 1 and $region <= 7
+
+// checks if area id is valid
+def is-valid-by-area(area) $area >= 1 and $area <= 145
+
+// checks if unix timestamp is in milliseconds
+def check-unix-ts-in-ms(obj) format-time($obj / 1000, "yyyy") != "1970"
+
+// checks if a number is a positive integer
+def check-is-positive-integer(obj) is-integer($obj) and c:check-number-gt-0($obj)
+
+// checks if a number is a positive integer or null
+def check-is-positive-nullable-integer(obj) c:check-null($obj) or check-is-positive-integer($obj)
+
+// checks if a number is a positive integer
+def check-is-zero-or-positive-integer(obj) is-integer($obj) and c:check-number-ge-0($obj)
+
+// checks if a number is a positive integer or null
+def check-is-zero-or-positive-nullable-integer(obj) c:check-null($obj) or check-is-zero-or-positive-integer($obj)
+
+// checks if a number is not greater than the one specified
+def check-positive-number-is-not-gt(obj, number) is-number($obj) and $obj > 0 and $obj <= $number
+
+// checks where a json string can be parsed into a json struct
+def check-json-is-parsable(json_string) from-json($json_string, "parsing_failed") != "parsing_failed"
+
+// applies common checks 'check-ip' to a nullable field
+def check-nullable-ip(obj) c:check-null($obj) or c:check-ip($obj)
+
+// applies common checks 'check-email' to a nullable field
+def check-nullable-email(obj) c:check-null($obj) or c:check-email($obj)
+
+// checks if an object is null or is number
+def is-nullable-number(obj) c:check-null($obj) or is-number($obj)
+
+// checks if an object is null or is struct
+def is-nullable-struct(obj) c:check-null($obj) or is-object($obj)
+
+// safely extracts value of a json key from a json string
+def get-json-object(json_string, param_name)
+    let account_params_obj = from-json($json_string, "not_parsed")
+    if (is-object($account_params_obj)) (
+        if (get-key($account_params_obj, $param_name, "key_does_not_exist") != "key_does_not_exist") get-key($account_params_obj, $param_name)
+        else null
+    )
+    else null
+
+// safely extracts integer value from a json string
+// returns: 
+//    null  - if json string doesn't contain specified key
+//    false - if value of a specified key is not numeric or cannot be casted to numeric value
+//    int   - numeric value
+def get-json-object-number(json_string, param_name)
+    let obj = get-json-object($json_string, $param_name)
+    if ($obj == null) null
+    else if (is-number(number($obj, "not_a_number")) == true) number($obj)
+    else if (is-number(number($obj, "not_a_number")) == false) false
+
+// safely extracts string value rom a json string
+def get-json-object-string(json_string, param_name)
+    let obj = get-json-object($json_string, $param_name)
+    let str_obj = if ($obj != null) string($obj) else null
+    if (is-string($str_obj)) $str_obj else null
+
+// checks if datetime string complies to ISO8601 format in Minsk timezone
+def check-timestamp-iso8601-format-minsk-tz(obj)
+    test($obj, "^([0-9]+)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])[Tt]([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]|60)(\\.[0-9]+)?(([Zz])|([\\+|\\-])03:00)$")
+
+// checks if datetime string complies to ISO8601 format in Minsk timezone or is null
+def check-nullable-timestamp-iso8601-format-minsk-tz(obj)
+    c:check-null($obj) or check-timestamp-iso8601-format-minsk-tz($obj)

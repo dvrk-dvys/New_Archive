@@ -1,0 +1,266 @@
+tests:
+
+  - name: experiment-assignment-events.jslt compiles
+    type: compile
+    expression: |
+      import "checks/houston/experiment-assignment-events.jslt" as c
+      c(.)
+
+  - name: experiment-assignment-events.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            experiment-variant: "b"
+            check-suite: houston.experiment_assignment
+            check-name: count_by_variant
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: assignment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: experiment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: variant_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: event_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: assignment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: device_environment_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: experiment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: variant_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/houston/experiment-assignment-events.jslt" as c
+      // example event from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/examples/events/backend/backend-experiment-assignment.json
+
+      let event =
+      {
+        "@id": "c72e1b6b-62e0-49c9-af9f-b4f62e0ec9ad",
+        "actor": {
+            "@id": "sdrn:schibsted:user:1234567"
+        },
+        "deployStage": "dev",
+        "device": {
+            "environmentId": "sdrn:schibsted:environment:1b6bc72e-070d-4a9b-846d-da0716075ba9"
+        },
+        "experiment": {
+            "@id": "sdrn:houston:experiment:116",
+            "variant": "B"
+        },
+        "provider": {
+            "@id": "sdrn:schibsted:client:houston"
+        },
+        "assignmentId" : "c9e46b5f-0b94-4a70-a643-9dd27ddd7d2d",
+        "published": "2017-10-24T13:45:10.997Z",
+        "schema": "http://schema.adevinta.com/events/backend-experiment-assignment.json/129.json"
+      }
+      c($event)
+
+
+  - name: experiment-assignment-events.jslt generates metrics for an invalid event
+    expected:
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            experiment-variant: "12"
+            check-suite: houston.experiment_assignment
+            check-name: count_by_variant
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: assignment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: experiment_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: variant_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: event_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: assignment_id_valid_format
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: device_environment_valid_format
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: experiment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            deploy-stage: dev
+            experiment-id: sdrn:houston:experiment:116
+            check-suite: houston.experiment_assignment
+            check-name: variant_valid_format
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/houston/experiment-assignment-events.jslt" as c
+      // example event from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/master/examples/events/backend/backend-experiment-assignment.json
+
+      let event =
+      {
+        "@id": "c72e1b6b-62e0-49c9-af9f-b4f62e0ec9ad",
+        "actor": {
+            "@id": "sdrn:schibsted:user:1234567"
+        },
+        "deployStage": "dev",
+        "device": {
+            "environmentId": "sdrn:houston:environment:invalid"
+        },
+        "experiment": {
+            "@id": "sdrn:houston:experiment:116",
+            "variant": "12"
+        },
+        "provider": {
+            "@id": "sdrn:schibsted:client:houston"
+        },
+        "assignmentId" : "invalid",
+        "published": "2017-10-24T13:45:10.997Z",
+        "schema": "http://schema.adevinta.com/events/backend-experiment-assignment.json/129.json"
+      }
+      c($event)

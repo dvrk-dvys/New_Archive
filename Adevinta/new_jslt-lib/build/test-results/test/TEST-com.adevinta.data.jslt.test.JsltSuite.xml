@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.adevinta.data.jslt.test.JsltSuite" tests="442" skipped="0" failures="0" errors="0" timestamp="2021-09-20T16:35:09" hostname="Administradors-MacBook-Pro.local" time="3.928">
+  <properties/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-schema-url returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.061"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-schema-url returns true with valid schema urls" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-schibsted-schema-url returns false if null, not string or not valid format or adevinta url" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-schibsted-schema-url returns true with valid schibsted schema urls" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-adevinta-schema-url returns false if null, not string or not valid format or schibsted url" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-adevinta-schema-url returns true with valid adevinta schema urls" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-date-format returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-date-format returns true with valid formats" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-timestamp-format returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-timestamp-format returns true with valid formats" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-uuid-v4 returns false if null, not string or other UUID versions" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-uuid-v4 returns true with UUIDv4" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-ip returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.023"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-ip returns true with valid IPs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-email returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-email returns true with valid emails" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-empty returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-not-empty returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-null returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-not-null returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-not-null-and-not-empty returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-one-of returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-not-one-of returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-all returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-any returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-none returns true or false accordingly" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-account-id returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-account-id returns true with valid account ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-env-id returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-env-id returns true with valid environment ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-classified-ad returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-classified-ad returns true with valid ad ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-listing returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-listing returns true with valid listing ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-form returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-form returns true with valid form ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-message returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-message returns true with valid message ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-webpage returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-webpage returns true with valid webpage ids" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-provider returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:ccheck-sdrn-provider returns true with valid provider id" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-sdrn-conversation returns false if null, not string or not valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:ccheck-sdrn-conversation returns true with valid provider id" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-mediaasset-category returns false if null, not string or not valid formats" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-mediaasset-category returns true with valid category formats" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-number-gt-0 returns true if number is greater than 0" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-number-gt-0 returns false if number is &lt; 0 or not a number" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-number-ge-0 returns true if number is &gt;= 0" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-number-ge-0 returns false if number is &lt; 0 or not a number" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-geocoordinate returns false if the value is not a valid geocoordinate" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:check-geocoordinate returns true if a valid geocoordinate value is passed" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:taggify-event-type should tag a valid event to its tag or return &quot;unknown&quot; tag" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:a check with a typical use case" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:a check-impact is restricted to some values, 'critical' otherwise" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks/commons-test.yaml:a check is limited to 5 user tags" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./lib/commons-test.yaml:commons.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.0"/>
+  <testcase name="jsltTest:./lib/commons-test.yaml:canned-client-id returns null for non well-formed providers sdrn" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/commons-test.yaml:canned-client-id works for well-formed providers sdrn" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:dates.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:string-to-date should parse date" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:string-to-date should parse date with millis" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:string-to-date should return null when invalid date" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:check-date-diff-to-now" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:check-date-diff-to-now should return false when time difference is greater to max_latency_in_hours" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:check-date-diff-to-now should return false when null date" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/dates-test.yaml:dates.jslt check-date-diff method" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/math-test.yaml:math.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/math-test.yaml:commons.jslt abs method" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:metrics compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta-with-default uses the default value for strings, objects and arrays" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta-with-default works with numbers" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta-with-default works also with a condition" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta works with strings, objects and arrays" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta works with numbers" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:delta works also with a condition" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a simple _metric with default value works" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a simple metric works and takes delta value" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a simple _metric works and tag-key and tag-value are lowercased" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a _metric without tag-key works but does not geneates tag" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a _metric without tag-value works but does not geneates tag" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a _metric without string tag-key works but does not geneates tag" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a _metric without string tag-value works but does not geneates tag" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:_metric results can be easily concatenated" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:_metric results can be easily concatenated with no-metric" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:no-metric returns the empty check" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a simple metric with default value works" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a tagged-metric with a typical use case" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:an example to avoid computing filter multiple times" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:taggify returns the given tag-value if it is an string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:taggify fails if whitelisted-values is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:taggify returns the given fallback-value if tag-value is not an string or null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:taggify returns the given tag-value if it is an string and it is whitelisted" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:taggify returns the given fallback-value if it is an string but it is not whitelisted" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:a multi-tagged-metric with a typical use case" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:tag returns a tag object if all string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:tag returns empty object if any null or non-string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.001"/>
+  <testcase name="jsltTest:./lib/metrics-test.yaml:tag composition" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:schemas.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:event-type-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:tracker-type-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:object-type-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:device-type-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:deploy-stage-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:event-name-values returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:get-event-name should return a valid event type or null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./lib/schemas-test.yaml:provider-ids returns non empty array of strings" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.002"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:classified-ad-interactions-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:click-recommender-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:content-events-for-cars-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.03"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:content-events-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:impression-view-recommender-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//p10n/all-suites-test.yaml:leads-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//p10n/classified-ad-interactions-test.yaml:classified-ad-interactions.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//p10n/classified-ad-interactions-test.yaml:classified-ad-interactions.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.023"/>
+  <testcase name="jsltTest:./checks//p10n/click-recommender-event-test.yaml:click-recommender-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//p10n/click-recommender-event-test.yaml:click-recommender-event.jslt generates metrics for valid click event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.016"/>
+  <testcase name="jsltTest:./checks//p10n/content-event-for-cars-test.yaml:content-events-for-cars.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//p10n/content-event-for-cars-test.yaml:content-events-for-cars.jslt generates metrics for valid car content event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.022"/>
+  <testcase name="jsltTest:./checks//p10n/content-event-test.yaml:content-events.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//p10n/content-event-test.yaml:content-events.jslt generates metrics for valid content event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//p10n/impression-view-recommender-event-test.yaml:impression-view-recommender-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//p10n/impression-view-recommender-event-test.yaml:impression-view-recommender-event.jslt generates metrics for valid widget viewable event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//p10n/leads-event-test.yaml:leads-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//p10n/leads-event-test.yaml:leads-event.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-items-type-recs returns true if items type are valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-items-type-recs returns false if items type are not valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-items-ids-recs returns true if items id are valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-items-ids-recs returns false if items id are not valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-items-rank-recs-not-null returns true if items rank are not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-items-rank-recs-not-null returns false if items rank are null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-items-ids-recs-not-null returns true if items id are not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-items-ids-recs-not-null returns false if items id are null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:return-rec-valid-types returns valid recommendation types (order matters)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:return-source-valid-types returns valid source types (order matters)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-listName returns true if list name and recommendationType are valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-listName returns false if list name and/or recommendationType are not valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-valid-listName returns false if recommendationType is not valid" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-minutes-until-now returns false if a date is more than 2hours old" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:check-freshness returns" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//p10n/p10n-commons-test.yaml:taggify-rank" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//willhaben/ad-detail-viewed-generalist-suite-test.yaml:ad-detail-viewed-generalist-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//willhaben/ad-detail-viewed-generalist-suite-test.yaml:willhaben/ad-detail-viewed-generalist-suite.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//kufar/all-suites-test.yaml:pump-accounts-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//kufar/all-suites-test.yaml:pump-ads-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:custom.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-unix-ts-in-ms should check unix timestamp to be in milliseconds (failure)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-unix-ts-in-ms should check unix timestamp to be in milliseconds (success)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-positive-number-is-not-gt should check that a number is gt 0 and less or equal specified number (failure)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-positive-number-is-not-gt should check that a number is gt 0 and less or equal specified number (success)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-json-is-parsable should return true when a json string is parsable" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-json-is-parsable should return false when a json string is not parsable" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-nullable-ip should return true if ip is present and in the correct format or if it is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-nullable-ip should return false if ip is present and doesn't correspond to specified correct format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object should extract the value of a specified key from a json string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object should return null if json string can't be parsed" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object should return null if json string is parsed but specified key is missing" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object-number should return a numeric-convertable value from a json string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object-number should return a false if a value cannot be converted to a number" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object-number should return null if a key doesn't exist" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object-string should return a convertable-to-string value from a json string" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:get-json-object-string should return null if a key doesn't exist" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-nullable-number should check if an object is number or is null (failure)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-nullable-number should check if an object is number or is null (success)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-nullable-struct should check if an object is a struct or is null (failure)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-nullable-struct should check if an object is a struct or is null (success)" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-timestamp-iso8601-format-minsk-tz should return false if timestamp is in ISO8601 format but not in Minsk timezone" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-timestamp-iso8601-format-minsk-tz should return false if timestamp is not in ISO8601 format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-timestamp-iso8601-format-minsk-tz should return true if timestamp is in ISO8601 format has Europe/Minsk timezone" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-is-positive-integer return false if an object is a positive decimal" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-is-positive-integer should return false if an object is a negative integer" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-is-positive-integer should return true if an object is an integer and it's positive" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-valid-by-region should return true if region_id has the value in acceptable range" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-valid-by-region should return false if region_id has the value outside of an acceptable range" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-valid-by-area should return true if area_id has the value in acceptable range" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:is-valid-by-area should return false if area_id has the value outside of an acceptable range" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//kufar/custom-test.yaml:check-is-zero-or-positive-integer return true when an object is zero or a positive integer" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//kufar/pump-accounts-test.yaml:pump-accounts.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//kufar/pump-accounts-test.yaml:pump-accounts.jslt checks valid event with accounts data produced by Pump" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//kufar/pump-accounts-test.yaml:pump-accounts.jslt checks invalid event with accounts data produced by Pump" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//kufar/pump-ads-test.yaml:pump-ads.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//kufar/pump-ads-test.yaml:pump-ads.jslt checks valid event with ads data produced by Pump" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//kufar/pump-ads-test.yaml:pump-ads.jslt checks invalid event with ads data produced by Pump" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//cognition/all-suites-test.yaml:backend-monitoring-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//cognition/all-suites-test.yaml:frontend-with-recognition-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.016"/>
+  <testcase name="jsltTest:./checks//cognition/backend-monitoring-event-car-classifier-test.yaml:backend-monitoring-event-suite.jslt generates metrics for a valid car classifier event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//cognition/backend-monitoring-event-car-hero-picture-test.yaml:backend-monitoring-event-suite.jslt generates metrics for a valid hero picture event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//cognition/backend-monitoring-event-image-classifier-test.yaml:backend-monitoring-event-suite.jslt generates metrics for a valid image classifier event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//cognition/backend-monitoring-event-text-classifier-test.yaml:backend-monitoring-event-suite.jslt generates metrics for a valid text classifier event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//cognition/frontend-with-recognition-car-vertical-test.yaml:frontend-with-recognition-suite.jslt generates metrics for a car vertical event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//cognition/frontend-with-recognition-image-classifier-test.yaml:frontend-with-recognition-suite.jslt generates metrics for a valid image classifier event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.015"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/all-suites-test.yaml:classified-ad-view-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/all-suites-test.yaml:form-viewed-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/all-suites-test.yaml:listing-viewed-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/classified-ad-view-test.yaml:classified-ad-view.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/classified-ad-view-test.yaml:classified-ad-view.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/form-viewed-test.yaml:form-viewed.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/form-viewed-test.yaml:form-viewed.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/listing-viewed-test.yaml:listing-viewed.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//core-tagging-plan/listing-viewed-test.yaml:listing-viewed.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//houston/all-suites-test.yaml:experiment-assignment-events-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//houston/experiment-assignment-events-test.yaml:experiment-assignment-events.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//houston/experiment-assignment-events-test.yaml:experiment-assignment-events.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//houston/experiment-assignment-events-test.yaml:experiment-assignment-events.jslt generates metrics for an invalid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//yapo/adinsert-tips-experiment.yaml:adinsert-tips-experiment-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//yapo/adinsert-tips-experiment.yaml:adinsert-tips-experiment-suite.jslt - check events of tips experiment" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//yapo/click-view-custom-events.yaml:click-view-custom-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//yapo/click-view-custom-events.yaml:click-view-custom-events-suite.jslt - check click/view custom events schemas and values" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//yapo/leads-events.yaml:leads-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//yapo/leads-events.yaml:leads-events-suite.jslt - check leads events schemas and values" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//yapo/suggested-faqs-custom-events.yaml:suggested-faqs-custom-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//yapo/suggested-faqs-custom-events.yaml:suggested-faqs-custom-events-suite.jslt - check click/view suggested faqs custom events schemas and values" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//search/all-suites-test.yaml:content-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//search/all-suites-test.yaml:search-adview-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//search/all-suites-test.yaml:search-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//search/all-suites-test.yaml:search-lead-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//search/all-suites-test.yaml:search-listing-event-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//search/content-test.yaml:check-ad-id-not-null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//search/search-adview-event-test.yaml:search-adview-event.compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//search/search-adview-event-test.yaml:search-adview-event.jslt generates metrics for a valid event implementing the search tagging plan" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//search/search-adview-event-test.yaml:search-adview-event.jslt fails on missing search id and wrong type" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//search/search-adview-event-test.yaml:search-adview-event.jslt fails on weird rank" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//search/search-event-test.yaml:search-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//search/search-event-test.yaml:search-event.jslt generates metrics for a valid event implementing the search tagging plan" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//search/search-lead-event-test.yaml:search-lead-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//search/search-lead-event-test.yaml:search-lead-event.jslt generates metrics for a valid event implementing the search tagging plan" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//search/search-lead-event-test.yaml:search-lead-event.jslt detects wrong search type" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//search/search-lead-event-test.yaml:search-lead-event.jslt detects no search id" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//search/search-listing-event-test.yaml:search-listing-event.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//search/search-listing-event-test.yaml:search-listing-event.jslt generates metrics for a valid event implementing the search tagging plan" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//search/search-listing-event-test.yaml:search-listing-event.jslt detects broken fields" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/ads-action-states-test.yaml:ads-action-states.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/ads-action-states-test.yaml:ads-action-states.jslt checks valid ads-action-states event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//leboncoin/ads-view-suite-test.yaml:ads-view-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/ads-view-suite-test.yaml:ads-view-suite.jslt checks valid ads view event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/all-suites-test.yaml:ads-action-states-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/all-suites-test.yaml:order-action-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check custom ratio * value equals total" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check custom ratio * value equals total in the whole array" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check sum of prices equals total true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check sum of prices equals total false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:has no spacial char equals true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:has no spacial char equals false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:is longitude equals true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:is longitude char equals false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:is latitude equals true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:is latitude char equals false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check timestamp format non utc allowed equals true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check timestamp format non utc allowed equals false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:test platform parser" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:test version parser" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:test is in referrer type list true" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:test is in referrer type list false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:check completeness false" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//leboncoin/custom-test.yaml:test sort type parser" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/order-action-test.yaml:order-action.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//leboncoin/order-action-test.yaml:order-action.jslt checks valid orderv2 event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//leboncoin/search-ad-finder-suite-test.yaml:search-ad-finder-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//leboncoin/search-ad-finder-suite-test.yaml:search-ad-finder-suite.jslt checks valid search ad finder event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/search-listing-suite-test.yaml:search-listing-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//leboncoin/search-listing-suite-test.yaml:search-listing-suite.jslt checks valid search listing event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/ad-detail-viewed-suite-test.yaml:classified-ad-interactions.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.027"/>
+  <testcase name="jsltTest:./checks//bic/ad-insertion-suite-test.yaml:classified-ad-insertion-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/ad-phone-number-called-suite-test.yaml:classified-ad-phone-number-called-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//bic/ad-phone-number-displayed-suite-test.yaml:classified-ad-phone-number-displayed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.021"/>
+  <testcase name="jsltTest:./checks//bic/ad-reply-submitted-suite-test.yaml:classified-ad-reply-submitted-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//bic/ad-sms-app-opened-suite-test.yaml:classified-ad-sms-app-opened-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-detail-viewed-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.021"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-insertion-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-phone-number-called-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-phone-number-displayed-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-reply-submitted-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:ad-sms-app-opened-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:click-ui-element-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.022"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:delivery-requested-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.027"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:listing-saved-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:listing-unsaved-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:listing-viewed-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.022"/>
+  <testcase name="jsltTest:./checks//bic/all-suites-test.yaml:page-viewed-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-id returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-adtype returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-category returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-publisherType returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-url returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-loc-addloc returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-classifiedad-object-test.yaml:bic-commons-classifiedad-object.jslt check-object-loc-addreg returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.013"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-id returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-type returns true if is not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-id returns true if is not null and the correct pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-category returns true if is not null with the correct pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-publisherType returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-loc-addloc returns true if is not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-loc-addreg returns true if is not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-inReplyTo-adtype returns true if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-object-url returns true if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-lead-object-test.yaml:bic-commons-lead-object.jslt check-device-is-bot returns true if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-listing-test.yaml:bic-commons-listing.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-listing-test.yaml:bic-commons-listing.jslt check-object-category returns true if is not null and has the correct pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-listing-test.yaml:bic-commons-listing.jslt check-object-url returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-listing-test.yaml:bic-commons-listing.jslt check-object-filters-adtype returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-listing-test.yaml:bic-commons-listing.jslt check-object-filters-publishertype returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-page-test.yaml:bic-commons-page.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-page-test.yaml:bic-commons-page.jslt check-object-page-type returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-page-test.yaml:bic-commons-page.jslt check-object-page-name returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-page-test.yaml:bic-commons-page.jslt check-object-url returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-test.yaml:bic-commons.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-test.yaml:bic-commons.jslt check-if-type returns empty checks when event does not match" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-test.yaml:bic-commons.jslt check-if-type returns checks object" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-test.yaml:bic-commons.jslt check-suite-is-applied returns valid metric" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-object-type returns true if is not null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-name returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-page-page-type returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-page-page-name returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-provider-id returns true if is not null and with the proper pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-provider-product-type returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-actor-id returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-object-in-reply-to returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-origin-url returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-published returns true if is not null and if is valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-device-environment-id returns true if is not null and if is valid format" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-device-jwe-ids returns false if is empty" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-device-device-type returns false if is empty" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-tracker-event-test.yaml:bic-commons-tracker-event.jslt check-tracker-type returns false if is empty" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-uielement-test.yaml:bic-commons-uielement.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-uielement-test.yaml:bic-commons-uielement.jslt check-object-url returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic/bic-commons-uielement-test.yaml:bic-commons-uielement.jslt check-object-id returns false if is null" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//bic/click-ui-element-suite-test.yaml:click-ui-element-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//bic/delivery-requested-suite-test.yaml:delivery-requested-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//bic/listing-saved-suite-test.yaml:listing-save-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.039"/>
+  <testcase name="jsltTest:./checks//bic/listing-unsaved-suite-test.yaml:listing-unsaved-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.015"/>
+  <testcase name="jsltTest:./checks//bic/listing-viewed-suite-test.yaml:listing-viewed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.015"/>
+  <testcase name="jsltTest:./checks//bic/page-viewed-suite-test.yaml:page-viewed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.016"/>
+  <testcase name="jsltTest:./checks//data-platform/content-snapshots-test.yaml:content-snapshots-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//data-platform/content-snapshots-test.yaml:content-snapshots-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//data-platform/data-collector-test.yaml:data-collector-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//data-platform/data-collector-test.yaml:data-collector-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//data-platform/data-collector-test.yaml:data-collector-suite.jslt generates metrics with check-result false for a invalid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//data-platform/firehose-test.yaml:firehose-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//data-platform/firehose-test.yaml:firehose-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//data-platform/schema-committee-test.yaml:schema-committee-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//data-platform/schema-committee-test.yaml:schema-committee-check-availability-for-pulse-field, no-check if !cond" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//data-platform/schema-committee-test.yaml:schema-committee-check-availability-for-pulse-field, tag format works as expected" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//data-platform/schema-committee-test.yaml:schema-committee-suite is empty" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//messaging/all-suites-test.yaml:backend-message-event-all-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/all-suites-test.yaml:backend-message-event-message-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/all-suites-test.yaml:backend-prediction-event-all-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/backend-message-event-all-test.yaml:messaging/backend-message-event-all.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/backend-message-event-all-test.yaml:messaging/backend-message-event-all.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/backend-message-event-message-test.yaml:messaging/backend-message-event-message.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/backend-message-event-message-test.yaml:messaging/backend-message-event-message.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/backend-prediction-event-all-test.yaml:messaging/backend-prediction-all.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//messaging/backend-prediction-event-all-test.yaml:messaging/backend-prediction-all.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/frontend-cicd-poc-suite-test.yaml:messaging/frontend-cicd-poc-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//messaging/frontend-cicd-poc-suite-test.yaml:data-collector.jslt generates metrics with check-result false for a invalid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad_posted-suite-test.yaml:ad_posted-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.004"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad_posted-suite-test.yaml:spain/milanuncios/ad_posted-suite.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad-suite-test.yaml:ad-suite.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.003"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad-suite-test.yaml:spain/milanuncios/ad-suite.jslt should generate valid metrics" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad-suite-test.yaml:spain/milanuncios/ad-suite.jslt should generate valid metrics when date diff is greater than 15 min" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//spain//milanuncios/ad-suite-test.yaml:spain/milanuncios/ad-suite.jslt should generate valid metrics when published date before updated date" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.005"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/messaging-notifications-events-suite-tests.yaml:messaging-notifications-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/messaging-notifications-events-suite-tests.yaml:messaging-notifications-events-suite.jslt generates metrics for a valid ad-reply-submitted events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-view events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid list-view events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-save events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-phone-displayed events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-phone-called events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-sms-app-opened events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.011"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid ad-bump events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-inreplyto-publisher-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a valid email-contact-click events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//ad-stats-checks/pulse-base-inreplyto-publisher-not-valid-events-suite-tests.yaml:pulse-base-events-suite.jslt generates metrics for a not valid email-contact-click events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/kufar-not-passing-specific-checks.yaml:kufar-specific-checks.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/kufar-not-passing-specific-checks.yaml:kufar-specific-checks.jslt generates metrics for a valid kufar ad-create events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/kufar-specific-checks.yaml:kufar-specific-checks.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/kufar-specific-checks.yaml:kufar-specific-checks.jslt generates metrics for a valid kufar ad-create events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/leboncoin-specific-checks.yaml:leboncoin-specific-checks.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/leboncoin-specific-checks.yaml:leboncoin-specific-checks.jslt generates metrics for a valid leboncoin ad-publish events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/leboncoin-specific-checks.yaml:leboncoin-specific-checks.jslt generates metrics for a filtred category ad-publish events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/willhaben-specific-checks.yaml:willhaben-specific-checks.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.006"/>
+  <testcase name="jsltTest:./checks//panda//specific-checks/willhaben-specific-checks.yaml:willhaben-specific-checks-suite.jslt generates metrics for a valid Engagement / UIElement event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//panda//ad-lifecycle-checks/ad-lifecycle-events-suite-tests.yaml:ad-lifecycle-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//ad-lifecycle-checks/ad-lifecycle-events-suite-tests.yaml:ad-lifecycle-events-suite.jslt generates metrics for a valid ad-create events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-call-tests.yaml:activity-report-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-call-tests.yaml:activity-report-events-suite.jslt generates metrics for a valid ad-call events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-favorite-tests.yaml:activity-report-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-favorite-tests.yaml:activity-report-events-suite.jslt generates metrics for a valid ad-favorite events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-listing-tests.yaml:activity-report-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.016"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-listing-tests.yaml:activity-report-events-suite.jslt generates metrics for a valid list-view events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-phone-tests.yaml:activity-report-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-phone-tests.yaml:activity-report-events-suite.jslt generates metrics for a valid ad-phone events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.022"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-reply-tests.yaml:activity-report-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.018"/>
+  <testcase name="jsltTest:./checks//panda//products/activity-report-events-suite-reply-tests.yaml:activity-report-events-suite.jslt generates metrics for a valid ad-reply events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-create-tests.yaml:smartbump-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.02"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-create-tests.yaml:smartbump-events-suite.jslt generates metrics for a valid ad-create events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-delete-tests.yaml:smartbump-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-delete-tests.yaml:smartbump-events-suite.jslt generates metrics for a valid ad-delete events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-listing-tests.yaml:smartbump-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.019"/>
+  <testcase name="jsltTest:./checks//panda//products/smartbump-events-suite-listing-tests.yaml:smartbump-events-suite.jslt generates metrics for a valid list-view events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.015"/>
+  <testcase name="jsltTest:./checks//panda//consumer-checks/mandatory-fields-suite-tests.yaml:mandatory-fields-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//consumer-checks/mandatory-fields-suite-tests.yaml:mandatory-fields-suite.jslt generates metrics for a valid ad-view events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//panda//consumer-checks/mandatory-fields-suite-tests.yaml:mandatory-fields-suite.jslt generates metrics for a valid externallink-contact-click events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//panda//contact-center-checks/contact-center-events-suite-tests.yaml:contact-center-events-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//panda//contact-center-checks/contact-center-events-suite-tests.yaml:contact-center-events-suite.jslt generates metrics for a valid ad-contact events" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-detail-viewed-suite-test.yaml:ad-detail-viewed-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-detail-viewed-suite-test.yaml:ad-detail-viewed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.017"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-phone-number-called-suite-test.yaml:search-ad-phone-number-called-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.026"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-phone-number-called-suite-test.yaml:search-ad-phone-number-called-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-phone-number-displayed-suite-test.yaml:search-ad-phone-number-displayed-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.027"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-phone-number-displayed-suite-test.yaml:search-ad-phone-number-displayed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.029"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-publish-suite-test.yaml:search-ad-publish-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-publish-suite-test.yaml:search-ad-publish-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-reply-submitted-suite-test.yaml:search-ad-reply-submitted-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.023"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-reply-submitted-suite-test.yaml:search-ad-reply-submitted-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-sms-app-opened-suite-test.yaml:search-ad-sms-app-opened-suite.jslt" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.023"/>
+  <testcase name="jsltTest:./checks//bic//search/search-ad-sms-app-opened-suite-test.yaml:search-ad-sms-app-opened-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.022"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt compiles and runs" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt ex:check-search-id returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-type returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-source returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-display returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-filterOrigin returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-maxRank returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-offset returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.012"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-queryOrigin returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-search-pageType returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-filters-locality returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-filters-query returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.007"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-filters-region returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.01"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-filters-sorting returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-items-id returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-numFilters returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-object-numItems returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-origin-elementType returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.008"/>
+  <testcase name="jsltTest:./checks//bic//search/search-commons-test.yaml:search-commons.jslt check-origin-pageType returns true if is not null with a pattern" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.009"/>
+  <testcase name="jsltTest:./checks//bic//search/search-delivery-requested-suite-test.yaml:search-delivery-requested-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-delivery-requested-suite-test.yaml:search-delivery-requested-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.024"/>
+  <testcase name="jsltTest:./checks//bic//search/search-listing-viewed-suite-test.yaml:search-listing-viewed-suite.jslt compiles" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.029"/>
+  <testcase name="jsltTest:./checks//bic//search/search-listing-viewed-suite-test.yaml:search-listing-viewed-suite.jslt generates metrics for a valid event" classname="com.adevinta.data.jslt.test.JsltSuite" time="0.095"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

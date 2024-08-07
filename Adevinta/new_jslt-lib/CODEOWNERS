@@ -1,0 +1,27 @@
+# Global fallback, jslt-lib maintainers
+*                                               @yotta/yotta-developers
+
+# Utilities maintained by jslt-lib maintainers
+/src/main/resources/lib/                        @yotta/yotta-developers
+
+# Checks fallback, maintainers of DQS
+/src/main/resources/checks/                     @yotta/yotta-developers
+
+# Team-specific quality suites.
+#
+# This list has been bootstrapped with teams in the yotta GitHub organisation.
+# It's fine to use GitHub teams in team-specific orgs, say @<team>/dqs, or
+# simply @<team>/<team>.
+
+# FIXME: This is probably not owned by yotta...
+/src/main/resources/checks/core-tagging-plan/   @yotta/yotta-developers
+
+/src/main/resources/checks/data-platform/       @yotta/yotta-developers
+/src/main/resources/checks/houston/             @yotta/yotta-developers @yotta/dqs-houston
+/src/main/resources/checks/kufar/               @yotta/yotta-developers @yotta/dqs-kufar
+/src/main/resources/checks/leboncoin/           @yotta/yotta-developers @yotta/dqs-leboncoin
+/src/main/resources/checks/messaging/           @yotta/yotta-developers @yotta/dqs-messaging
+/src/main/resources/checks/p10n/                @yotta/yotta-developers @yotta/dqs-p10n
+/src/main/resources/checks/panda/               @yotta/yotta-developers @yotta/dqs-panda
+/src/main/resources/checks/search/              @yotta/yotta-developers @yotta/dqs-search
+/src/main/resources/checks/cognition/           @yotta/yotta-developers @yotta/dqs-cognition

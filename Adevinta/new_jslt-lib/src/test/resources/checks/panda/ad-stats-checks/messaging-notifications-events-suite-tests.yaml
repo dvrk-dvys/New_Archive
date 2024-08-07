@@ -1,0 +1,237 @@
+tests:
+
+  - name: messaging-notifications-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/ad-stats-checks/messaging-notifications-events-suite.jslt" as p
+      p(.)
+
+  - name: messaging-notifications-events-suite.jslt generates metrics for a valid ad-reply-submitted events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-reply-submitted
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_publisher_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_categories_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-reply-submitted
+            check-suite: panda.messaging-notification
+            check-name: object_in_reply_to_location_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/messaging-notifications-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "3b491279-f223-4740-9d47-f3704c61a070",
+          "@type": "Send",
+          "actor": {
+              "spt:remoteAddress": "181.43.243.104"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-11-04T06:48:41.943Z",
+          "deployStage": "pro",
+          "device": {
+              "@type": "Device",
+              "acceptLanguage": "es-419",
+              "deviceType": "mobile",
+              "environmentId": "sdrn:schibsted:environment:a89ea52a-2e49-4307-9360-6c175c6a68e2",
+              "isBot": false,
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMTAtMjNUMDI6NDk6MDNaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..IuGQ5iSS-taLpJ1-hXNptw.15_9j7HCuXpjg1LtyQu1kTO0zw9eNE2l3NqEVJljNtBsg49DZ6V_-5isXH41dO7xmH6F7txzwHw2wlIV0z0FX4eurALH44I_WVT3lsWCjZORe5UOiqSYxM5j5YtRv19cQk-JqZNxaWKIcmsQqmBQFQcqLTCffzYeKJUTp3s1cMCNUgPc4bhQ68IVxvU45qVaV1u2nsuTBOvkBVC5WBzYPA._CsioBx-S1QOBxLUaquNug",
+              "localStorageEnabled": true,
+              "model": "iPhone12,8",
+              "osType": "iOS",
+              "osVersion": "14.0.1",
+              "product": "cl.schibsted.Yapo",
+              "release": "15.14.0",
+              "screenSize": "375x667",
+              "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+              "viewportSize": "0x0"
+          },
+          "name": "Ad reply submitted",
+          "object": {
+              "@id": "sdrn:yapocl:message:0",
+              "@type": "Message",
+              "inReplyTo": {
+                  "@id": "sdrn:yapocl:classified:75149569",
+                  "@type": "ClassifiedAd",
+                  "adId": 75149569.0,
+                  "categories": [
+                      {
+                          "@type": "MarketplaceCategory",
+                          "level": 1.0,
+                          "localName": "Electrodomesticos",
+                          "name": "Electrodomesticos"
+                      },
+                      {
+                          "@type": "MarketplaceCategory",
+                          "level": 0.0,
+                          "localName": "Hogar",
+                          "name": "Hogar"
+                      }
+                  ],
+                  "category": "Hogar > Electrodomesticos",
+                  "items": [
+                      {
+                          "@type": "MarketplaceItem",
+                          "trash": "{\"@id\":\"sdrn:yapocl:marketplaceitem:75149569\"}"
+                      }
+                  ],
+                  "location": {
+                      "@type": "PostalAddress",
+                      "addressRegion": "Regi\u00f3n Metropolitana"
+                  },
+                  "name": "lavadora secadora lg"
+              },
+              "name": "Tealium Mobile Webview",
+              "url": "https://tags.tiqcdn.com/utag/schibsted/yapo-nga/prod/mobile.html?"
+          },
+          "origin": {
+              "trash": "{\"name\":\"lavadora secadora lg\",\"id\":\"75149569\",\"type\":\"Form\"}",
+              "url": "https://tags.tiqcdn.com/utag/schibsted/yapo-nga/prod/mobile.html?"
+          },
+          "pageViewId": "8e4c4a71-5c77-40ef-ae34-f9546a564757",
+          "provider": {
+              "@id": "sdrn:schibsted:client:yapocl",
+              "@type": "Organization",
+              "productType": "iOSApp"
+          },
+          "published": "2020-11-04T06:48:42+00:00",
+          "schema": "http://schema.adevinta.com/events/tracker-event.json/226.json",
+          "tracker": {
+              "eventBuilderVersion": "1.0.34",
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "version": "4.1.10-54417"
+          }
+      }
+      p($event)

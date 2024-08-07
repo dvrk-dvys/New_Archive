@@ -1,0 +1,30 @@
+import "checks/commons.jslt" as c
+import "lib/metrics.jslt" as m
+import "checks/panda/commons.jslt" as panda-commons
+
+def suite-name()
+   "panda.kufar_panda_specific_checks"
+
+def check-category-format(obj)
+    test($obj, "^[\\d+ > ]*(>[\\d+ >]+)*$")
+
+let typeTag = c:taggify-event-type(.)
+let eventTypeTag = m:tag("obj-type", $typeTag)
+
+let providerTag = m:tag("provider", m:taggify(.provider."@id", "unknown", panda-commons:available-providers()))
+
+// These tags are used to mark each check by its type
+// Are we checking validity of a field or availability of a field
+let availabilityTag = m:tag("check-type", "availability")
+let validityTag = m:tag("check-type", "validity")
+
+c:check(suite-name(), "category_not_null", c:check-not-null(.object.category), $eventTypeTag + $availabilityTag + $providerTag , "blocker")
++ c:check(suite-name(), "category_contains_integers_ids", check-category-format(.object.category), $eventTypeTag + $availabilityTag + $providerTag , "blocker")
+// adding specig checks for publish and update for kufar
+// checks for locations subArea and Region 
++ if (contains($typeTag, ["ad-publish", "ad-update"]))
+    c:check(suite-name(), "location_not_null", c:check-not-null(.object.location), $eventTypeTag + $availabilityTag + $providerTag, "blocker")
+    + c:check(suite-name(), "address_region_not_null", c:check-not-null(.object.location.addressRegion), $eventTypeTag + $availabilityTag + $providerTag, "blocker")
+    + c:check(suite-name(), "address_subarea_not_null", c:check-not-null(.object.location.addressSubarea), $eventTypeTag + $availabilityTag + $providerTag, "blocker")
+else
+    c:no-check()

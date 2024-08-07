@@ -1,0 +1,25 @@
+import "checks/commons.jslt" as c
+import "checks/bic/bic-commons.jslt" as bc
+
+// Common checks for Page object
+
+def check-object-page-type(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_page_type_is_not_null", c:check-not-null($event.object.pageType), $tags, "critical")
+   )
+
+def check-object-page-name(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_page_name_is_not_null", c:check-not-null($event.object.pageName), $tags, "critical")
+   )
+
+def check-object-url(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_url_is_not_null", c:check-not-null($event.object.url), $tags, "critical")
+   )

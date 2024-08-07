@@ -1,0 +1,61 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+import "lib/commons.jslt" as cc
+import "lib/schemas.jslt" as sc
+import "checks/cognition/commons.jslt" as cognition
+
+// pre-condition: (."@type" == "Predict" or ."@type" == "Recommend")
+
+let service = .response.recognition.service
+let method = .request.method
+let providerTag = m:tag("provider", m:taggify(cc:canned-client-id(.provider."@id"), "unknown", sc:provider-ids()))
+let serviceTag = m:tag("service", m:taggify($service, "unknown", cognition:available-services()))
+let tags = $providerTag + $serviceTag
+
+let checkSuite = "cognition.backend-monitoring-event"
+
+// main checks
+c:check($checkSuite, "event_id_not_null", c:check-not-null(."@id"), $tags, "critical")
++ c:check($checkSuite, "event_type_not_null", c:check-not-null(."@type"), $tags, "critical")
++ c:check($checkSuite, "deploy_stage_not_null", c:check-not-null(.deployStage), $tags, "critical")
++ c:check($checkSuite, "request_not_null", c:check-not-null(.request), $tags, "critical")
++ c:check($checkSuite, "response_not_null", c:check-not-null(.response), $tags, "critical")
++ c:check($checkSuite, "provider_not_null", c:check-not-null(.provider), $tags, "critical")
+
+// provider checks
++ c:check($checkSuite, "provider_id_valid", c:check-sdrn-provider(.provider."@id"), $tags, "critical")
++ c:check($checkSuite, "provider_component_service_not_null", c:check-not-null(.provider.componentService), $tags, "critical")
+
+// request checks
++ c:check($checkSuite, "request_method_not_null", c:check-not-null(.request.method), $tags, "critical")
++ cognition:check-if(cognition:is-image-service($service) and cognition:is-get-request($method),
+    c:check($checkSuite, "request_url_not_null", c:check-not-null(.request.url), $tags, "critical")
+  )
+
+// response metadata checks
++ c:check($checkSuite, "response_recognition_not_null", c:check-not-null(.response.recognition), $tags, "critical")
++ c:check($checkSuite, "response_recognition_id_not_null", c:check-not-null(.response.recognition."@id"), $tags, "critical")
++ c:check($checkSuite, "response_recognition_service_not_null", c:check-not-null($service), $tags, "critical")
++ c:check($checkSuite, "response_recognition_model_version_not_null", c:check-not-null(.response.recognition.modelVersion), $tags, "critical")
++ cognition:check-if-not(cognition:is-legacy-backend($service),
+    c:check($checkSuite, "response_recognition_variant_name_not_null", c:check-not-null(.response.recognition.variantName), $tags, "critical")
+  )
+
+// response prediction checks
++ cognition:check-if-not(cognition:is-ignore-predictions($service),
+    c:check($checkSuite, "response_predictions_not_null", c:check-not-null(.response.predictions), $tags, "critical")
+    + c:check($checkSuite, "response_predictions_not_empty", c:check-not-empty(.response.predictions), $tags, "critical")
+)
+
++ cognition:check-if(.response.predictions,
+    c:check($checkSuite, "prediction_attribute_not_null", c:check-all([for (.response.predictions) c:check-not-null(.attribute)]), $tags, "critical")
+    + c:check($checkSuite, "prediction_attribute_is_valid",
+        c:check-all([for (.response.predictions) c:check-one-of(.attribute, cognition:available-attributes())]), $tags, "critical")
+    + c:check($checkSuite, "prediction_probability_not_null", c:check-all([for (.response.predictions) c:check-not-null(.probability)]), $tags, "critical")
+    + c:check($checkSuite, "prediction_probability_not_negative", c:check-all([for (.response.predictions) c:check-number-ge-0(.probability)]), $tags, "critical")
+    + c:check($checkSuite, "prediction_label_not_null", c:check-all([for (.response.predictions) c:check-not-null(.label)]), $tags, "critical")
+    + c:check($checkSuite, "prediction_type_not_null", c:check-all([for (.response.predictions) c:check-not-null(".@type")]), $tags, "critical")
+    + cognition:check-if-not(cognition:is-car-hero-picture($service),
+        c:check($checkSuite, "prediction_uid_not_null", c:check-all([for (.response.predictions) c:check-not-null(.uid)]), $tags, "critical")
+      )
+ )

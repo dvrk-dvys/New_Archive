@@ -1,0 +1,75 @@
+tests:
+
+  # This is just testing that the wrappers do compile an run, proper testing is still done in the wrapped suites.
+
+  - name: ad-detail-viewed-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-detail-viewed-suite.jslt" as c
+      c(.)
+
+  - name: ad-insertion-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-insertion-suite.jslt" as c
+      c(.)
+
+  - name: ad-phone-number-called-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-phone-number-called-suite.jslt" as c
+      c(.)
+
+  - name: ad-phone-number-displayed-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-phone-number-displayed-suite.jslt" as c
+      c(.)
+
+  - name: ad-reply-submitted-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-reply-submitted-suite.jslt" as c
+      c(.)
+
+  - name: ad-sms-app-opened-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/ad-sms-app-opened-suite.jslt" as c
+      c(.)
+
+  - name: click-ui-element-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/click-ui-element-suite.jslt" as c
+      c(.)
+
+  - name: delivery-requested-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/delivery-requested-suite.jslt" as c
+      c(.)
+
+  - name: listing-saved-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/listing-saved-suite.jslt" as c
+      c(.)
+
+  - name: listing-unsaved-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/listing-unsaved-suite.jslt" as c
+      c(.)
+
+  - name: listing-viewed-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/listing-viewed-suite.jslt" as c
+      c(.)
+
+  - name: page-viewed-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/bic/page-viewed-suite.jslt" as c
+      c(.)

@@ -1,0 +1,325 @@
+tests:
+  - name: bic-commons-tracker-event.jslt compiles and runs
+    type: compile
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      c(.)
+
+  - name: bic-commons-tracker-event.jslt check-object-type returns true if is not null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.test
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+        {
+          "@type": "Create",
+          "object": {
+            "@type": "ClassifiedAd"
+          }
+        }
+      c:check-object-type($event, "bic.test", {})
+  - name: bic-commons-tracker-event.jslt check-name returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: name_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-name($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-page-page-type returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: page_page_type_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "page": {
+          "pageType": null
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-page-page-type($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-page-page-name returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: page_page_name_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "page": {
+          "pageName": null
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-page-page-name($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-provider-id returns true if is not null and with the proper pattern
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: provider_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "provider": {
+          "@id": "sdrn:schibsted:client:clientName"
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-provider-id($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-provider-product-type returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: provider_product_type_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "provider": {
+          "productType": null
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-provider-product-type($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-actor-id returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: actor_id_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "name": null,
+        "@type": "Create",
+        "actor": {
+          "@id": null
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-actor-id($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-object-in-reply-to returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: object_in_reply_to_type_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd",
+          "inReplyTo": {
+            "@type": null
+          }
+        }
+      }
+      c:check-object-in-reply-to($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-origin-url returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: origin_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "@type": "Create",
+        "origin": {
+          "url": null
+        },
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-origin-url($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-published returns true if is not null and if is valid format
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: published_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "published": "2019-07-16T08:52:31.947Z",
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-published($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-device-environment-id returns true if is not null and if is valid format
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: device_environment_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "device": {
+          "environmentId":"sdrn:schibsted:environment:00000000-0000-4000-8000-000000000000",
+        },
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-device-environment-id($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-device-jwe-ids returns false if is empty
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: device_jwe_ids_not_null_and_not_empty
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-device-jwe-ids($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-device-device-type returns false if is empty
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: device_device_type_not_null_and_not_empty
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-device-device-type($event, "bic.ad-create", "ad-create", {})
+  - name: bic-commons-tracker-event.jslt check-tracker-type returns false if is empty
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.ad-create
+            check-name: tracker_type_not_null_and_not_empty
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-tracker-event.jslt" as c
+      let event =
+      {
+        "@type": "Create",
+        "object": {
+          "@type": "ClassifiedAd"
+        }
+      }
+      c:check-tracker-type($event, "bic.ad-create", "ad-create", {})

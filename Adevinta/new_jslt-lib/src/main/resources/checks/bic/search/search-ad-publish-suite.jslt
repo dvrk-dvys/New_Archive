@@ -1,0 +1,18 @@
+import "checks/bic/bic-commons.jslt" as bic-commons
+import "checks/bic/bic-commons-classifiedad-object.jslt" as bcco
+import "checks/bic/bic-commons-tracker-event.jslt" as bcte
+import "checks/bic/search/search-commons.jslt" as s
+
+let apply-to = "ad-publish" // Classified Ad Published
+let check-suite = "bic.search.ad-publish"
+
+let tags = bic-commons:custom-tags(.)
+
+bic-commons:check-count-all($check-suite, $tags)
++ bic-commons:check-suite-is-applied($check-suite, ., $apply-to, $tags)
+
++ bic-commons:check-id(., $check-suite, $apply-to, $tags)
++ bcco:check-object-id(., $check-suite, $apply-to, $tags)
++ bcte:check-object-type(., $check-suite, $tags)
++ s:check-object-publicationDate(., $check-suite, $apply-to, $tags)
+

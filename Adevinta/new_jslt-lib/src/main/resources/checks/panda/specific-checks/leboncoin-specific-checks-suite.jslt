@@ -1,0 +1,53 @@
+import "checks/commons.jslt" as c
+import "lib/metrics.jslt" as m
+import "checks/panda/commons.jslt" as panda-commons
+
+def suite-name()
+   "panda.leboncoin_specific_checks"
+
+// check that the list of objects adParams contains at least one element having name max_price
+def check-car-price-max-availibilty(obj)
+    if ($obj.name == "car_price_max")
+    true else false
+
+// check that the list of objects adParams contains at least one element having name min_price
+def check-car-price-min-availibilty(obj)
+    if ($obj.name == "car_price_min")
+    true else false
+
+// check the validity of the max price elemnt in adParams
+def check-car-price-max-validity(obj)
+    if ($obj.name == "car_price_max")
+    if ($obj.value == "0")
+    false else if (is-string($obj.value )) true else false
+    else false
+
+// check the validity of the min price elemnt in adParams
+def check-car-price-min-validity(obj)
+    if ($obj.name == "car_price_min")
+    if ($obj.value == "0")
+    false else if (is-string($obj.value )) true else false
+    else false
+
+
+let typeTag = c:taggify-event-type(.)
+let eventTypeTag = m:tag("obj-type", $typeTag)
+
+let providerTag = m:tag("provider", m:taggify(.provider."@id", "unknown", panda-commons:available-providers()))
+
+// These tags are used to mark each check by its type
+// Are we checking validity of a field or availability of a field
+let availabilityTag = m:tag("check-type", "availability")
+let validityTag = m:tag("check-type", "validity")
+
+// This check will be applied only on category 2 events
+
+if (.object.categories[0].localId == "2" or .object.category == "vehicules > voitures" )
+c:check(suite-name(), "ad_params_availibilty", c:check-not-null(.object.adParams), $eventTypeTag + $availabilityTag + $providerTag , "blocker")
++ c:check(suite-name(), "ad_params_validity", is-array(.object.adParams), $eventTypeTag + $validityTag + $providerTag , "blocker")
++ c:check(suite-name(), "car_price_max_availibilty", c:check-any([for (.object.adParams) check-car-price-max-availibilty(.)]), $eventTypeTag + $availabilityTag + $providerTag , "blocker")
++ c:check(suite-name(), "car_price_max_validity", c:check-any([for (.object.adParams) check-car-price-max-validity(.)]), $eventTypeTag + $validityTag + $providerTag , "blocker")
++ c:check(suite-name(), "car_price_min_availibilty", c:check-any([for (.object.adParams) check-car-price-min-availibilty(.)]), $eventTypeTag + $availabilityTag + $providerTag , "blocker")
++ c:check(suite-name(), "car_price_min_validity", c:check-any([for (.object.adParams) check-car-price-min-validity(.)]), $eventTypeTag + $validityTag + $providerTag , "blocker")
+else 
+[]

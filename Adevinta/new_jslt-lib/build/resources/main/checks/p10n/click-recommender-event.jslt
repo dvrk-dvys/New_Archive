@@ -1,0 +1,76 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as schemas
+import "checks/commons.jslt" as c
+import "checks/p10n/p10n-commons.jslt" as p
+
+// Checks to validate fields in Recommendation clicked as required by P10N
+// https://docs.mpi-internal.com/data-and-insight/insights-docs/10.Tagging%20Guide/tagging-plans/recommendation/recommendation-widget-clicked/
+// Description of functions in commons.jslt in API https://docs.mpi-internal.com/yotta/jslt-lib/API/
+
+let eventTypeTag = m:tag("event-type", m:taggify(."@type", "unknown", schemas:event-type-values()))
+let trackerType = m:tag("tracker-type", m:taggify(lowercase(.tracker.type), "unknown", ["js", "android", "ios"]))
+let sourceTypeTag = m:tag("source-type", p:taggify-source-type(.))
+let eventTypeTrackerTag = $eventTypeTag + $trackerType + $sourceTypeTag
+let recommendationTypeTag = m:tag("rec-type", p:taggify-rec-type(.))
+let listNameTag = m:tag("list-type", p:taggify-list-name(.))
+let clickRankTag = m:tag("click-rank", p:taggify-rank(.object.rank))
+
+let validRecommendationType = p:return-rec-valid-types()
+let validSourceTypes = p:return-source-valid-types()
+
+let check-suite = "p10n.click-recommender-event"
+
+// event counters
+c:check($check-suite, "count", true, $eventTypeTag + $sourceTypeTag + $trackerType + $recommendationTypeTag + $listNameTag, "minor")
++ c:check($check-suite, "countByRank", true, $eventTypeTag + $sourceTypeTag + $trackerType + $clickRankTag, "minor")
+
+// provider checks
++ c:check($check-suite, "provider_id_not_null", c:check-not-null(.provider."@id"), $eventTypeTrackerTag, "minor")
++ c:check($check-suite, "provider_type_not_null", c:check-not-null(.provider."@type"), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "provider_product_tag_not_null", c:check-not-null(.provider.productTag), $eventTypeTrackerTag, "blocker")
+
+// device checks
++ c:check($check-suite, "device_environment_id_not_null", c:check-not-null(.device.environmentId), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "device_environment_id_valid_format", c:check-sdrn-env-id(.device.environmentId), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "device_type_not_null", c:check-not-null(.device.deviceType), $eventTypeTrackerTag, "blocker")
+
+// actor checks
++ c:check($check-suite, "actor_id_not_null", c:check-not-null(.actor."@id"), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "actor_id_valid_format", c:check-sdrn-account-id(.actor."@id"), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "actor_sptid_not_null", c:check-not-null(.actor."spt:userId"), $eventTypeTrackerTag, "minor")
++ c:check($check-suite, "actor_sptid_valid_format", c:check-sdrn-account-id(.actor."spt:userId"), $eventTypeTrackerTag, "minor")
+
+// event checks
++ c:check($check-suite, "event_id_not_null", c:check-not-null(."@id"), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "event_name_not_null", c:check-not-null(.name), $eventTypeTrackerTag, "minor")
++ c:check($check-suite, "event_type_not_null", c:check-not-null(."@type"), $eventTypeTrackerTag, "blocker")
+
+// object checks
++ c:check($check-suite, "object_item_rank_not_null", c:check-not-null(.object.rank), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_item_rank_gt_0", c:check-number-gt-0(.object.rank), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_id_not_null", c:check-not-null(.object."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_id_valid_format", c:check-sdrn-classified-ad(.object."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "object_type_not_null", c:check-not-null(.object."@type"), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "object_type_valid", lowercase(.object."@type")=="recommendationitem", $eventTypeTrackerTag, "blocker")
+
+// published checks
++ c:check($check-suite, "published_not_null", c:check-not-null(.published), $eventTypeTrackerTag, "blocker")
+
+// tracker checks
++ c:check($check-suite, "tracker_type_not_null", c:check-not-null(.tracker.type), $eventTypeTrackerTag, "blocker")
++ c:check($check-suite, "tracker_name_not_null", c:check-not-null(.tracker.name), $eventTypeTrackerTag, "blocker")
+
+// recommendation checks
++ c:check($check-suite, "recommendation_type_not_null", c:check-not-null(.recommendation."@type"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendationType_not_null", c:check-not-null(.recommendation.recommendationType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendationType_valid", c:check-one-of(lowercase(.recommendation.recommendationType), $validRecommendationType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_id_not_null", c:check-not-null(.recommendation."@id"), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_list_name_not_null", c:check-not-null(.recommendation.listName), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_list_name_valid", p:check-valid-listName(.recommendation.listName, .recommendation.recommendationType), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_source_not_null", c:check-not-null(.recommendation.source), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_source_valid", c:check-one-of(lowercase(.recommendation.source), $validSourceTypes), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_query_params_itemsId_not_null_when_related_items", .recommendation.recommendationType == "related-items" and c:check-not-null(.recommendation.queryParams.itemId), $eventTypeTrackerTag, "critical")
++ c:check($check-suite, "recommendation_query_params_itemsId_valid_when_related_items", .recommendation.recommendationType == "related-items" and c:check-sdrn-classified-ad(.recommendation.queryParams.itemId), $eventTypeTrackerTag, "critical")
+
+// check bots
++ c:check($check-suite, "device_is_bot", c:check-bot(.device.isBot), $eventTypeTrackerTag, "critical")

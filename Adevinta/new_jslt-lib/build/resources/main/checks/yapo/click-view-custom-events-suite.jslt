@@ -1,0 +1,61 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+import "checks/yapo/commons.jslt" as y
+
+
+// Set suit and user-tags
+let check-suite = "yapo.click-view-custom-events-suite"
+let user-tags = y:common-tags()
+
+// Set value domain for json keys
+let valid-event-type = ["View", "Click"]
+let valid-device = ["Device"]
+let valid-device-language = ["es-ES"]
+let valid-device-type = ["desktop","mobile","feature-phone","tablet","smart-tv","other","undefined"]
+let valid-local-storage-enable = [true, false]
+let valid-object-type = ["UIElement"]
+let valid-provider-id = ["sdrn:schibsted:client:yapocl"]
+let valid-provider-type = ["Organization"]
+let valid-provider-product-type = ["Web", "ResponsiveWeb", "M-Site", "AndroidApp", "iOSApp", "AndroidTabletApp", "iPadApp", "WindowsPhoneApp", "HybridApp", "ReactNativeApp", "UniversalWindowsPlatform", "Other", "Undefined"]
+let invalid-event-name = ["Click UIElement", "View UIElement"]
+
+// Event principal keys-values
+c:check($check-suite, "event_id_not_null_and_not_empty", c:check-not-null-and-not-empty(."@id"), $user-tags, "critical")
++ c:check($check-suite, "event_type_verification", c:check-one-of(."@type", $valid-event-type), $user-tags, "critical")
++ c:check($check-suite, "event_creation_date_verification", c:check-timestamp-format(.creationDate), $user-tags, "critical")
++ c:check($check-suite, "device_verification", c:check-one-of(.device."@type", $valid-device), $user-tags, "critical")
++ c:check($check-suite, "device_language_verification", c:check-one-of(.device.acceptLanguage, $valid-device-language), $user-tags, "critical")
++ c:check($check-suite, "device_type_verification", c:check-one-of(.device.deviceType, $valid-device-type), $user-tags, "critical")
++ c:check($check-suite, "event_environment_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.environmentId), $user-tags, "critical")
++ c:check($check-suite, "event_jweIds_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.jweIds), $user-tags, "critical")
++ c:check($check-suite, "local_storage_enable_verification", c:check-one-of(.device.localStorageEnabled, $valid-local-storage-enable), $user-tags, "critical")
++ c:check($check-suite, "event_screen_size_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.screenSize), $user-tags, "critical")
++ c:check($check-suite, "event_user_agent_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.userAgent), $user-tags, "critical")
++ c:check($check-suite, "event_view_port_size_not_null_and_not_empty", c:check-not-null-and-not-empty(.device.viewportSize), $user-tags, "critical")
++ c:check($check-suite, "event_name_not_null_and_not_empty", c:check-not-null-and-not-empty(.name), $user-tags, "critical")
++ c:check($check-suite, "event_name_verification", c:check-not-one-of(.name, $invalid-event-name), $user-tags, "critical")
++ c:check($check-suite, "event_page_view_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.pageViewId), $user-tags, "critical")
++ c:check($check-suite, "event_published_verification", c:check-timestamp-format(.published), $user-tags, "critical")
++ c:check($check-suite, "event_schema_verification", c:check-schema-url(.schema), $user-tags, "critical")
+
+// Object keys-values
++ c:check($check-suite, "object_id_not_null_and_not_empty", c:check-not-null-and-not-empty(.object."@id"), $user-tags, "critical")
++ c:check($check-suite, "object_type_verification", c:check-one-of(.object."@type", $valid-object-type), $user-tags, "critical")
++ c:check($check-suite, "object_element_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.elementType), $user-tags, "critical")
++ c:check($check-suite, "object_name_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.name), $user-tags, "critical")
++ c:check($check-suite, "object_position_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.position), $user-tags, "critical")
++ c:check($check-suite, "object_url_not_null_and_not_empty", c:check-not-null-and-not-empty(.object.url), $user-tags, "critical")
+
+// Origin url
++ c:check($check-suite, "event_origin_url_not_null_and_not_empty", c:check-not-null-and-not-empty(.origin.url), $user-tags, "critical")
+
+// Provider keys-values
++ c:check($check-suite, "provider_id_verification", c:check-one-of(.provider."@id", $valid-provider-id), $user-tags, "critical")
++ c:check($check-suite, "provider_type_verification", c:check-one-of(.provider."@type", $valid-provider-type), $user-tags, "critical")
++ c:check($check-suite, "provider_product_type_verification", c:check-one-of(.provider.productType, $valid-provider-product-type), $user-tags, "critical")
+
+// Traker keys-values
++ c:check($check-suite, "traker_builder_version_not_null", c:check-not-null-and-not-empty(.tracker.eventBuilderVersion), $user-tags, "critical")
++ c:check($check-suite, "traker_name_not_null_and_not_empty", c:check-not-null-and-not-empty(.tracker.name), $user-tags, "critical")
++ c:check($check-suite, "traker_type_not_null_and_not_empty", c:check-not-null-and-not-empty(.tracker.type), $user-tags, "critical")
++ c:check($check-suite, "traker_version_not_null_and_not_empty", c:check-not-null-and-not-empty(.tracker.version), $user-tags, "critical")

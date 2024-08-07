@@ -1,0 +1,238 @@
+tests:
+
+  - name: messaging/backend-prediction-all.jslt compiles
+    type: compile
+    expression: |
+      import "checks/messaging/backend-prediction-event-all.jslt" as backend-message
+      backend-message(.)
+
+  - name: messaging/backend-prediction-all.jslt should generate valid metrics
+    expected:
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: origin_id_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: origin_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: provider_component_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_analyzed_object_id_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_analyzed_object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_prediction_result_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_language_is_not_empty
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_model_version_is_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_reply_to_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_reply_to_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_type_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: origin_id_is_valid
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: origin_type_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: provider_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: provider_component_is_valid
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: target_type_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_analyzed_object_id_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_analyzed_object_type_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_type_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_reply_to_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.prediction-event-all
+            check-name: object_reply_to_type_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/messaging/backend-prediction-event-all.jslt" as backend-prediction
+
+      let event = {
+                      "schema": "http://schema.schibsted.com/events/backend-prediction-event.json/2.json",
+                      "@type": "Create",
+                      "actor": {
+                          "@type": "Account",
+                          "@id": "sdrn:schibsted:user:u12345"
+                      },
+                      "origin": {
+                          "@type": "Conversation",
+                          "@id": "sdrn:willhabenat:conversation:id1234",
+                      },
+                      "object": {
+                          "@type": "Prediction",
+                          "predictionResult": 0.0,
+                          "analyzedObject": {
+                              "@id": "sdrn:willhabenat:message:id123",
+                              "@type": "Message"
+                          },
+                          "language": "de",
+                          "modelVersion": "v1.4",
+                          "inReplyTo": {
+                              "@type": "ClassifiedAd",
+                              "@id": "sdrn:willhabenat:classified:ad123"
+                          }
+                      },
+                      "provider": {
+                          "component": "messaging",
+                          "@id": "sdrn:schibsted:client:willhabenat"
+                      },
+                      "target": {
+                          "@type": "Account",
+                          "@id": "sdrn:schibsted:user:u1234"
+                      }
+                  }
+
+      backend-prediction($event)

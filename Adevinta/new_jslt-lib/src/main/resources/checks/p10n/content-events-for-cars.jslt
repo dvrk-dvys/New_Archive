@@ -1,0 +1,30 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as s
+import "checks/commons.jslt" as c
+import "checks/p10n/p10n-commons.jslt" as p
+import "checks/p10n/content-events.jslt" as content
+
+// pre-condition: (.object."@type" == "ClassifiedAd") and (."@type" == "Publish" or ."@type" == "Update" or ."@type" == "Delete") and starts-with(lowercase(.object.category), "motors") (or local name of the motor category)
+
+let eventTypeTag = m:tag("event-type", m:taggify(."@type", "unknown", s:event-type-values()))
+let check-suite = "p10n.content-event"
+
+let items = .object.items[0]
+
+// execute all content checks
+content(.)
+
+// specific car vertical checks
+
++ c:check($check-suite, "car_manufacturer_not_null", c:check-not-null($items.manufacturer), $eventTypeTag, "critical")
++ c:check($check-suite, "car_mileage_not_null", c:check-not-null($items.mileage), $eventTypeTag, "critical")
++ c:check($check-suite, "car_model_not_null", c:check-not-null($items.model), $eventTypeTag, "critical")
++ c:check($check-suite, "car_registration_year_not_null", c:check-not-null($items.registrationYear), $eventTypeTag, "critical")
++ c:check($check-suite, "car_fuel_type_not_null", c:check-not-null($items.fuelType), $eventTypeTag, "critical")
++ c:check($check-suite, "car_vehicle_transmission_not_null", c:check-not-null($items.vehicleTransmission), $eventTypeTag, "critical")
++ c:check($check-suite, "car_color_not_null", c:check-not-null($items.color), $eventTypeTag, "critical")
++ c:check($check-suite, "car_engine_volume_not_null", c:check-not-null($items.engineVolume), $eventTypeTag, "critical")
+
++ c:check($check-suite, "car_engine_volume_unit_not_null", c:check-not-null($items.engineVolumeUnit), $eventTypeTag, "minor")
++ c:check($check-suite, "car_drive_wheels_not_null", c:check-not-null($items.driveWheels), $eventTypeTag, "minor")
++ c:check($check-suite, "car_number_of_doors_not_null", c:check-not-null($items.numberOfDoors), $eventTypeTag, "minor")

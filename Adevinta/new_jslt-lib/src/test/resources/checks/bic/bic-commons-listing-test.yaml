@@ -1,0 +1,98 @@
+tests:
+  - name: bic-commons-listing.jslt compiles and runs
+    type: compile
+    expression: |
+      import "checks/bic/bic-commons-listing.jslt" as c
+      c(.)
+
+  - name: bic-commons-listing.jslt check-object-category returns true if is not null and has the correct pattern
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_category_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_category_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-listing.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "Page",
+            "category": "Computadores y electronica > Consolas videojuegos y accesorios"
+          }
+        }
+      c:check-object-category($event, "bic.page-view", "page-view", {})
+  - name: bic-commons-listing.jslt check-object-url returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-listing.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "Page",
+            "url": null
+          }
+        }
+      c:check-object-url($event, "bic.page-view", "page-view", {})
+  - name: bic-commons-listing.jslt check-object-filters-adtype returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_filters_adtype_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-listing.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "Page",
+            "filters": {
+              "adType": null
+            }
+          }
+        }
+      c:check-object-filters-adtype($event, "bic.page-view", "page-view", {})
+  - name: bic-commons-listing.jslt check-object-filters-publishertype returns false if is null
+    expected:
+      - quality.check:
+          tags:
+            check-suite: bic.page-view
+            check-name: object_filters_publishertype_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons-listing.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "Page",
+            "filters": {
+              "publisherType": null
+            }
+          }
+        }
+      c:check-object-filters-publishertype($event, "bic.page-view", "page-view", {})

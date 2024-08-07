@@ -1,0 +1,23 @@
+import "lib/dates.jslt" as d
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+let tags = {}
+let check-suite = "milanuncios.ad_posted"
+
+let 60_min = 60 * 60
+
+def check-dates-diff(root, diff-in-seconds)
+   let published-date = d:string-to-date($root.published)
+   let creation-at-date = d:string-to-date($root.ad.audit.createdAt)
+   d:check-date-diff($published-date, $creation-at-date, $diff-in-seconds)
+
+def check-fields()
+    if (."@type" == "AdPosted")
+        c:check($check-suite, "published_not_null", c:check-not-null(.published), $tags, "critical")
+        + c:check($check-suite, "created_at_not_null", c:check-not-null(.ad.audit.createdAt), $tags, "critical")
+        + c:check($check-suite, "published_and_creation_at_diff_less_than_1_hour", check-dates-diff(., $60_min), $tags, "critical")
+    else
+        c:no-check()
+
+check-fields()

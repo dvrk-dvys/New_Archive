@@ -1,0 +1,344 @@
+tests:
+
+  - name: classified-ad-view.jslt compiles
+    type: compile
+    expression: |
+      import "checks/core-tagging-plan/classified-ad-view.jslt" as c
+      c(.)
+
+  - name: classified-ad-view.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: event_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: event_name_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: page_page_type_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: page_page_name_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_type_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_adtype_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_adtype_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_category_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_content_id_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_currency_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_location_address_locality_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_location_address_region_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_location_postal_code_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_price_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_publisher_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: object_url_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: provider_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: provider_product_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: device_device_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: tracker_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: androidapp
+            tracker-type: js
+            event-type: ad-view
+            check-suite: core_tagging_plan.classified_ad_view
+            check-name: published_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/core-tagging-plan/classified-ad-view.jslt" as c
+
+      // event got from https://github.mpi-internal.com/spt-dataanalytics/event-formats/blob/d3604512b5b117eb8095cd0708dd12b0e976508d/examples/events/page-view-classifiedad-marketplace.json
+      let event =
+      {
+        "@id": "2a3e79df-62e0-49c9-af9f-f3be11fa356f",
+        "@type": "View",
+        "actor": {
+          "spt:remoteAddress": "127.0.0.1"
+        },
+        "device": {
+          "acceptLanguage": "en-US",
+          "deviceType": "desktop",
+          "environmentId": "sdrn:schibsted:environment:a2029f7e-1a7f-46db-a683-b4f62e0ec9ad",
+          "jweIds": "eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4R0NNIn0.1rCvgZU-wfbZ2SaPjwtzbgbgrA4eMa7t.UA4RBtNGMww3s05l.LxNPW9VKQbmHMy1L1SrHtd3xZtRLsdIB7KYZXiEcXTFtNbXKMbm9aQhcajymFDMOWB_3DsYS2e_lp55-3ptpxvj9Ttg2Alw9D0whQlLgo5YTjSijWsk1jpnrcWA2HwyvHakfpI4jne9nBSOLS9vt_GlHV2IFqS7PW0ITjpSoXZBRJejzJtj7IZnnICuWJnU0RBplXJ6dZL199uB0AcVC7v46jO8IItEoA2eSrd3JRZFSvRb6S_244Sg.gNJrRPleXE011yjCOANVgg",
+          "screenSize": "1680x1050",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36",
+          "viewportSize": "1313x502"
+        },
+        "location": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.75",
+          "longitude": "73.98",
+          "timestamp": 1456919653000
+        },
+        "object": {
+          "@id": "sdrn:blocket:classified:66225237",
+          "@type": "ClassifiedAd",
+          "adType": "sell",
+          "category": "2000 > 2050",
+          "location": {
+            "@type": "PostalAddress",
+            "addressCountry": "Sweden",
+            "addressLocality": "Uppsala",
+            "postalCode": "75238",
+            "streetAddress": "Thunbergsvägen 3P"
+          },
+          "name": "Skänk + matsalsbord och 6 klädda stolar 40tal | Örebro",
+          "publisher": {
+            "@id": "sdrn:blocket:user:31372",
+            "@type": "Account",
+            "name": "Uppsala University"
+          },
+          "publisherType": "pro",
+          "url": "https://www.blocket.se/orebro/Skank___matsalsbord_och_6_kladda_stolar_40tal_66225237.htm?ca=8&w=1"
+        },
+        "pageViewId": "2a3e79df-62e0-49c9-af9f-f3be11fa356f",
+        "provider": {
+          "@id": "sdrn:schibsted:client:blocket",
+          "@type": "Organization",
+          "productType": "AndroidApp"
+        },
+        "published": "2016-04-21T12:34:14+00:00",
+        "schema": "http://schema.adevinta.com/events/tracker-event.json/237.json#",
+        "tracker": {
+          "eventBuilderVersion": "1.0.32",
+          "name": "Pulse Node.js SDK",
+          "type": "JS",
+          "version": "4.1.8-75ce0"
+        }
+      }
+      c($event)
+

@@ -1,0 +1,112 @@
+tests:
+
+  - name: messaging/backend-message-event-message.jslt compiles
+    type: compile
+    expression: |
+      import "checks/messaging/backend-message-event-message.jslt" as backend-message
+      backend-message(.)
+
+  - name: messaging/backend-message-event-message.jslt should generate valid metrics
+    expected:
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_body_is_not_empty
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_is_first_message_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_origin_is_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_id_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_is_first_message_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: messaging.backend.message-event-message-type
+            check-name: object_origin_is_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/messaging/backend-message-event-message.jslt" as backend-message
+
+      let event = {
+                     "@id":"41f2f804-33f3-4527-a56f-3fbedad392b4",
+                     "@type":"Send",
+                     "account":{
+                        "@id":"sdrn:willhaben:user:ad5cu374-1234-9921-5b56-e2c92a4930p9",
+                        "accountId":"ad5cu374-1234-9921-5b56-e2c92a4930p9"
+                     },
+                     "collectorHost":"collector.mpianalytics.com",
+                     "deployStage":"pro",
+                     "device":{
+                        "@type":"Device",
+                        "deviceType":"mobile",
+                        "environmentId":"sdrn:schibsted:environment:00000000-0000-4000-8000-000000000000",
+                        "userAgent":"okhttp/3.14.1"
+                     },
+                     "experiments":[
+                     ],
+                     "object":{
+                        "@id":"sdrn:willhaben:message:452bd350-59ee-11ea-a37d-0627478c41da",
+                        "@type":"Message",
+                        "attachments":[
+                        ],
+                        "body":"Guten Morgen!",
+                        "clientMessageId":"aeba5865-5213-4d37-8c9e-faee586f4e77",
+                        "createdAt":"2020-02-28T05:50:48+00:00",
+                        "inReplyTo":{
+                           "@id":"sdrn:willhaben:classified:317bf02a-055a-4ebc-a04c-b80186fc3b9f",
+                           "@type":"ClassifiedAd"
+                        },
+                        "isFirstMessage":false,
+                        "origin":"api",
+                        "receiverConversationId":"sdrn:willhaben:conversation:TYy_goJfkjvKCXrHWqS-SD0RYymtbg_yzzlqMq4oEiEkZsqzCsj4BTQiUmnL9Nb6k-AdNlcrojen2BcRRNyDAwgqmcBKjWOwA8bgfTff9Z7s8JTW-FL7uSuvVUf9Px_9LINfvQgdFwTcvuntEKa5wDtBvHVJ5mdrI3kq7WnSlSVBFKeZta_b5WnIfYLEflOFInUaYX2rZ8ZmWzj_kxhpr8-O4VbglQPmf8cvhJN-esg",
+                        "senderConversationId":"sdrn:willhaben:conversation:iXKKSK8Ap6YkyzL8_kiPd9VQZTLUcA5Wa9jfHm8g4BrMha8Z-QKULJI6i_jz0IUKbJP9RhKH82pGX84xp9lZG8_dTDRNqAkF4T7nNhFp9hqunJfCqUD2TwKJHEG4pQIRGqn7UynrKyy-Of_0G-OAJyxvhChqQmIlq3vlsMa0N-6ClZGb_8A5wCJrPqXQe947K79KQGaudn8cTNyycI1HNe_CzV6y1LO8GHwdq5XBD_M",
+                        "subject":"Anfrage zu Elektromotor 11kW 380/660V 1460U/ min willhaben-Code: 364214556"
+                     },
+                     "provider":{
+                        "@id":"sdrn:schibsted:client:willhabenat",
+                        "@type":"Organization",
+                        "component":"messaging",
+                        "productTag":"",
+                        "productType":"AndroidApp"
+                     },
+                     "published":"2020-02-28T05:50:49+00:00",
+                     "schema":"http://schema.schibsted.com/events/backend-message-event.json/46.json",
+                     "target":{
+                        "@id":"sdrn:willhaben:user:6832t845-584f-4c23-b4n7-d56a3897d9e5",
+                        "accountId":"6832t845-584f-4c23-b4n7-d56a3897d9e5"
+                     }
+                  }
+      backend-message($event)

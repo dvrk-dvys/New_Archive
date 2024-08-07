@@ -1,0 +1,30 @@
+import "checks/bic/bic-commons.jslt" as bic-commons
+import "checks/bic/bic-commons-tracker-event.jslt" as bcte
+import "checks/bic/bic-commons-uielement.jslt" as bcuo
+
+let apply-to = "ui-element-click" // Click UIElement
+let check-suite = "bic.ui_element-click"
+
+let tags = bic-commons:custom-tags(.)
+
+bic-commons:check-count-all($check-suite, $tags)
++ bic-commons:check-suite-is-applied($check-suite, ., $apply-to, $tags)
++ bcte:check-type(., $check-suite, $tags)
++ bcte:check-object-type(., $check-suite, $tags)
++ bic-commons:check-id(., $check-suite, $apply-to, $tags)
++ bcte:check-name(., $check-suite, $apply-to, $tags)
++ bcte:check-page-page-type(., $check-suite, $apply-to, $tags)
++ bcte:check-page-page-name(., $check-suite, $apply-to, $tags)
++ bcte:check-provider-id(., $check-suite, $apply-to, $tags)
++ bcte:check-provider-product-type(., $check-suite, $apply-to, $tags)
++ bcte:check-actor-id(., $check-suite, $apply-to, $tags)
++ bcuo:check-object-id(., $check-suite, $apply-to, $tags)
++ bcuo:check-object-url(., $check-suite, $apply-to, $tags)
++ bcte:check-origin-url(., $check-suite, $apply-to, $tags)
++ bcte:check-published(., $check-suite, $apply-to, $tags)
++ bcte:check-device-environment-id(., $check-suite, $apply-to, $tags)
++ bcte:check-device-jwe-ids(., $check-suite, $apply-to, $tags)
++ bcte:check-device-device-type(., $check-suite, $apply-to, $tags)
+// FIXME: this does not exists
+// + bcte:check-device-is-bot(., $check-suite, $apply-to, $tags)
++ bcte:check-tracker-type(., $check-suite, $apply-to, $tags)

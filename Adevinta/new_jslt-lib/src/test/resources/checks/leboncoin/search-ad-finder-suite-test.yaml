@@ -1,0 +1,56 @@
+tests:
+
+  - name: search-ad-finder-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/leboncoin/search-ad-finder-suite.jslt" as f
+      f(.)
+
+  - name: search-ad-finder-suite.jslt checks valid search ad finder event
+    expected:
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_ad_finder
+            check-name: event_count
+            check-result: 'true'
+            check-impact: critical
+            platform: android
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_ad_finder
+            check-name: user_id_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: android
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_ad_finder
+            check-name: user_agent_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: android
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_ad_finder
+            check-name: event_id_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: android
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_ad_finder
+            check-name: user_id_and_user_agent_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: android
+          delta: 1
+    expression: |
+      import "checks/leboncoin/search-ad-finder-suite.jslt" as search-ad-finder-checks
+
+      let event =
+      {"event_timestamp":1605171694,"event_datetime":"2020-11-12T09:01:34Z","event_id":"a9c1f172-24c5-11eb-b7e6-0efb1dccc769","remote_addr":"92.184.107.99","store_id":"1404905","user_agent":"LBC;Android;10;EML-L09;phone;3c649d80b8d550a3;wwan;5.10.5.0;510500;0","user_id":"19ea63b3-f550-43a1-834e-aea15745c98d","hash":7047607596975111242,"query_string":"","category":28,"region":12,"cities":["Domont_95330"],"enums":{"ad_type":["offer"],"animal_type":["1"]},"ranges":{"price":{"max":400}},"locations":[{"locationType":"city","label":"Domont (95330)","city":"Domont","zipcode":"95330","department_id":"95","region_id":"12","latitude":49.02896,"longitude":2.32487,"radius":100000,"default_radius":2263}]}
+      search-ad-finder-checks($event)

@@ -1,0 +1,411 @@
+tests:
+  - name: delivery-requested-suite.jslt generates metrics for a valid event
+    expected:
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: count_all
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: suite_is_applied
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: id_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: page_page_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: page_page_name_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_type_is_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_category_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_category_follows_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_publishertype_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_loc_addloc_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_loc_addreg_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_inreplyto_adtype_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: object_url_is_not_null
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: provider_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: provider_id_sdrn_pattern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: provider_product_type_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: actor_id_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: origin_url_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: published_is_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: published_valid_format
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: device_environment_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: device_environment_id_valid_format
+            check-result: 'false'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: device_jwe_ids_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: device_device_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: request
+            object-type: delivery
+            device-type: desktop
+            tracker: js
+            check-suite: bic.delivery-request
+            check-name: tracker_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/delivery-requested-suite.jslt" as c
+
+      let event =
+        {
+          "name":"Delivery Requested",
+          "@type":"Request",
+          "object":{
+            "@id":"sdrn:kufarby:delivery:1547871724",
+            "@type":"Delivery",
+            "inReplyTo":{
+              "@id":"sdrn:kufarby:classified:1253278",
+              "@type":"ClassifiedAd",
+              "category":"maison > electromenager",
+              "adType":"offres",
+              "publisherType":"private",
+              "location":{
+              "addressLocality":"neuille_pont_pierre",
+              "addressRegion":"centre"
+            }
+          }
+        },
+        "page": {
+          "pageType": "payment_delivery",
+          "pageName": "page name free text"
+        },
+        "provider": {
+          "@id": "sdrn:schibsted:client:kufarby",
+          "productType": "Web"
+        },
+        "actor": {
+          "@id": "sdrn:kufarby:user:04332237"
+        },
+        "origin": {
+          "url": "https://www.facebook.com/"
+        },
+        "published": "2019-07-16T08:52:31.947Z",
+        "device": {
+          "deviceType":"desktop",
+          "environmentId":"sdrn:schibsted:environment:6ada8035-ae0a.....",
+          "jweIds":"eyJpc3N1ZzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQWRBdCI6IjIwMjAtMDUtMTJUMTE6NDg6MDRaIiwiZW5jIjoiQTEyOENCQy1IU..zob1DBB983204982VVfhw.gjfvJ9BvOdxNoG1xhRWtV3W8gnJkEwxPy2CywxSSO_tzc-UC9ELPMIO4dPlXZk3kqM_zdSNFtijl1WxlZhIufoc8EeoAlH8wYy6lXCBKntu9WIxCRg35KXvJM77xSbsDCpECdZrnE896YKU4HlJIrtLNYY8bJy-mneLEPCicaKCPZ7tAa3uWDmWAizuOicicOUBvQsB-U0ciUAUH7sDKzJa08c3FlCCtYVoXSY2PrO4.g7fKaWvOWSNlR5bFRAKcqw",
+          "isBot":"False"
+        },
+        "tracker": {
+          "type":"JS"
+        }
+      }
+      c($event)

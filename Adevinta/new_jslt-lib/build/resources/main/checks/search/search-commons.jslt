@@ -1,0 +1,110 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as schemas
+import "checks/commons.jslt" as c
+import "lib/commons.jslt" as cc
+
+def base-tags()
+  let providerTag = m:tag("provider", m:taggify(cc:canned-client-id(.provider."@id"), "unknown", schemas:provider-ids()))
+
+  let productTypeTag = m:tag("provider_producttype", m:taggify(.provider.productType, "unknown", [
+                "Web",
+                "ResponsiveWeb",
+                "M-Site",
+                "AndroidApp",
+                "iOSApp",
+                "AndroidTabletApp",
+                "iPadApp",
+                "WindowsPhoneApp",
+                "HybridApp",
+                "ReactNativeApp",
+                "UniversalWindowsPlatform",
+                "Other",
+                "Undefined"
+            ]))
+  let versionFull = capture(.provider.product, "^.+:(?<version>.*):.*").version
+  let versionMajor = split($versionFull, "\\.")[0]
+  if (number($versionMajor) > 10) let versionMajor = ">10"
+  let versionTag = m:tag("version",m:taggify($versionMajor, "unknown", ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", ">10"]))
+  let teamTag = m:tag("team", "search")
+
+  $providerTag + $productTypeTag + $teamTag + $versionTag
+
+def check-search-id(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.search_id_is_present", c:check-not-null(.search."@id"), $user-tags, $impact)
+     +c:check($check-suite, "search.commons.search_id_is_valid", (is-string(.search."@id") and c:check-not-empty(.search."@id")) or c:check-null(.search."@id"), $user-tags, "critical")
+
+def check-search-field-type(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.search_type_is_present", c:check-not-null(.search."@type"), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.search_type_is_valid", (.search."@type" == "SearchMetadata") or c:check-null(.search."@type"), $user-tags, "critical")
+
+def check-search-source(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.search_source_is_present", c:check-not-null(.search.source), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.search_source_is_valid",test(.search.source, "^(MainSearch|SearchComponent( >[a-z A-z 0-9]*){0,1})$") or c:check-null(.search.source),$user-tags, "critical")
+
+def check-search-all-mandatory(check-suite,user-tags,impact)
+    check-search-id($check-suite,$user-tags,$impact)+check-search-field-type($check-suite,$user-tags,$impact)+check-search-source($check-suite,$user-tags,$impact)
+
+def check-search-rank(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.search_rank_is_present", c:check-not-null(.search.rank), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.search_rank_is_valid_number", c:check-number-ge-0(.search.rank) or c:check-null(.search.rank), $user-tags, "critical")
+
+def check-id(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.id_is_present", c:check-not-null(."@id"), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.id_is_valid", is-string(."@id") or c:check-null(."@id"), $user-tags, "critical")
+
+def check-object-category(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.object_category_is_present", c:check-not-null(.object.category), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.object_category_is_valid", c:check-mediaasset-category(.object.category) or c:check-null(.object.category), $user-tags, "critical")
+
+def check-pageType(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.pageType_is_present", c:check-not-null(.page.pageType), $user-tags, $impact)
+    +c:check($check-suite,"search.commons.pageType_is_valid", c:check-one-of(.page.pageType,[
+                            "ad_detail",
+                            "ad_deletion",
+                            "ad_edit",
+                            "ad_insertion",
+                            "delivery_payments",
+                            "favourite_ads",
+                            "frontpage",
+                            "gallery",
+                            "help",
+                            "homepage",
+                            "landingpage",
+                            "legal",
+                            "listing",
+                            "messaging_chat",
+                            "my_account",
+                            "other",
+                            "premium_features",
+                            "saved_search",
+                            "search",
+                            "signup_login",
+                            "similar_ads",
+                            "shop"
+            ]) or c:check-null(.page.pageType),  $user-tags, "critical")
+
+def check-originPageType(check-suite,user-tags,impact)
+    c:check($check-suite, "search.commons.origin_pageType_is_present", c:check-not-null(.origin.page.pageType), $user-tags, $impact)
+    +c:check($check-suite, "search.commons.origin_pageType_is_valid", c:check-one-of(.origin.page.pageType,[
+                "ad_detail",
+                "ad_deletion",
+                "ad_edit",
+                "ad_insertion",
+                "delivery_payments",
+                "favourite_ads",
+                "frontpage",
+                "gallery",
+                "help",
+                "homepage",
+                "landingpage",
+                "legal",
+                "listing",
+                "messaging_chat",
+                "my_account",
+                "other",
+                "premium_features",
+                "saved_search",
+                "search",
+                "signup_login",
+                "similar_ads",
+                "shop"]) or c:check-null(.origin.page.pageType), $user-tags, "critical")

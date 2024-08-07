@@ -1,0 +1,60 @@
+{
+  "namespace": "leboncoin.orderv2",
+  "type": "record",
+  "name": "action",
+  "description": "Order is the object at the core of the payment operations, orderv2.action is the event that is emitted at every change on an order. Note: this is the evolution of schema leboncoin.order.action which is being deprecated.",
+  "fields": [
+    {"name": "order_id", "type": "string", "doc": "A unique ID that identifies that order"},
+    {"name": "merchant_id", "type": ["null", "string"], "default": null, "doc": "the identifiant from business (eg. deal_id, ad_id, reservation_id)"},
+    {"name": "event_datetime", "type": "string", "doc": "The time of the event, following RFC 3339"},
+    {"name": "user_id", "type": ["null", "string"], "doc": "The ID of the user that is making the order. Can be null if the account has not been created yet."},
+    {"name": "user_ip", "type": "string", "default": "0.0.0.0", "doc": "The IP of the user that is paying the order."},
+    {"name": "user_name", "type": "string", "doc": "The full name of the user or the company name"},
+    {"name": "user_mail", "type": "string", "doc": "The mail of the user"},
+    {"name": "user_siren", "type": ["null", "string"], "doc": "The SIREN of the company"},
+    {"name": "order_type", "type": ["null", "string"], "default": null, "doc": "The order type"},
+    {"name": "user_address", "type": "string", "doc": "The address of the user"},
+    {"name": "user_type", "type": {"type": "enum", "name": "order_user_type", "symbols": ["private", "pro"]}, "default": "private", "doc": "The user type: private or pro"},
+    {"name": "total", "type": "int", "doc": "The current total amount of the order, tax included, in Euro cents. This is always the sum of the price of the items."},
+    {"name": "total_no_tax", "type": "int", "doc": "The current total amount of the order, tax excluded, in Euro cents"},
+    {"name": "tax_rate", "type": "float", "doc": "The rate of the TVA, in percent, e.g. 20.00"},
+    {"name": "autocapture", "type":"boolean", "default": true, "doc": "If the authorize and capture can be done in one API call"},
+    {"name": "bypass_3ds", "type": "boolean", "default": false, "doc": "If 3DS payment authorization should be skipped or not"},
+    {"name": "items", "type": {
+      "type": "array",
+      "items": {
+        "type": "record",
+        "name": "item",
+        "namespace": "leboncoin.orderv2.action",
+        "fields": [
+          {"name": "description", "type": "string", "doc": "The human-oriented description of the item as printed on the bill"},
+          {"name": "item_type", "type": {"type": "map", "values": "string"}, "doc": "A map of string to string containing the type of the items."},
+          {"name": "price", "type": "int", "doc": "The price of this item, tax included, in Euro cents"},
+          {"name": "price_no_tax", "type": "int", "doc": "The price of this item, tax excluded, in Euro cents"},
+          {"name": "tax_rate", "type": "float", "doc": "The rate of the TVA, in percent, e.g. 20.00"},
+          {"name": "metadata", "type": "string", "doc": "Any extra information about this item, as a JSON string. Always ignored by the payment service."},
+          {"name": "target_user", "type": ["null", "string"], "default": null, "doc": "The user_id of the user where money must be sent (only used for P2P payments)."},
+          {"name": "target_entity", "type": ["null", "string"], "default": null, "doc": "The entity name where money must be sent (only used for P2P payments)."}
+        ]
+      }
+    }, "doc": "The items that make this order"},
+    {"name": "payments", "type": {
+      "type": "array",
+      "items": {
+        "type": "record",
+        "name": "payment",
+        "namespace": "leboncoin.orderv2.action",
+        "fields": [
+          {"name": "type", "type": "string", "doc": "The payment method. Part of a pre-defined enum and computer-processable, e.g. CB, CREDITS, COINS"},
+          {"name": "paid", "type": "int", "doc": "The part of the order that is completed by this payment, in Euro cents, tax included. The sum of the paid fields from all the payment objects will always be equal to the sum of the price fields from all the service objects"},
+          {"name": "revenue", "type": "int", "doc": "The actual revenue that is generated from this payment. Will be the same as paid for CB but can be different for CREDITS and COINS because they can be bought with a discount."},
+          {"name": "status", "type": "string", "doc": "The status of this payment"},
+          {"name": "reference", "type": ["null", "string"], "doc": "The external reference of this payment, e.g. the pspreference. null when not applicable."},
+          {"name": "metadata", "type": "string", "doc": "Any extra information about this payment, as a JSON string"},
+          {"name": "updated", "type": "string", "default": "\"\"", "doc": "the last time a payment was updated in rfc-3339"}
+        ]
+      }
+    }, "doc": "The payments that are used to pay for a specific service"},
+    {"name": "status", "type": {"type": "enum", "name": "order_status", "symbols": ["created", "authorization_pending", "requested_3ds", "authorized", "canceled", "refunded", "refund_failed", "pending", "finished", "partial_refund_failed", "payout_completed", "chargebacked", "chargeback_reversed"]}, "doc": "The current status of the order"}
+  ]
+}

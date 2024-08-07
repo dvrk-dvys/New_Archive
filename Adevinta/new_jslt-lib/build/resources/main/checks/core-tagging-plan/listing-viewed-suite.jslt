@@ -1,0 +1,3 @@
+import "checks/core-tagging-plan/listing-viewed.jslt" as listing-viewed
+
+listing-viewed(.)

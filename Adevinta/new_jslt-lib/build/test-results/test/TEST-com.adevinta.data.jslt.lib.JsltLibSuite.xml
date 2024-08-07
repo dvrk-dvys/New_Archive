@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.adevinta.data.jslt.lib.JsltLibSuite" tests="0" skipped="0" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="Administradors-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <system-out><![CDATA[==== Testing the following directories : List(./checks/, ./lib/, ./checks//p10n/, ./checks//willhaben/, ./checks//kufar/, ./checks//cognition/, ./checks//core-tagging-plan/, ./checks//spain/, ./checks//panda/, ./checks//houston/, ./checks//yapo/, ./checks//search/, ./checks//leboncoin/, ./checks//bic/, ./checks//data-platform/, ./checks//messaging/, ./checks//spain//milanuncios/, ./checks//panda//ad-stats-checks/, ./checks//panda//specific-checks/, ./checks//panda//ad-lifecycle-checks/, ./checks//panda//products/, ./checks//panda//consumer-checks/, ./checks//panda//contact-center-checks/, ./checks//leboncoin//orderv2/, ./checks//leboncoin//search/, ./checks//bic//search/) ====
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

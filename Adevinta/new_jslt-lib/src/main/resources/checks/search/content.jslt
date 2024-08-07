@@ -1,0 +1,8 @@
+import "lib/metrics.jslt" as m
+import "checks/commons.jslt" as c
+
+let user-tags = {}
+let check-suite = "search.content"
+
+c:check($check-suite, "ad_id_not_null", c:check-not-null(.ad_id), $user-tags, "critical")
++ c:check($check-suite, "category_is_valid", c:check-one-of(.category, ["coche", "casa"]), $user-tags, "critical")

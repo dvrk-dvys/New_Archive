@@ -1,0 +1,33 @@
+tests:
+
+  # This is just testing that the wrappers do compile an run, proper testing is still done in the wrapped suites.
+
+  - name: content-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/search/content-suite.jslt" as c
+      c(.)
+      
+  - name: search-adview-event-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/search/search-adview-event-suite.jslt" as c
+      c(.)
+      
+  - name: search-event-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/search/search-event-suite.jslt" as c
+      c(.)
+      
+  - name: search-lead-event-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/search/search-lead-event-suite.jslt" as c
+      c(.)
+      
+  - name: search-listing-event-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/search/search-listing-event-suite.jslt" as c
+      c(.)

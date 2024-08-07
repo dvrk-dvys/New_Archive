@@ -1,0 +1,156 @@
+tests:
+
+  - name: willhaben-specific-checks.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/specific-checks/willhaben-specific-checks-suite.jslt" as p
+      p(.)
+
+  - name: willhaben-specific-checks-suite.jslt generates metrics for a valid Engagement / UIElement event
+    expected:
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: object_not_null
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: object_id_not_null
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: validity
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: object_id_format_valid
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: target_not_null
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: target_id_is_available
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: validity
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: target_id_is_valid
+              check-result: 'true'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: publisher_is_available
+              check-result: 'false'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: availability
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: publisher_id_is_available
+              check-result: 'false'
+              check-impact: blocker
+            delta: 1
+        - quality.check:
+            tags:
+              provider: sdrn:schibsted:client:willhabenat
+              check-type: validity
+              obj-type: ui-element-engage
+              check-suite: panda.willhaben_specific
+              check-name: publisher_id_is_valid
+              check-result: 'false'
+              check-impact: blocker
+            delta: 1
+    expression: |
+      import "checks/panda/specific-checks/willhaben-specific-checks-suite.jslt" as p
+      let event =
+      {
+        "@id":"127b5d15-86a1-4c4c-b515-b9a91579e60a",
+        "@type":"Engagement",
+        "actor":{
+        "@id":"sdrn:iad.willhaben.at:user:92cdabae-5f75-4a3c-bf98-c82a3667e9e5"
+        },
+        "device":{
+        "acceptLanguage":"en-GB",
+        "jweIds":"eyJpc3N1ZWRBdCI6IjIwMjAtMTAtMjBUMTM6MDg6MTZaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..v6f7Xh1voPwfKHnLmpdb6w.RlB5vcqQPmJWxG5OEEhtwlfXvapzUeneQsYtLCwpra2uiC5-IY_OySKMADVXCVoYi30_gqWxjFls_Ll3cixDdSVkzSLmIQfhqwoX0-KOUJ8VeLlY8X9dtVUqmKtF150fpzwG7qfHYo7URsXb338PQtqa9bMr9PthJ0Ro4qQEcO6kweLrErHjdLaE3ax4uyx8gVXvD_V0ixdJxslFYmnFh0ajy-8u3I5rsTTiQ1TU002AzMHbT1UZbvivQViDf1hqzo-inuUUbV50SiuZUBpcF2bsNoiYeTD_O9Wg6TCYP-A.FVZMZgZVrKcbCorMkoaPxw",
+        "viewportSize":"1026x858",
+        "screenSize":"1680x1050",
+        "environmentId":"sdrn:schibsted:environment:3501c7c8-380a-46f3-b298-54663e9c1274",
+        "deviceType":"desktop",
+        "localStorageEnabled":true,
+        "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+        "@type":"Device"
+        },
+        "object":{
+        "@id":"sdrn:willhabenat:classified:job12345:element:topAdResultList",
+        "@type":"UIElement"
+        },
+        "action":"Click",
+        "provider":{
+        "@type":"Organization",
+        "@id":"sdrn:schibsted:client:willhabenat",
+        "productType":"Web"
+        },
+        "target":{
+        "@type":"ClassifiedAd",
+        "@id":"sdrn:willhabenat:classified:job12378063",
+        "adId":12378063,
+        "contentId":"12378063",
+        "publicationDate":"2019-11-21T14:37:35Z",
+        "name":"Lehre zum/r Einzelhandelskaufmann/frau - Schwerpunkt Baustoffhandel / Baumarkt",
+        "url":"https://www.willhaben.at/jobs/job/lehre-zum-r-einzelhandelskaufmann-frau-schwerpunkt-baustoffhandel-baumarkt/12378063?pos=1",
+        "adType":"jobOffer",
+        "publisherType":"pro",
+        "publisher":{},
+        "insertionType":"import",
+        "category":"Jobs > Vertrieb/Handel > Einzelhandel",
+        "categories":{},
+        "location":{}
+        },
+        "published":"2015-06-05T15:22:23.1590Z",
+        "schema":"http://schema.adevinta.com/events/engagement-event.json/296.json#",
+        "tracker":{
+        "@type":"Tracker",
+        "name":"Pulse JS Tracker v0.9.1",
+        "type":"JS",
+        "version":"0.9.1"
+        }
+        }
+      p($event)

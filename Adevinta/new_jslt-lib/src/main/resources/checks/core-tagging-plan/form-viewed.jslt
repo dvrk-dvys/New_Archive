@@ -1,0 +1,24 @@
+import "checks/commons.jslt" as c
+import "checks/core-tagging-plan/commons.jslt" as core-commons
+
+// https://docs.mpi-internal.com/data-and-insight/insights-docs/10.Tagging%20Guide/tagging-plans/10.core-events/form-viewed/
+// pre-condition: contains("tracker-event.json", .schema) and .object."@type" == "Form" and @type == "View"
+
+
+let check-suite = "core_tagging_plan.form_viewed"
+let user-tags = core-commons:common-tags()
+
+
+c:check($check-suite, "event_id_not_null", c:check-not-null(."@id"), $user-tags, "blocker")
++ c:check($check-suite, "event_id_valid_format", c:check-uuid-v4(."@id"), $user-tags, "blocker")
++ c:check($check-suite, "event_type_not_null", c:check-not-null(."@type"), $user-tags, "blocker")
++ c:check($check-suite, "event_name_not_null", c:check-not-null(.name), $user-tags, "critical")
++ c:check($check-suite, "page_page_type_not_null", c:check-not-null(.page.pageType), $user-tags, "critical")
++ c:check($check-suite, "page_page_name_not_null", c:check-not-null(.page.pageName), $user-tags, "critical")
++ c:check($check-suite, "object_id_not_null", c:check-not-null(.object."@id"), $user-tags, "blocker")
++ c:check($check-suite, "object_id_valid_format", c:check-sdrn-form(.object."@id"), $user-tags, "blocker")
++ c:check($check-suite, "object_type_not_null", c:check-not-null(.object."@type"), $user-tags, "blocker")
++ c:check($check-suite, "object_type_valid", c:check-one-of(.object."@type", ["Form"]), $user-tags, "blocker")
++ c:check($check-suite, "object_action_not_null", c:check-not-null(.object.action), $user-tags, "critical")
++ c:check($check-suite, "object_stepname_not_null", c:check-not-null(.object.stepName), $user-tags, "critical")
++ c:check($check-suite, "object_stepnumber_not_null", c:check-not-null(.object.stepNumber), $user-tags, "critical")

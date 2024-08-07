@@ -1,0 +1,46 @@
+> ROOT
+action :
+ - event_datetime (str) => RFC 339? OK
+ - user_ip = ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ OK
+ - user_mail = ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$ OK
+ - order_type = in (ad_job, credits,
+                    ad_action, vacation_rental,
+                    p2p, auto, ad) OK
+
+ SELECT order_type, COUNT(*)
+ FROM datalake.payment_order_action_public
+ where event_date in DATE '2020-05-10'
+ group by order_type
+
+total no tax rate tax = total. OK
+
+> ITEMS
+
+item_type not empty OK
+
+ratio OK
+
+Est ce que c'est possible de voir si : somme price dans items = total tout court au dessus action OK
+
+> PAYEMENT
+
+type in (CARD, CREDIT)
+
+status in (AUTHORIZATION_PENDING
+                  FINISHED
+                  PAYOUT_COMPLETED
+                  PENDING
+                  REQUESTED_3DS
+                  PARTIAL_REFUND_FAILED
+                  CANCELED
+                  AUTHORIZED
+                  REFUND_FAILED
+                  CHARGEBACKED
+                  REFUNDED
+                  CHARGEBACK_REVERSED
+                  CREATED) OK
+
+updated datetime check OK
+
+? pas d'évenement depuis quand.
+? count general

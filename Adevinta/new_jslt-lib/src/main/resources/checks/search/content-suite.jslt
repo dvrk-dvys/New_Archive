@@ -1,0 +1,3 @@
+import "checks/search/content.jslt" as content
+
+content(.)

@@ -1,0 +1,132 @@
+
+
+// Returns a delta value if the given object is not null, otherwise returns 0.
+// Delta value is the given object if it is a number, otherwise the given default.
+
+def delta-with-default(obj, default)
+    if ($obj)
+        if (is-number($obj)) $obj else $default
+    else
+        0
+
+
+
+// Works as delta-with-default with default value 1.
+
+def delta(obj) delta-with-default($obj, 1)
+
+
+
+// Generates a metric object which is understood by Duratro Metrics
+// Resulting object is as follows:
+//
+// {
+//     suffix: {
+//         delta: delta-with-default(delta-obj, delta-default),
+//         tags: {
+//             tag-key: tag-value
+//         }
+//     }
+// }
+//
+// Note tag key value pair is optional, so they will be set just if both are not null
+// and both are string
+// Note tag-key and tag-value are lowercased
+//
+// In the case of _metric2, a tag object is given resulting in the following object
+//
+// {
+//     suffix: {
+//         delta: delta-with-default(delta-obj, delta-default),
+//         tags: tag-object
+//     }
+// }
+//
+// These method are a sort of private methods. There are others, syntactic sugar
+// of this, to be used instead.
+
+def _metric(suffix, delta-obj, delta-default, tag-key, tag-value)
+    _metric2($suffix, $delta-obj, $delta-default, tag($tag-key, $tag-value))
+
+def _metric2(suffix, delta-obj, delta-default, tag-object)
+    let d = {
+        "delta": delta-with-default($delta-obj, $delta-default)
+    }
+    let t = { "tags": $tag-object }
+    let dt = $d + $t
+
+    let s = { "s": $suffix }
+    {for ($s)
+        .value : $dt
+    }
+
+
+
+// Empty metric
+
+def no-metric() {}
+
+
+
+// Increases the metric with the given suffix
+// if and only if:
+// - delta is a number, then metric is increased by delta
+// - or it is a non-null json value, object or array, then metric is increased by one
+
+def metric(suffix, delta)
+    _metric($suffix, $delta, 1, null, null)
+
+
+
+// Same as metric. Additionally metric is tagged with the given tag and key.
+// Strongly recommended to use taggify for the compute the tag-value
+
+def tagged-metric(suffix, delta, tag-key, tag-value)
+    _metric($suffix, $delta, 1, $tag-key, $tag-value)
+
+
+
+// Same as metric. Additionally metric is tagged with the given tag object.
+// Strongly recommended to use 'taggify' and 'tag' for the composition of tag objects.
+
+def multi-tagged-metric(suffix, delta, tag-object)
+    _metric2($suffix, $delta, 1, $tag-object)
+
+
+
+// Returns a tag value, which value is returned depends on given arguments:
+// - tag-value: it will be returned if not null and string, otherwise
+// fallback-value is returned
+// - fallback-value: tag value to be returned if conditions to return
+// tag-value are not meet
+// - whitelisted-values: a non-null array is expected;
+// tag-value must be one of the whitelisted-values, otherwise
+// fallback-value is returned
+
+def taggify(tag-value, fallback-value, whitelisted-values)
+    if ($tag-value and is-string($tag-value))
+        if ($whitelisted-values and is-array($whitelisted-values))
+            if (contains($tag-value, $whitelisted-values))
+                $tag-value
+            else
+                $fallback-value
+        else
+            error("'whitelisted-values' is expected to be a non-null array in 'taggify'")
+    else
+        $fallback-value
+
+
+
+
+// Creates a tag object from the given key value pair
+// It is required that tag key and value both are non-null strings
+// Resulting tag object is in the form of: '{ tag-key : tag-value }'
+// Lowercase is applied to both tag key and value
+
+def tag(tag-key, tag-value)
+    if ($tag-key and $tag-value and is-string($tag-key) and is-string($tag-value))
+        // no support for dynamic keys in JSLT so this workaround
+        // https://github.com/schibsted/jslt/issues/55
+        let t = [ { "k": $tag-key, "v": $tag-value } ]
+        { for ($t) lowercase(.k): lowercase(.v) }
+    else {}

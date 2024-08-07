@@ -1,0 +1,33 @@
+import "checks/commons.jslt" as c
+import "checks/bic/bic-commons.jslt" as bc
+
+// Common checks for Listing object
+
+def check-object-category(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_category_is_not_null", c:check-not-null($event.object.category), $tags, "critical")
+      + c:check($check-suite, "object_category_pattern", c:check-mediaasset-category($event.object.category), $tags, "critical")
+   )
+
+def check-object-url(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_url_is_not_null", c:check-not-null($event.object.url), $tags, "critical")
+   )
+
+def check-object-filters-adtype(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_filters_adtype_is_not_null", c:check-not-null($event.object.filters.adType), $tags, "critical")
+   )
+
+def check-object-filters-publishertype(event, check-suite, apply-to, tags)
+   bc:check-if-type(
+      $event,
+      $apply-to,
+      c:check($check-suite, "object_filters_publishertype_is_not_null", c:check-not-null($event.object.filters.publisherType), $tags, "critical")
+   )

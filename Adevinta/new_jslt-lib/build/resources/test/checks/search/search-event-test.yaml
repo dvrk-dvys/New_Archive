@@ -1,0 +1,52 @@
+tests:
+
+  - name: search-event.jslt compiles
+    type: compile
+    expression: |
+      import "checks/search/search-event.jslt" as s
+      s(.)
+
+  - name: search-event.jslt generates metrics for a valid event implementing the search tagging plan
+    expected: 
+      - quality.check:
+          tags:
+            check-suite: search.search_event
+            check-name: search_tag_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.search_event
+            check-name: search_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.search_event
+            check-name: search_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: search.search_event
+            check-name: search_source_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/search/search-event.jslt" as s
+      let search_event = 
+      {
+        "@id": "event_id",
+        "search": {
+          "@id": "sdrn:jofogashu:search:ad755c0f-8104-4ec9-accc-be460d581153",
+          "@type": "SearchMetadata",
+          "rank": 1,
+          "source": "MainSearch"
+        }
+      }
+
+      s($search_event)

@@ -1,0 +1,1514 @@
+tests:
+
+  - name: pulse-base-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      p(.)
+
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-view events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_categories_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_categories_localid_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-view
+            check-suite: panda.pulse-base
+            check-name: object_categories_localname_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+        "actor": {
+          "@id": "sdrn:subito.it:user:22601563",
+          "spt:userId": "sdrn:subito.it:user:22601563",
+          "spt:remoteAddress": "37.161.4.231"
+        },
+        "device": {
+          "environmentId": "sdrn:schibsted:environment:b2e1f030-980d-47c4-a5f4-23fa9b486d29",
+          "isBot": false,
+          "screenSize": "720x1280",
+          "userAgent": "Android-Pulse-Tracker/7.5.1",
+          "networkConnectivity": {
+            "networks": [
+              {
+                "networkType": "mobile",
+                "networkState": "connected"
+              }
+            ],
+            "@type": "NetworkConnectivity"
+          },
+          "@type": "Device",
+          "jweIds": "eyJpc3N1ZWRBdCI6IjIwMTktMDQtMjdUMDM6NTg6MjJaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..2Jbins0X5C7IBBpJ70Kpog.zxc3HDrTzuz9Rvjs2BXR1MjbL7OR0_vbkcr3pxw7iaOLSi63n1EukTs0uAW1h5GMIfDd02weJqo3qrUa-Gty0QwcQxjGp9_vfecAhHyRO7ceKKBYQRK4WOIdpiAGWNMhNuYPZEAMMPcTAW_ui4QiKiFF_FkWkQ3QHxox0fauvuC9kq5QVEpCcJGIjdUWJ6BJ.YAXiUTy1pp-l5O0a_2WzaQ",
+          "deviceType": "mobile",
+          "hardware": "samsungexynos7870",
+          "manufacturer": "samsung",
+          "model": "SM-J530F",
+          "osType": "Android",
+          "osVersion": "9",
+          "product": "j5y17ltexx",
+          "release": "9",
+          "sdkVersion": "28"
+        },
+        "object": {
+          "@id": "sdrn:subito:classified:id:ad:398123871:list:357009344",
+          "name": "Regalo frigorifero",
+          "adId": "398123871",
+          "adType": "sell",
+          "category": "per-la-casa-e-la-persona>elettrodomestici",
+          "contentId": "357009344",
+          "currency": "EUR",
+          "location": {
+            "addressCountry": "Italia",
+            "addressLocality": "Treviso > Zero Branco",
+            "addressRegion": "Veneto",
+            "@type": "PostalAddress"
+          },
+          "publicationDate": "Sun Oct 18 11:42:00 GMT+02:00 2020",
+          "publisher": {
+            "accountType": "Private",
+            "@id": "sdrn:subito:user:18436424",
+            "@type": "Account"
+          },
+          "publisherType": "private",
+          "spt:custom": {
+            "expanded_geo_search": false
+          },
+          "@type": "ClassifiedAd"
+        },
+        "provider": {
+          "@id": "sdrn:schibsted:client:subito",
+          "product": "it.subito:419002:Subito",
+          "@type": "Provider",
+          "productType": "AndroidApp"
+        },
+        "schema": "http://schema.schibsted.com/events/tracker-event.json/128.json",
+        "@id": "8af56b41-1cc6-40a2-a025-c03573efced6",
+        "creationDate": "2020-10-19T11:50:19.648Z",
+        "tracker": {
+          "@type": "Tracker",
+          "name": "Android Pulse Tracker",
+          "type": "Android",
+          "version": "7.5.1-22"
+        },
+        "search": {
+          "@id": "06831daa-0ac8-4c99-9a07-ed813c288097",
+          "@type": "SearchMetadata"
+        },
+        "@type": "View",
+        "collectorHost": "collector.mpianalytics.com",
+        "published": "2020-10-19T15:46:33+00:00"
+      }
+      p($event)
+      
+  - name: pulse-base-events-suite.jslt generates metrics for a valid list-view events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: list-view
+            check-suite: panda.commons
+            check-name: list_view.check_items_ids
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: list-view
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: list-view
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "4b992a6f-dac4-4f19-b542-ec8c5e179c96",
+          "@type": "View",
+          "actor": {
+              "spt:remoteAddress": "181.42.9.76"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-06-04T14:56:45.579Z",
+          "device": {
+              "@type": "Device",
+              "acceptLanguage": "es-419",
+              "deviceType": "mobile",
+              "environmentId": "sdrn:schibsted:environment:87a1590c-8551-44c1-b206-1e319e3baa7e",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDUtMjBUMDQ6MDY6NTRaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..EKA9QFND4nCFhfn8CpkMuw.XoiTc0qFu_A33LTVmJfjQoH2D5NKt5ezZFmyJMmYzwehcbGThbW3mQFYqh3GCvqDEKLb--x3W6kOfiOqjUJfkrKq2b45UT2U3OwLRt4vK0reI4NEbm9pq0rjfxwuFgWHoglXTgKd3VfDIEgGTnIBTZO29D5FahEQFWRplqF_M87CmR5jJ6iA4cAVAjSePOVaJVgJdfksnDnbyeRNDKRFo2tOcKi8gvzSc9zeaXPVKKs.ic8NREluTgJSCpBL92pd9A",
+              "localStorageEnabled": true,
+              "screenSize": "360x760",
+              "userAgent": "Mozilla/5.0 (Linux; Android 8.0.0; ANE-LX3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
+              "viewportSize": "360x631"
+          },
+          "experimentMetadata": {
+              "assignmentId": "a19a5461-ace4-4a2d-97ad-2d2aaee1ae30",
+              "requestTimestamp": "2020-06-04T14:51:24.254516Z"
+          },
+          "experiments": [
+              {
+                  "@id": "sdrn:houston:experiment:90",
+                  "variant": "A"
+              }
+          ],
+          "name": "Listing viewed",
+          "object": {
+              "@id": "sdrn:yapocl:listing:https://m.yapo.cl/tarapaca/muebles?ps=&pe=&q=Cloce&st=a&f=a",
+              "@type": "Listing",
+              "categories": [
+                  {
+                      "@type": "MarketplaceCategory",
+                      "level": 1.0,
+                      "localId": "5020",
+                      "localName": "Muebles",
+                      "name": "Muebles"
+                  },
+                  {
+                      "@type": "MarketplaceCategory",
+                      "level": 0.0,
+                      "localId": "5000",
+                      "localName": "Hogar",
+                      "name": "Hogar"
+                  }
+              ],
+              "category": "Hogar > Muebles",
+              "filters": {
+                  "adType": "sell",
+                  "numResults": "0",
+                  "query": "Cloce",
+                  "region": "I Tarapac\u00e1"
+              },
+              "name": "Yapo.cl - Avisos de Cloce de Muebles publicados en I Tarapac\u00e1 - P\u00e1gina 1",
+              "url": "https://m.yapo.cl/tarapaca/muebles?ps=&pe=&q=Cloce&st=a&f=a"
+          },
+          "origin": {
+              "url": "https://m.yapo.cl/tarapaca/muebles?ps=&pe=&q=Clotet&st=a&f=a"
+          },
+          "pageViewId": "612f8e37-f7fe-4ba9-9619-5493717fa927",
+          "provider": {
+              "@id": "sdrn:schibsted:client:yapocl",
+              "@type": "Organization",
+              "productType": "M-Site"
+          },
+          "published": "2020-06-04T14:56:32+00:00",
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/230.json",
+          "tracker": {
+              "eventBuilderVersion": "1.0.32",
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "version": "4.1.8-75ce0"
+          }
+      }
+      p($event)
+
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-save events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_publisher_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_categories_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: validity
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_categories_localid_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:yapocl
+            check-type: availability
+            obj-type: ad-save
+            check-suite: panda.pulse-base
+            check-name: object_categories_localname_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "7324aa0a-ac0e-48a8-939e-33794064bf67",
+          "@type": "Save",
+          "actor": {
+              "spt:remoteAddress": "200.86.118.244"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-06-04T14:32:52.366Z",
+          "deployStage": "pro",
+          "device": {
+              "@type": "Device",
+              "acceptLanguage": "es-CL",
+              "deviceType": "mobile",
+              "environmentId": "sdrn:schibsted:environment:aa2dc928-d23a-4fde-9cf7-689b16e4b374",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMTktMDQtMjhUMDc6NTE6MjNaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..VtKN049w0hxKAHx6DXEEcw.-uo4o4WYk5jP6eMu1dOcsnVXGIaG-kKztjgfK9SEasaWzRnXLE-L23ytZgkZyZtPWS0aCyiviDNDVfOOEIAGWxgXVV0rMWeN_OYVHpDZl8wcZH9AIO0GS28yHVTEiWhAdAoRYllRnYC-03DcZOFUUJ9P717FhZ8VTshPq-jmQbRPMMm4cPUIIpbypkqw8r2a6ihQzo8oQDjzQwQdr5-wdXQ_ASYRAZ2FSySEh8Vbcmg.hq26e6K-9WTiJxQSTo8p8Q",
+              "localStorageEnabled": true,
+              "model": "LGE LG-K430",
+              "osType": "android",
+              "osVersion": "10",
+              "product": "cl.yapo",
+              "release": "15.9.1.0",
+              "screenSize": "360x740",
+              "userAgent": "Mozilla/5.0 (Linux; Android 10; SM-J600G Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.83 Mobile Safari/537.36",
+              "viewportSize": "0x0"
+          },
+          "intent": "Send",
+          "name": "Ad saved",
+          "object": {
+              "@id": "sdrn:yapocl:classified:72537988",
+              "@type": "ClassifiedAd",
+              "category": "Inmuebles > Arrendar",
+              "name": "casa 2 pisos Calle Ferrocarril E.C.",
+              "url": "https://tags.tiqcdn.com/utag/schibsted/yapo-nga/prod/mobile.html?platform=android&device_os_version=10&library_version=5.5.4&timestamp_unix=1591280935"
+          },
+          "origin": {
+              "category": "Inmuebles > Arrendar",
+              "trash": "{\"id\":\"72537988\",\"type\":\"ClassifiedAd\",\"name\":\"casa 2 pisos Calle Ferrocarril E.C.\"}",
+              "url": "ad_reply_show"
+          },
+          "pageViewId": "71b98eb8-19f8-4f48-a46a-2e38e664f842",
+          "provider": {
+              "@id": "sdrn:schibsted:client:yapocl",
+              "@type": "Organization",
+              "productType": "AndroidApp"
+          },
+          "published": "2020-06-04T14:32:32+00:00",
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/161.json",
+          "target": {
+              "@id": "sdrn:yapocl:confirmation:72537988",
+              "@type": "Confirmation",
+              "inReplyTo": {
+                  "@id": "sdrn:yapocl:classified:72537988",
+                  "@type": "ClassifiedAd",
+                  "adId": 72537988.0,
+                  "categories": [
+                      {
+                          "@type": "MarketplaceCategory",
+                          "level": 1.0,
+                          "localName": "Arrendar",
+                          "name": "Arrendar"
+                      },
+                      {
+                          "@type": "MarketplaceCategory",
+                          "level": 0.0,
+                          "localName": "Inmuebles",
+                          "name": "Inmuebles"
+                      }
+                  ],
+                  "category": "Inmuebles > Arrendar",
+                  "items": [
+                      {
+                          "@type": "Property",
+                          "trash": "{\"@id\":\"sdrn:yapocl:property:72537988\"}"
+                      }
+                  ],
+                  "location": {
+                      "@type": "PostalAddress",
+                      "addressRegion": "Regi\u00f3n Metropolitana"
+                  },
+                  "name": "casa 2 pisos Calle Ferrocarril E.C."
+              },
+              "name": "casa 2 pisos Calle Ferrocarril E.C.",
+              "url": "https://tags.tiqcdn.com/utag/schibsted/yapo-nga/prod/mobile.html?platform=android&device_os_version=10&library_version=5.5.4&timestamp_unix=1591280935"
+          },
+          "tracker": {
+              "eventBuilderVersion": "1.0.32",
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "version": "4.1.8-75ce0"
+          }
+      }
+      p($event)
+
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-phone-displayed events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localid_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-displayed
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localname_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "73843696-7a38-4692-901a-c55cf314a0f4",
+          "@type": "Show",
+          "actor": {
+              "@id": "00000000-0000-4000-8000-000000000000",
+              "spt:remoteAddress": "165.225.200.143",
+              "spt:userId": "00000000-0000-4000-8000-000000000000"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-06-04T14:38:44.153Z",
+          "device": {
+              "@type": "Device",
+              "acceptLanguage": "it-IT",
+              "deviceType": "desktop",
+              "environmentId": "sdrn:schibsted:environment:4e2b22e3-1faa-44c7-8f24-86fdcf5c0d10",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMTktMDUtMTdUMTE6NTM6MzJaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..57hzo05lzzyVixHWq0tBkw.f7uZFrluwmEQ-YXo5AM9SWRpnTqivo-yds3O572Sn0S6c3wSu66m6EUISQRDirYY8Fv7KNLeQ8frwjBMTQs4juU2U29me--acIJDbEbQ2QXk5V0Vpk7i8AC2PMiUqaoB5e-qjhnVQ_xDi0OmQKQgiNTxrFYyBjk9sVKV6ZVY6rDgO879INCLJBSLQx2zNOqh-7im5fu36N3T0yRFphxsArNt2-LrKgfgF7YbTsOgYnpolwUeRY3Ip19rR-N_24Z4mb-SYglc15zn-XtEEN7fxg.Q_FODn2psHf422rF6pogrw",
+              "localStorageEnabled": true,
+              "screenSize": "1920x1080",
+              "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko",
+              "viewportSize": "1920x879"
+          },
+          "object": {
+              "@id": "sdrn:subito:phonecontact:https://www.subito.it/moto-e-scooter/peugeot-lxr-200-2013-roma-331898921.htm",
+              "@type": "PhoneContact",
+              "inReplyTo": {
+                  "@id": "sdrn:subito:classified:id:ad:371178187:list:331898921",
+                  "@type": "ClassifiedAd",
+                  "category": "motori>moto-e-scooter",
+                  "name": "Peugeot LXR 200 - 2013 - Moto e Scooter In vendita a Roma",
+                  "publisher": {
+                      "@id": "sdrn:subito:user:20560874",
+                      "@type": "Account",
+                      "accountId": "20560874",
+                      "accountType": "Private"
+                  }
+              },
+              "name": "Peugeot LXR 200 - 2013 - Moto e Scooter In vendita a Roma",
+              "url": "https://www.subito.it/moto-e-scooter/peugeot-lxr-200-2013-roma-331898921.htm"
+          },
+          "origin": {
+              "url": ""
+          },
+          "pageViewId": "fcbbb396-32c3-4b14-a958-ea8028ec2c72",
+          "provider": {
+              "@id": "sdrn:schibsted:client:subito",
+              "@type": "Organization",
+              "productType": "Web"
+          },
+          "published": "2020-06-04T14:38:44+00:00",
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/161.json",
+          "tracker": {
+              "eventBuilderVersion": "1.0.32",
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "version": "4.1.8-75ce0"
+          }
+      }
+      p($event)
+
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-phone-called events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localid_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-phone-called
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localname_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1    
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "ab52672f-6b99-47bd-87d1-17441edf555b",
+          "@type": "Call",
+          "actor": {
+              "spt:remoteAddress": "5.90.248.166"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-06-06T14:15:11.841Z",
+          "device": {
+              "@type": "Device",
+              "acceptLanguage": "it",
+              "deviceType": "mobile",
+              "environmentId": "sdrn:schibsted:environment:ecef4aef-fb6e-4f80-a4da-f790b11fa143",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMjAtMDQtMTFUMDk6NTU6MDZaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..DGpxuWt_DRpHm7JWYz2NkQ.MMv4FxyqYNWQPv45qdulPdTJ2_xatJW0Sat-7FU8TwgvSyfIruo2TiX4gGNFGZS1TXc_nsQX7kxRU0BVkJKq2iTeWhPNpMezPOC996BCUKZS7DGbj9784AASXjbCfTBd4Dg4w2DiAAFqra5AzcO1LZYZHKotZgUnkv0DVkGzbwPtkR7wIhYhFmr88bt9WhGFaTlbVp7xOuRHKAobhLYn1tM4UVFzF-lAWJ2zlPXhcic.PB0mLaoXbljd-XhfamjEOQ",
+              "localStorageEnabled": true,
+              "screenSize": "360x748",
+              "userAgent": "Mozilla/5.0 (Linux; Android 8.1.0; EML-L09) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36",
+              "viewportSize": "360x621"
+          },
+          "object": {
+              "@id": "sdrn:subito:phonecontact:https://www.subito.it/case-vacanza/app-sperlonga-centralissimo-latina-340415011.htm",
+              "@type": "PhoneContact",
+              "inReplyTo": {
+                  "@id": "sdrn:subito:classified:id:ad:380357545:list:340415011",
+                  "@type": "ClassifiedAd",
+                  "category": "immobili>case-vacanza",
+                  "name": "App. Sperlonga Centralissimo - Case vacanza In affitto per vacanze a Latina",
+                  "publisher": {
+                      "@id": "sdrn:subito:user:102181366",
+                      "@type": "Account",
+                      "accountId": "102181366",
+                      "accountType": "Private"
+                  }
+              },
+              "name": "App. Sperlonga Centralissimo - Case vacanza In affitto per vacanze a Latina",
+              "url": "https://www.subito.it/case-vacanza/app-sperlonga-centralissimo-latina-340415011.htm"
+          },
+          "origin": {
+              "url": "https://www.subito.it/annunci-lazio/affitto-vacanze/case-vacanza/latina/sperlonga/"
+          },
+          "pageViewId": "57982c96-265a-4ece-b6a0-ad881005f094",
+          "provider": {
+              "@id": "sdrn:schibsted:client:subito",
+              "@type": "Organization"
+          },
+          "published": "2020-06-06T14:15:12+00:00",
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/161.json",
+          "tracker": {
+              "eventBuilderVersion": "1.0.32",
+              "name": "Pulse Node.js SDK",
+              "type": "JS",
+              "version": "4.1.8-75ce0"
+          }
+      }
+      p($event)
+
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-sms-app-opened events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localid_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-sms-app-opened
+            check-suite: panda.pulse-base
+            check-name: object_in_reply_to_categories_localname_not_null
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "03b5de2f-faff-42c9-9ab1-a7cbbeb3ea29",
+          "@type": "SMS",
+          "actor": {
+              "@id": "00000000-0000-4000-8000-000000000000",
+              "spt:remoteAddress": "151.34.244.72",
+              "spt:userId": "00000000-0000-4000-8000-000000000000"
+          },
+          "collectorHost": "collector.mpianalytics.com",
+          "creationDate": "2020-06-06T11:16:45.367Z",
+          "device": {
+              "@type": "Device",
+              "deviceType": "mobile",
+              "environmentId": "sdrn:schibsted:environment:c9a43636-af2d-4d7d-b1c3-6950816af0dd",
+              "hardware": "samsungexynos7885",
+              "jweIds": "eyJpc3N1ZWRBdCI6IjIwMTktMDctMTFUMDk6MzA6NThaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..xLtimuc8m7gdT9SAPJ86aw._SbHE4li9otCZ02cfBYUGasgT3Eexe-DCI-P3wwjroj1SL_fKv3h1pmT1LVddNl50WSgBe3Gbo3mTzSn3cOJ7mI9J7Az5YcIogHlq7kQyHXtG8qLKBR7ba8_9bE-1fU0fdymUYRzPWqLrFhirkSBRVvReELVF298oaQOfzS2m8TA9v7qc_t_eIoOdFofQmT-.wEM95zvgnw8YBr3uTHNKFw",
+              "manufacturer": "samsung",
+              "model": "SM-A750FN",
+              "networkConnectivity": {
+                  "@type": "NetworkConnectivity",
+                  "networks": [
+                      {
+                          "networkState": "connected",
+                          "networkType": "mobile"
+                      }
+                  ]
+              },
+              "osType": "Android",
+              "osVersion": "9",
+              "product": "a7y18ltexx",
+              "release": "9",
+              "screenSize": "1080x2094",
+              "sdkVersion": "28",
+              "userAgent": "Android-Pulse-Tracker/7.5.0"
+          },
+          "object": {
+              "@type": "PhoneContact",
+              "inReplyTo": {
+                  "@id": "sdrn:subito:classified:id:ad:380048479:list:340147424",
+                  "@type": "ClassifiedAd",
+                  "adType": "sell",
+                  "category": "motori>moto-e-scooter",
+                  "contentId": "340147424",
+                  "currency": "EUR",
+                  "location": {
+                      "@type": "PostalAddress",
+                      "addressCountry": "Italia",
+                      "addressLocality": "Torino > Giaveno",
+                      "addressRegion": "Piemonte"
+                  },
+                  "name": "Suzuki Altro modello - 2000",
+                  "price": 1500.0,
+                  "publicationDate": "Thu Jun 04 17:28:27 GMT+02:00 2020",
+                  "publisher": {
+                      "@id": "sdrn:subito:user:19422452",
+                      "@type": "Account",
+                      "accountType": "Private"
+                  },
+                  "publisherType": "private",
+                  "spt:custom": "{\"expanded_geo_search\":false}",
+                  "trash": "{\"adId\":\"380048479\"}"
+              }
+          },
+          "origin": {
+              "@id": "sdrn:subito:classified:id:ad:380048479:list:340147424",
+              "@type": "ClassifiedAd",
+              "category": "motori>moto-e-scooter",
+              "trash": "{\"adId\":\"380048479\",\"adType\":\"sell\",\"contentId\":\"340147424\",\"currency\":\"EUR\",\"location\":{\"addressCountry\":\"Italia\",\"addressLocality\":\"Torino > Giaveno\",\"addressRegion\":\"Piemonte\",\"@type\":\"PostalAddress\"},\"price\":1500.0,\"publicationDate\":\"Thu Jun 04 17:28:27 GMT+02:00 2020\",\"publisher\":{\"accountType\":\"Private\",\"@id\":\"sdrn:subito:user:19422452\",\"@type\":\"Account\"},\"publisherType\":\"private\",\"spt:custom\":{\"expanded_geo_search\":false},\"name\":\"Suzuki Altro modello - 2000\"}"
+          },
+          "provider": {
+              "@id": "sdrn:schibsted:client:subito",
+              "@type": "Provider",
+              "product": "it.subito:412001:Subito",
+              "productType": "AndroidApp"
+          },
+          "published": "2020-06-06T14:02:39+00:00",
+          "schema": "http://schema.schibsted.com/events/tracker-event.json/128.json",
+          "tracker": {
+              "name": "Android Pulse Tracker",
+              "trash": "{\"@type\":\"Tracker\"}",
+              "type": "Android",
+              "version": "7.5.0-20"
+          }
+      }
+      p($event)
+  
+  - name: pulse-base-events-suite.jslt generates metrics for a valid ad-bump events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: version_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: version_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: object_type_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: object_ad_id_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.commons
+            check-name: object_ad_id_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: creation_date_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: creation_date_valid_format
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_publisher_id_valid_format
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_publisher_additional_ids_valid_format
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_categories_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_categories_level_is_integer
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: validity
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_categories_localid_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:subito
+            check-type: availability
+            obj-type: ad-bump
+            check-suite: panda.pulse-base
+            check-name: object_categories_localname_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/panda/ad-stats-checks/pulse-base-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "545862da-76a0-4846-9566-0b8392848108",
+          "@type": "Bump",
+          "collectorHost": "collector.mpianalytics.com",
+          "eventTime": "2020-11-12T06:39:38.111Z",
+          "object": {
+              "@id": "sdrn:subito:classified:id:ad:373886619:list:334416213",
+              "@type": "ClassifiedAd",
+              "adId": 373886619,
+              "adType": "sell",
+              "categories": [
+                  {
+                      "level": "1",
+                      "localId": "5",
+                      "localName": "Accessori Auto",
+                      "name": "Accessori Auto"
+                  }
+              ],
+              "category": "MOTOR>Accessori Auto",
+              "channel": "android",
+              "city": "Napoli",
+              "contentId": "334416213",
+              "currency": "euro",
+              "description": "Sensore angolo di sterzata / sterzo / modulo mrm",
+              "descriptionAds": "Sensore angolo di sterzata / Sensore sterzo / Modulo piantone sterzo MRM completo o anche singole parti/devio \nMercedes Classe A telaio 176, Classe\nB telaio 246 , Classe C telaio 204 e 205, Classe E 212 e 213, GLK Modello 204...\nRevisioniamo stesso il vostro con GARANZIA e ve lo rispediamo in tutta Italia.\nPER QUALSIASI ULTERIORE INFORMAZIONE O DOMANDA CONTATTATEMI PREFERIBILMENTE SUL CELLULARE O SU WHATSAPP.\n( Le foto, ad esempio, non indicano tutti i modelli di leve!!)\nSalvatore 3281441429",
+              "firstPublicationDate": "2020-04-08T12:40:02.364Z",
+              "images": [
+                  "41988424-1a79-431c-9098-05b17dad775d.jpg",
+                  "88149cd9-e02d-4737-baf5-4ee6bdca1f45.jpg",
+                  "3ee58704-4c2a-490e-a440-fcb2546850d3.jpg",
+                  "6ec77531-824e-448b-9634-a85aa2c09014.jpg"
+              ],
+              "lastUpdateDate": "2020-09-12T14:20:02.293Z",
+              "location": "063050",
+              "price": 100.0,
+              "publisher": {
+                  "@id": "sdrn:subito:user:9264722",
+                  "@type": "Account",
+                  "accountId": "9264722"
+              },
+              "region": "Campania",
+              "status": "active",
+              "tags": [
+                  "MOTOR>Accessori Auto"
+              ]
+          },
+          "provider": {
+              "@id": "sdrn:schibsted:client:subito",
+              "@type": "Organization"
+          },
+          "published": "2020-11-12T06:39:38+00:00",
+          "schema": "http://schema.schibsted.com/events/backend-content-event.json/88.json#",
+          "source_mp": "subitoadsbehavioral"
+      }
+      p($event)

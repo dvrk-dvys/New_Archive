@@ -1,0 +1,402 @@
+tests:
+
+  - name: smartbump-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/products/smartbump-events-suite.jslt" as p
+      p(.)
+
+  - name: smartbump-events-suite.jslt generates metrics for a valid ad-create events
+    expected:
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: domain_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: domain_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: visitor_ip_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: visitor_ip_valid
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: creation_date_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-generic-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: creation_date_valid
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: object_id_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: object_id_is_valid
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publisher_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publisher_id_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publisher_id_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: categories_are_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: categories_local_ids_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: categories_levels_are_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: categories_levels_are_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: location_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: location_address_region_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: location_address_locality_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: location_postal_code_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: version_is_available
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-classified-ad-events
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: version_is_valid
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publisher_type_is_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publisher_type_is_valid
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: insertion_type_is_available
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: insertion_type_is_valid
+            check-result: 'false'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: price_is_available
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publication_date_is_available
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: publication_date_is_valid
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: availability
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: status_is_available
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            check-group: check-additional-fields
+            check-type: validity
+            provider: sdrn:schibsted:client:subito
+            obj-type: ad-create
+            check-suite: panda.products.smartbump
+            check-name: status_is_valid
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+    expression: |
+      import "checks/panda/products/smartbump-events-suite.jslt" as p
+      let event =
+      {
+          "@id": "2f627c85-8493-4793-8411-ab5822c62dd7",
+          "@type": "Create",
+          "collectorHost": "collector.mpianalytics.com",
+          "eventTime": "2020-12-02T08:01:31.483Z",
+          "object": {
+              "@id": "sdrn:subito:classified:id:ad:404963399:list:null",
+              "@type": "ClassifiedAd",
+              "adId": 404963399,
+              "adType": "sell",
+              "version" : 1,
+              "categories": [
+                  {
+                      "level": 1,
+                      "localId": "2",
+                      "localName": "Auto",
+                      "name": "Auto"
+                  }
+              ],
+              "category": "MOTOR>Auto",
+              "channel": "portalclub",
+              "city": "Bologna",
+              "currency": "euro",
+              "description": "JEEP - Renegade - 1.0 T3 Limited",
+              "descriptionAds": " VETTURA A KM 0 DISPONIBILE IN SEDE.\nVETRI OSCURATI\nFUNCTION PACH: SPECCHI RIBALTABILI, KEYLESS GO, REVERSIBLE/WATERPROOF CARGO STORAGE,\nTELECAMERA POSTERIORE,LOW SPEED COLLITION MITIGATION,\nVISIBILITY PACK: SPECCHIO ELETTROCROMICO, SENSORE LUCE,SENSORE PIOGGIA, FARI AUTOMATICI.\nLED PACK FARI ANT+ POST A LED FENDINEBBIA A LED\nNAVIGATORE DA 8,4\nBLIND SPOT\nCOSTO PASSAGGIO DI PROPRIETA' / IMMATRICOLAZIONE A PARTE ",
+              "images": [
+                  "04380fd5-5b14-426b-b6f4-40035397258d.jpg",
+                  "62536c18-464d-4b13-99fe-5e419ef0a029.jpg",
+                  "ed718bd5-ebae-433e-b118-72caab9f27f6.jpg",
+                  "0e98c4f3-40ce-4311-9432-044ca6ab53df.jpg",
+                  "3cd88b80-57b3-4d13-bfe1-e670e908cbce.jpg",
+                  "b774f2fa-0075-4352-bb5f-896eee444e09.jpg",
+                  "cfa5c671-8bde-4436-92a0-97e6f7ad42e3.jpg",
+                  "aec4d9d0-e779-4767-86fe-a15318ca036c.jpg",
+                  "f55a6576-b5ba-4213-a843-012704f8f954.jpg"
+              ],
+              "lastUpdateDate": "2020-12-02T08:01:31.483Z",
+              "location": "[{\"type\":\"PostalAddress\",\"postalCode\":\"037052\"}]",
+              "price": 22900.0,
+              "publisher": {
+                  "@id": "sdrn:subito:user:3944760",
+                  "@type": "Account",
+                  "accountId": "3944760"
+              },
+              "region": "Emilia-Romagna",
+              "status": "inactive",
+              "tags": [
+                  "MOTOR>Auto"
+              ]
+          },
+          "provider": {
+              "@id": "sdrn:schibsted:client:subito",
+              "@type": "Organization"
+          },
+          "published": "2020-12-02T08:01:31+00:00",
+          "schema": "http://schema.schibsted.com/events/backend-content-event.json/88.json#",
+          "source_mp": "subitoadsbehavioral"
+      }
+      p($event)

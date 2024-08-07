@@ -1,0 +1,3 @@
+import "checks/kufar/pump-accounts.jslt" as pump-accounts
+
+pump-accounts(.)

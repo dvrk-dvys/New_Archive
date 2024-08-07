@@ -1,0 +1,28 @@
+import "checks/commons.jslt" as c
+import "checks/search/search-commons.jslt" as s
+
+let user-tags = s:base-tags()
+let check-suite = "search.adview"
+
+//@id
+s:check-id($check-suite,$user-tags,"critical")
+//object
+//      @id
++c:check($check-suite, "search.adview.object_id_is_present", c:check-not-null(.object."@id"), $user-tags, "critical")
++c:check($check-suite, "search.adview.object_id_is_valid", c:check-sdrn-classified-ad(.object."@id") or c:check-null(.object."@id"), $user-tags, "critical")
+//      category
++s:check-object-category($check-suite,$user-tags,"critical")
+// search
+//      @id
+//      @type
+//      source
++s:check-search-all-mandatory($check-suite,$user-tags,"critical")
+//      rank
++s:check-search-rank($check-suite,$user-tags,"critical")
+//page
+//      pageType
++s:check-pageType($check-suite,$user-tags,"minor")
+//origin
+//      page
+//              pageType
++s:check-originPageType($check-suite,$user-tags,"critical")

@@ -1,0 +1,119 @@
+tests:
+
+  - name: kufar-specific-checks.jslt compiles
+    type: compile
+    expression: |
+      import "checks/panda/specific-checks/kufar-specific-checks-suite.jslt" as p
+      p(.)
+
+  - name: kufar-specific-checks.jslt generates metrics for a valid kufar ad-create events
+    expected:
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:kufarby
+            check-type: availability
+            obj-type: ad-publish
+            check-suite: panda.kufar_panda_specific_checks
+            check-name: category_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:kufarby
+            check-type: availability
+            obj-type: ad-publish
+            check-suite: panda.kufar_panda_specific_checks
+            check-name: category_contains_integers_ids
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:kufarby
+            check-type: availability
+            obj-type: ad-publish
+            check-suite: panda.kufar_panda_specific_checks
+            check-name: location_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:kufarby
+            check-type: availability
+            obj-type: ad-publish
+            check-suite: panda.kufar_panda_specific_checks
+            check-name: address_region_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            provider: sdrn:schibsted:client:kufarby
+            check-type: availability
+            obj-type: ad-publish
+            check-suite: panda.kufar_panda_specific_checks
+            check-name: address_subarea_not_null
+            check-result: 'false'
+            check-impact: blocker
+          delta: 1   
+    expression: |
+      import "checks/panda/specific-checks/kufar-specific-checks-suite.jslt" as p
+      let event =
+      {
+        "object": {
+          "location": {
+            "addressRegion": null,
+            "addressSubarea": null,
+            "@type": "PostalAddress",
+            "addressCountry": "addressCountry",
+            "addressLocality": "addressLocality"
+          },
+          "categories": [
+            {
+              "localId": "15020",
+              "level": 0
+            }
+          ],
+          "items": [
+            {
+              "@type": "MarketplaceItem"
+            }
+          ],
+          "@id": "sdrn:kufarby:classified:1233444",
+          "@type": "ClassifiedAd",
+          "adType": "sell",
+          "category": "15000 > 15020",
+          "currency": "BYR",
+          "description": "description",
+          "images": [
+          ],
+          "lastUpdateDate": "2021-04-09T16:07:02.195Z",
+          "name": "name",
+          "price": 20000,
+          "publicationDate": "2021-04-09T10:07:02.000Z",
+          "publisher": {
+            "@id": "sdrn:kufarby:user:123444",
+            "name": "name"
+          },
+          "publisherType": "private",
+          "status": "active",
+          "url": "https://www.kufar.by/vi/108053706.htm"
+        },
+        "provider": {
+          "@id": "sdrn:schibsted:client:kufarby",
+          "@type": "Organization"
+        },
+        "schema": "http://schema.schibsted.com/events/backend-content-event.json/88.json#",
+        "@id": "a0f69d06-c58a-4601-b78c-52bcd9a7b0c3",
+        "@type": "Publish",
+        "eventTime": "2021-04-09T10:07:06.568Z",
+        "name": "Ad published",
+        "actor": {
+          "spt:remoteAddress": "52.19.132.50"
+        },
+        "collectorHost": "collector.mpianalytics.com",
+        "published": "2021-04-09T10:07:06+00:00"
+      }
+      p($event)

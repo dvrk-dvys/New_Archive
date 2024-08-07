@@ -1,0 +1,3 @@
+import "checks/p10n/content-events.jslt" as content-events
+
+content-events(.)

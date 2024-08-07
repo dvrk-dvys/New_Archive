@@ -1,0 +1,56 @@
+tests:
+  - name: bic-commons.jslt compiles and runs
+    type: compile
+    expression: |
+      import "checks/bic/bic-commons.jslt" as c
+      c(.)
+
+  - name: bic-commons.jslt check-if-type returns empty checks when event does not match
+    expected: []
+    expression: |
+      import "checks/bic/bic-commons.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "ClassifiedAd"
+          }
+        }
+
+      c:check-if-type($event, "ad-create", {})
+
+
+  - name: bic-commons.jslt check-if-type returns checks object
+    expected: {}
+    expression: |
+      import "checks/bic/bic-commons.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "ClassifiedAd"
+          }
+        }
+
+      c:check-if-type($event, "ad-view", {})
+
+  - name: bic-commons.jslt check-suite-is-applied returns valid metric
+    expected:
+      - quality.check:
+          tags:
+            check-suite: my-check-suite
+            check-name: suite_is_applied
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/bic/bic-commons.jslt" as c
+      let event =
+        {
+          "@type": "View",
+          "object": {
+            "@type": "ClassifiedAd"
+          }
+        }
+
+      c:check-suite-is-applied("my-check-suite", $event, "ad-view", {})

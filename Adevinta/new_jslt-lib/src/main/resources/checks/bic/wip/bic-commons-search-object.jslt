@@ -1,0 +1,25 @@
+import "lib/metrics.jslt" as m
+import "lib/schemas.jslt" as s
+import "checks/commons.jslt" as c
+
+// Common checks for Search object
+
+let eventTypeTag = m:tag("event-type", m:taggify(."@type", "unknown", s:event-type-values()))
+
+def check-search-id(checkSuite)
+   c:check($checkSuite, "search_id_is_not_null", c:check-not-null(.search.@id), $eventTypeTag, "critical")
+
+def check-search-id-pattern(checkSuite)
+//// TBD-TODO????
+
+def check-search-type(checkSuite)
+   c:check($checkSuite, "search_type_is_not_null", c:check-not-null(.search.@type), $eventTypeTag, "critical")
+
+def check-search-type-values(checkSuite)
+//// TBD-TODO????
+
+def check-search-source(checkSuite)
+   c:check($checkSuite, "search_source_is_not_null", c:check-not-null(.search.source), $eventTypeTag, "critical")
+
+def check-search-source-values(checkSuite)
+//// TBD-TODO????

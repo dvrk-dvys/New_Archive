@@ -1,0 +1,282 @@
+tests:
+  - name: suggested-faqs-custom-events-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/yapo/suggested-faqs-custom-events-suite.jslt" as yapo
+      yapo(.)
+  
+  - name: suggested-faqs-custom-events-suite.jslt - check click/view suggested faqs custom events schemas and values
+    expected:
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_id_patern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_adId_patern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_adType_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_category_patern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_contentId_patern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_faq_elementType_patern
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_price_integer_positive
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_publisherType_verification
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_location_type_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_location_addressRegion_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_type_level0_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_level_0_integer_positive
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_localName_level0_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_name_level0_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_localId_level0_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_type_level1_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_level_1_integer_positive
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_localName_level1_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_name_level1_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            product-type: web
+            event-type: view
+            position: 'ad details'
+            check-suite: yapo.suggested-faqs-custom-events-suite
+            check-name: object_categories_localId_level1_not_null_and_not_empty
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+    expression: |
+      import "checks/yapo/suggested-faqs-custom-events-suite.jslt" as yapo-suggested-faqs-custom-events
+      let event =
+      {
+        "@id":"8e3b0e73-8251-4fd6-9da4-4afc8559b16e",
+        "@type":"View",
+        "creationDate":"2020-12-02T19:48:09.890Z",
+        "device":{
+        "@type":"Device",
+        "acceptLanguage":"es-ES",
+        "deviceType":"desktop",
+        "environmentId":"sdrn:schibsted:environment:c9f95585-8177-44c5-ac86-2b894eacc4e1",
+        "jweIds":"eyJpc3N1ZWRBdCI6IjIwMjAtMTItMDJUMTQ6MzM6NTlaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..ZlSx9KeSu0U7pnGTSK_nbw.itHdkAGJAM1p7GWE2DL1LevhugYDFVwVgzdTV5CCRilR-KCBDqhK_3lHAfLk8ehh5aHOpluKiefR3WuWApEDEdU9B9Fb6VI7mSF2FZGbSbBt6NBZmEC_6KguXXjtqIuybiS00H_N45MsBCpBe5EN_sipDazPn_6dJFI8cl4jjJfJU-gQL--n1Qczx4VPtSqd9o6YmxDl54ywsu-FceCOOA5TjTWrOIIAYLHB3HrMqPE.2k7cr06_Da8D63PMjIjuZQ",
+        "localStorageEnabled":true,
+        "screenSize":"1280x800",
+        "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+        "viewportSize":"771x579"
+        },
+        "name":"Ad Details Generic Faqs Questions",
+        "object":{
+        "@id":"sdrn:yapocl:content:addetail:element:generic_faq:display:classified:75696544",
+        "@type":"UIElement",
+        "adId":75696544,
+        "adType":"sell",
+        "categories":[
+          {
+              "@type":"MarketplaceCategory",
+              "level":1,
+              "localId":"2100",
+              "localName":"Accesorios y piezas para vehiculos",
+              "name":"Accesorios y piezas para vehiculos"
+          },
+          {
+              "@type":"MarketplaceCategory",
+              "level":0,
+              "localId":"2000",
+              "localName":"Vehiculos",
+              "name":"Vehiculos"
+          }
+        ],
+        "category":"Vehiculos > Accesorios y piezas para vehiculos",
+        "contentId":"75696544",
+        "elementType":"Generic Faq Question - id:2, question:¿Se puede visitar?",
+        "location":{
+        "@type":"PostalAddress",
+        "addressRegion":"Región Metropolitana"
+        },
+        "name":"Intercooler toyota revo hilux (2016/2017), Región Metropolitana | yapo.cl",
+        "position":"Ad Details",
+        "price":237000,
+        "published":"2020-12-02T19:48:07.768Z",
+        "publisherType":"private",
+        "url":"https://m.yapo.cl/region_metropolitana/accesorios_vehiculos/intercooler_toyota_revo_hilux__2016_2017__75696544.htm?ca=15_s&oa=75696544&xsp=0"
+        },
+        "origin":{
+        "url":"https://m.yapo.cl/region_metropolitana"
+        },
+        "pageViewId":"5db30e23-50b3-4d44-9f1c-221dac99f845",
+        "provider":{
+        "@id":"sdrn:schibsted:client:yapocl",
+        "@type":"Organization",
+        "productType":"Web"
+        },
+        "published":"2020-12-02T19:48:07.768Z",
+        "schema":"http://schema.schibsted.com/events/tracker-event.json/230.json",
+        "tracker":{
+        "eventBuilderVersion":"1.0.34",
+        "name":"Pulse Node.js SDK",
+        "type":"JS",
+        "version":"4.1.10-54417"
+        }
+      }
+      yapo-suggested-faqs-custom-events($event)

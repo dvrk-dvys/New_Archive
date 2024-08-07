@@ -1,0 +1,26 @@
+tests:
+
+  - name: commons.jslt compiles
+    type: compile
+    expression: |
+      import "lib/commons.jslt" as c
+      c(.)
+
+  - name: canned-client-id returns null for non well-formed providers sdrn
+    expected: null
+    expression: |
+      import "lib/commons.jslt" as c
+
+      fallback(
+        c:canned-client-id([]),
+        c:canned-client-id("sdrn:what:client:fotocasa")
+      )
+
+  - name: canned-client-id works for well-formed providers sdrn
+    expected: true
+    expression: |
+      import "lib/commons.jslt" as c
+
+      c:canned-client-id("sdrn:schibsted:client:blocket") == "blocket"
+      and c:canned-client-id("sdrn:adevinta:client:fotocasa") == "fotocasa"
+

@@ -1,0 +1,21 @@
+tests:
+
+  # This is just testing that the wrappers do compile an run, proper testing is still done in the wrapped suites.
+
+  - name: backend-message-event-all-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/messaging/backend-message-event-all-suite.jslt" as c
+      c(.)
+
+  - name: backend-message-event-message-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/messaging/backend-message-event-message-suite.jslt" as c
+      c(.)
+
+  - name: backend-prediction-event-all-suite.jslt compiles and runs
+    type: run
+    expression: |
+      import "checks/messaging/backend-prediction-event-all-suite.jslt" as c
+      c(.)

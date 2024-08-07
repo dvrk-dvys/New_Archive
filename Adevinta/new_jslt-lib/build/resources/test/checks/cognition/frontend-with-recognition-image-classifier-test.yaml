@@ -1,0 +1,295 @@
+tests:
+
+  - name: frontend-with-recognition-suite.jslt generates metrics for a valid image classifier event
+    expected:
+      - quality.check:
+          tags:
+            provider: leboncoin
+            check-suite: cognition.frontend-event
+            check-name: event_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            provider: leboncoin
+            check-suite: cognition.frontend-event
+            check-name: event_type_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            provider: leboncoin
+            check-suite: cognition.frontend-event
+            check-name: provider_id_valid
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: recognition_id_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: recognition_service_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: recognition_model_version_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: recognition_variant_name_not_null
+            check-result: 'true'
+            check-impact: blocker
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: recognition_user_choices_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_attribute_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_label_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_uid_is_string
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_rank_not_null
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_suggestions_shown_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_from_suggestions_not_null
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choices_allowed_attribute
+            check-result: 'true'
+            check-impact: critical
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: category
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_predictions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: category
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_is_0
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: category
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choice_rank_se_2
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: category
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choice_suggestions_shown
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+      - quality.check:
+          tags:
+            attribute: category
+            service: v1-classifier
+            provider: leboncoin
+            variant: '5'
+            check-suite: cognition.frontend-event
+            check-name: user_choice_from_shown_suggestions
+            check-result: 'true'
+            check-impact: minor
+          delta: 1
+    expression: |
+      import "checks/cognition/frontend-with-recognition-suite.jslt" as c
+
+      let event =
+      {
+      "@id": "a80ed3a2-867b-45ae-8804-a791d4d42f0c",
+      "@type": "Create",
+      "actor": {
+          "@id": "sdrn:schibsted.com:user:123456",
+          "spt:remoteAddress": "90.231.214.141",
+          "spt:userId": "sdrn:schibsted.com:user:123456"
+      },
+      "device": {
+          "acceptLanguage": "sv",
+          "deviceType": "desktop",
+          "environmentId": "sdrn:schibsted:environment:a2029f7e-1a7f-46db-a683-b4f62e0ec9ad",
+          "screenSize": "1600x900",
+          "userAgent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36",
+          "viewportSize": "1600x755"
+      },
+      "location": {
+          "@type": "GeoCoordinates",
+          "accuracy": 10,
+          "latitude": 37.32475483,
+          "longitude": -122.02226661
+      },
+      "name": "Ad insertion confirmed",
+      "object": {
+          "@id": "sdrn:leboncoin:classified:1147871724",
+          "@type": "ClassifiedAd",
+          "adType": "sell",
+          "categories": [
+              {
+                  "@type": "MarketplaceCategory",
+                  "localId": "17"
+              }
+          ],
+          "category": "Multimedia > Téléphonie",
+          "contentId": "1147871724",
+          "currency": "EUR",
+          "location": {
+              "addressLocality": "neuille_pont_pierre",
+              "addressRegion": "centre",
+              "postalCode": "37360"
+          },
+          "name": "Bottes noires 37",
+          "price": 9,
+          "url": "https://www.leboncoin.fr/chaussures/1147871724.htm?ca=7_s"
+      },
+      "provider": {
+          "@id": "sdrn:schibsted:client:leboncoin",
+          "@type": "Organization"
+      },
+      "published": "2015-06-08T10:21:53.2410Z",
+      "recognition": [
+          {
+              "@id": "sdrn:leboncoin:recognition:0cceeeba-2fa8-4e29-8456-d082dc72f7d5",
+              "@type": "RecognitionMetadata",
+              "service": "v1-classifier",
+              "modelVersion": "1.0.0",
+              "variantName": "leboncoin-image-classifier-15",              
+              "userChoices": [
+                  {
+                      "attribute": "category",
+                      "label": "Chaussures",
+                      "uid": "53",
+                      "rank": 0,
+                      "suggestionsShown": true,
+                      "fromSuggestions": true
+                  }
+              ]
+          }
+      ],
+      "schema": "http://schema.adevinta.com/events/tracker-event.json/272.json#",
+      "tracker": {
+          "@type": "Tracker",
+          "name": "Pulse JS Tracker v0.8.0",
+          "type": "JS",
+          "version": "0.8.0"
+      }
+      }
+      c($event)

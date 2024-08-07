@@ -1,0 +1,70 @@
+tests:
+
+  - name: search-listing-suite.jslt compiles
+    type: compile
+    expression: |
+      import "checks/leboncoin/search-listing-suite.jslt" as f
+      f(.)
+
+  - name: search-listing-suite.jslt checks valid search listing event
+    expected:
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: event_count
+            check-result: 'true'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: user_id_completeness
+            check-result: 'false'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: user_agent_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: event_id_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: user_id_and_user_agent_completeness
+            check-result: 'false'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+      - quality.check:
+          tags:
+            check-suite: leboncoin.search_listing
+            check-name: applied_condition_completeness
+            check-result: 'true'
+            check-impact: critical
+            platform: responsive
+            sort-type: time
+          delta: 1
+    expression: |
+      import "checks/leboncoin/search-listing-suite.jslt" as search-listing-checks
+
+      let event =
+      {"event_timestamp":1605171626,"event_datetime":"2020-11-12T09:00:26Z","event_id":"73f0b3b8-24c5-11eb-a458-6a22c7ca9178","store_id":"","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36 Edg/86.0.622.63","offset":35,"remote_addr":"176.189.39.54","user_id":"","hash":2418177936039797775,"query_string":"","category":0,"region":13,"sort_type":"time_desc","applied_condition":"global_search","ads":[1875791349,1387869515,1875791290,1875791226,1875790976,1875790980,1875790897,1875790683,1875790365,1875790239,1875790043,1875789958,1875789963,1875789884,1875789812,1875789809,1875789645,1831128844,1875789173,1875789149,1870111446,1875788902,1875788804,1875788577,1875788654,1875779502,1871702110,1871702107,1871652329,1871652243,1870728458,1868785179,1864497026,1863963158,1863417176],"ads_alu":[1849896319,1764957365,1495229927],"ads_shippable":[1875795240,1875621672,1873782760,1875795291,1875795290,1875795273,1875614653,1875449785,1875447292,1861534481,1846894017,1875795293,1875795282,1875795276,1875795267,1875795266,1875795256,1875795250,1875795234,1875795233,1875795227,1875795226,1875795219,1875795216,1875795215,1875795213,1875795301,1875795300,1875795294,1875795285,1875795278,1875795275,1875795270,1875795263,1875795212],"boosted_ads":[],"pivot":""}
+      search-listing-checks($event)
