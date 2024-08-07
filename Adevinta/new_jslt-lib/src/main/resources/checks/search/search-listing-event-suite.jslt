@@ -1,3 +1,0 @@
-import "checks/search/search-listing-event.jslt" as search-listing-event
-
-search-listing-event(.)

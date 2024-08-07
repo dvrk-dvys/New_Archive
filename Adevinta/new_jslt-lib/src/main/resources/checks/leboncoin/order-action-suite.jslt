@@ -1,3 +1,0 @@
-import "checks/leboncoin/order-action.jslt" as order-action
-
-order-action(.)

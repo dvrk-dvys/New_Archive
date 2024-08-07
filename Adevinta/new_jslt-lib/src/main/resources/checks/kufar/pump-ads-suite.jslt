@@ -1,3 +1,0 @@
-import "checks/kufar/pump-ads.jslt" as pump-ads
-
-pump-ads(.)

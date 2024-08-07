@@ -1,6 +1,0 @@
-
-def check-sdrn-experiment-id(obj)
-    test($obj, "^sdrn:houston:experiment:[0-9]+$")
-
-def check-variant(obj)
-    test($obj, "[a-zA-Z]")

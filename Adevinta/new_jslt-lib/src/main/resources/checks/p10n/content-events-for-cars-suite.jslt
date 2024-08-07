@@ -1,3 +1,0 @@
-import "checks/p10n/content-events-for-cars.jslt" as content-events-for-cars
-
-content-events-for-cars(.)

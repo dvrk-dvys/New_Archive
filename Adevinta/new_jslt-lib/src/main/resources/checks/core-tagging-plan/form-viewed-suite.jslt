@@ -1,3 +1,0 @@
-import "checks/core-tagging-plan/form-viewed.jslt" as form-viewed
-
-form-viewed(.)

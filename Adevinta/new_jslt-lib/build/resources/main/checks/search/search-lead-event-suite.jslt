@@ -1,3 +1,0 @@
-import "checks/search/search-lead-event.jslt" as search-lead-event
-
-search-lead-event(.)
